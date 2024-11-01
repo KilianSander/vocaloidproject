@@ -395,7 +395,7 @@ general_dict_raw <-
     by = "key",
     y = tibble::tribble(
       ~key, ~ja,
-      "CONTINUE", "",
+      "CONTINUE", "次へ",
       "RESULTS_SAVED", "結果が保存されました", # deepl
       "CLOSE_BROWSER", "ブラウザウィンドウを閉じることができます。", # deepl
       "PAGE_HEADER", "{{test_length}}問中{{num_question}}問", # deepl
