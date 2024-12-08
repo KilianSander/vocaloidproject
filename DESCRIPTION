@@ -12,6 +12,10 @@ RoxygenNote: 7.3.2
 Imports: 
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10)
-Remotes:  
+Remotes: 
     github::pmcharrison/psychTestR,
     github::klausfrieler/psyquest
+Suggests: 
+    deeplr,
+    purrr,
+    readr
