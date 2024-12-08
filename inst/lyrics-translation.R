@@ -34,3 +34,15 @@ lyrics$LYRICS_de_deepL <-
     lyrics$`LYRICS (original language)`,
     translate
   )
+
+save(
+  lyrics,
+  file = "data-raw/lyrics+deepL.Rda"
+)
+write.csv(
+  lyrics,
+  file = "data-raw/lyrics+deepL.csv",
+  fileEncoding = "UTF-8",
+  na = "",
+  row.names = FALSE
+)
