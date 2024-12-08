@@ -17,5 +17,6 @@ Remotes:
     github::klausfrieler/psyquest
 Suggests: 
     deeplr,
+    dplyr,
     purrr,
     readr
