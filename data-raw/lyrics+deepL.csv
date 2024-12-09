@@ -1,4 +1,4 @@
-"song count","track count","file no. (full track)","File name (producer_title)","Songwriter/Producer (artist name)","Song title (romanized Japanese / English translation)","excerpt extension no.","Length (in seconds)","LYRICS (original language)","LYRICS (Romanized)","LYRICS (English translation)","LYRICS_de_deepL"
+"song count","track count","file no. (full track)","File name (producer_title)","Songwriter/Producer (artist name)","Song title (romanized Japanese / English translation)","excerpt extension no.","Length (in seconds)","LYRICS (original language)","LYRICS (Romanized)","LYRICS (English translation)","LYRICS_de_deepL","LYRICS_en_deepL"
 1,1,1,"3kadocona","3kado-cona","yande orimasu no / I'm sick","_02",16,"私
 病んでおりますの
 病んでおりますの
@@ -31,7 +31,15 @@ Ein roter Tropfen.
 Hey...
 Sie weint.
 Die Augen sind nach hinten gerichtet.
-Eine schwarze Katze läuft vorbei."
+Eine schwarze Katze läuft vorbei.","I am...
+I'm sick.
+I am sick
+A red drop
+A drop of red
+Hey...
+She's crying
+Eyes turned back
+A black cat walks by"
 1,1,2,"COBAx_aBouqet","COBA_x5884x","kimi ni kanzone no hanabata wo / a bouquet of flowers for you","_01",21,"[君に]カンツォーネの花束を
 くすんだ言葉より
 斜め40度から溢れる
@@ -56,7 +64,13 @@ Mehr als dumpfe Worte
 Meine karminroten Gedanken.
 Von mir, der nichts für dich hat
 gebe ich dir einen Blumenstrauß aus Canzonen
-Ich warf ihn weg wie ein Geschenk für dich"
+Ich warf ihn weg wie ein Geschenk für dich","[Canzone bouquet for you
+More than dull words
+Overflowing from 40 degrees diagonally
+I'll give you crimson thoughts
+From me who has nothing for you
+I'll give you a bouquet of canzone flowers
+I threw it away like a bouquet of canzone flowers"
 1,1,3,"COBAx_breaking","COBA_x5884x","hokorobi / breaking open","_01",38,"懐かしい そう感じるには
 まだ勇気が出ないな
 大人だと言うけれど
@@ -81,7 +95,13 @@ Du sagst, du bist erwachsen.
 
 Wenn die Kirschblüten blühen
 Verändert sich etwas
-Solch ein Wind wehte"
+Solch ein Wind wehte","It's been a long time since I've felt that way.
+I'm not brave enough yet.
+You say you're an adult.
+
+When the cherry blossoms bud
+Something will change
+Such a wind was blowing"
 1,1,4,"COBAx_HiHo","COBA_x5884x","Hi-Ho","_02",15,"Hi-Ho
 笑ってたって 強がってたって
 平気なフリをしてたって
@@ -102,7 +122,12 @@ Du hast gelächelt, du warst stark, du hast so getan, als ginge es dir gut.
 Du hast so getan, als ginge es dir gut.
 Hi-Ho
 Ich habe ein brodelndes Geschwür in meinem Herzen
-Unterdrücke das Schaudern"
+Unterdrücke das Schaudern","Hi-Ho
+You were smiling. You were being stubborn.
+You were pretending to be okay.
+Hi-Ho
+I've got a simmering
+Suppress the shudder"
 1,1,5,"COBAx_Indigo","COBA_x5884x","aiirobanka / Indigo multifariousness","_02",16,"私、気づけば恋をしてた
 「恋に身をやつせ」と言いますが
 藍に、染まった華を裂き
@@ -115,7 +140,10 @@ to indigo, cleaving the dyed flowers
 The autumn wind rises","Ich habe mich in der Liebe wiedergefunden.
 Sie sagen: ""Gib dich der Liebe hin"".
 Indigo, das die gefärbten Blumen zerreißt
-Der Herbstwind erhebt sich"
+Der Herbstwind erhebt sich","I found myself falling in love.
+They say, ""Give yourself over to love.""
+Indigo, ripping through the dyed flowers
+The autumn wind stands"
 1,1,6,"COBAx_LiarLiar","COBA_x5884x","Liar×Liar","_01",27,"『カミサマ』や『テンメイ』に
 皆こぞって手を合わす
 『自己満』と『自己愛』が
@@ -140,7 +168,13 @@ Selbstverwirklichung und Selbstliebe
 Überfließen unbewusst.
 Die Stimme der Erlösung, die uns angeboten wird
 Ohne zu wissen oder zu ahnen
-Werden die Menschen meine Hand nehmen?"
+Werden die Menschen meine Hand nehmen?","Everyone joins hands with ""Kamisama"" and ""Tenmei
+Everyone joins hands to ""Kamisama"" and ""Tenmei
+Self-fulfillment and self-love
+Unknowingly overflowing
+The voice of salvation offered to us
+Without knowing or suspecting
+Will people take my hand"
 1,1,7,"emoco_goodbye","emoco (MeKo)","sayonara, reiniiburuu / Goodbye, Rainy Blue","_02",34,"[僕だ]けの音楽よ
 人も街も全部凪いで往け
 ｢もう遅い｣だなんて言い訳は
@@ -158,7 +192,11 @@ emotions","[Es gibt nur mich und meine Musik.
 Beruhigt die Leute, beruhigt die Stadt, beruhigt die ganze Sache und geht.
 Ich werde nie Ausreden erfinden wie: ""Es ist zu spät.
 Ich werde es dich nicht mehr hören lassen
-Sagt eure schwankenden Gefühle, erreicht mich"
+Sagt eure schwankenden Gefühle, erreicht mich","[It's only my music
+Calm down and let the people and the city go
+I'll never give you the excuse that it's too late
+I won't make you listen to it again
+So, please reach me with your wavering emotions"
 1,1,8,"giga_tetrodotoxin","Giga","tetorodotokisaiza 2 gou / Tetrodotoxin Synthesizer No.2","_02",16,"まっ逆さま 飛んでゆく
 いらないモノ 沢山落として
 真っ正面 キミだけに
@@ -171,12 +209,16 @@ directly opposite only you
 I launch the first-kiss-missile","Er fliegt kopfüber.
 Lässt einen Haufen Zeug fallen, das ich nicht brauche
 Kopfüber, nur du.
-Erstkuss-Raketen."
+Erstkuss-Raketen.","It's flying right over your head.
+Dropping a bunch of stuff I don't need
+Head on, just you.
+First-kiss missiles."
 1,2,9,"haraguchisasuke_akotoba","HARAGUCHI Sasuke","Akotoba","_01",16,"生きる空　重なる無線
 命を照らす　青いヒカリ","ikiru sora　kasanaru musen
 inochi wo terasu　aoi hikari","Living sky,  accumulating wireless
 The blue light that illuminates our lives","Lebendiger Himmel Überlappende Radios
-Blaues Hikari erhellt das Leben"
+Blaues Hikari erhellt das Leben","Living Sky Overlapping Radio
+Blue Hikari, illuminating life"
 ,,,,,,"_02",31,"言葉で世界が変わる時は訪れないけど
 どこかで揺らめく音の響きになれたらいいな
 
@@ -193,7 +235,11 @@ I wish to be the meaning of what I wish a little stronger","Ich kann nicht zu ei
 Ich wünschte, ich könnte der Klang eines schimmernden Tons irgendwo sein
 
 Macht? und Position? Ich wünschte, ich könnte die Bedeutung eines Wunsches sein, der nur ein kleines bisschen stärker ist
-Ich wünschte, ich könnte die Bedeutung eines etwas stärkeren Wunsches sein"
+Ich wünschte, ich könnte die Bedeutung eines etwas stärkeren Wunsches sein","Though the time never comes when words can change the world
+I wish I could be the sound of a shimmering sound somewhere
+
+Power? and position? I wish to be the meaning of what I wish a little bit stronger
+I'd like to be the meaning of a little stronger wish"
 1,1,10,"haraguchisasuke_Minibias","HARAGUCHI Sasuke","mini hen / Mini Bias","_01",17,"各・略る 町
 田んぼの田
 タダ飯 飯
@@ -230,7 +276,16 @@ Begriff! Ich verstehe das nicht.
 Und die Hörner, die zusammenkleben.
 Wähle a, b oder c.
 Ich weiß es nicht, aber ich weiß es.
-Auf der linken Seite. Das ist komisch."
+Auf der linken Seite. Das ist komisch.","Each, abbreviate Town
+rice field in a paddy field
+free food, free food, free food.
+Shame about the food!
+A disappointment! I don't understand it.
+
+And the corner that sticks.
+I'll choose a, b, or c.
+I don't know. But I do know.
+Left side. Weird."
 1,1,11,"hutekigou_notlove","hutekig0u","ai janai / Not Love","_02",15,"[最前線]　開戦
 君の眼前
 絡まる欲 無い際限
@@ -263,7 +318,15 @@ Grenzen, die mit jeder schwelenden Täuschung brechen.
 Entlang der Linie in der Abenddämmerung
 Die Linie, an der der Sonnenuntergang schmilzt
 Sehnsucht nach Liebe, schmutzig und heimgesucht
-am Rande des Wahnsinns"
+am Rande des Wahnsinns","[Frontline] Start of War
+Right in front of you
+greed entangled, limits without limits
+Limitations that crack with each smoldering deception
+
+Along the line of dusk
+ruled line where the sunset melts
+longing for love, dirt and hail
+on the verge of madness"
 1,2,12,"kiichi_incomplete","kiiichi","fukanzennamuketsu / incomplete not undecided","_01",28,"空を覆う煙
 晄の蛹虫が眠り
 滲む銀色の体液
@@ -278,7 +341,11 @@ You're alone at a bus stop,","Rauch bedeckt den Himmel
 Die Insektenpuppen der Adern schlafen
 silbrige Flüssigkeit sickert aus ihrem Körper
 
-allein an der Bushaltestelle."
+allein an der Bushaltestelle.","the smoke that covers the sky
+the chrysalis of the marsupial of the marsupial of the marsupial of the marsupial of the chrysalis
+silvery fluid oozing from its body
+
+alone at the bus stop"
 ,,,,,,"_02",27,"不完全無無決
 真剣に信じている
 斑色した
@@ -291,7 +358,10 @@ In mottled color
 anemone bloom out of season","Unvollständig und unentschlossen
 Ernsthafte Überzeugung
 Gesprenkelt.
-Anemone blüht wie verrückt"
+Anemone blüht wie verrückt","Incomplete and undecided
+I seriously believe
+I have spotted
+anemone blooms madly"
 1,1,13,"kikuo_hallelujah","kikuo","Hallelujah Super Idol","_02",15,"世界 宇宙 あげるよ
 地球もお月様も君のもの
 
@@ -308,7 +378,11 @@ Because I'm a Super Idol.","Die Welt, das Universum, für dich.
 Die Erde und der Mond gehören dir.
 
 Ich werde alles wahr werden lassen
-Denn ich bin dein Superidol"
+Denn ich bin dein Superidol","The world and the universe are yours.
+The earth and the moon are yours.
+
+I'll make everything come true
+Because I'm your super idol"
 1,2,14,"LIQ_Alice","LIQ","Alice in Black Market","_01",23,"[午前]【00時13分54秒】 視覚を S×D↓
 午前【05時30分29秒】 規則的な朝
 午前【09時28分04秒】 カレとの約束
@@ -321,7 +395,10 @@ gozen【juuji yonjuunifun sanbyou】te wo tsunagi warau","00:13:54 [AM]: Shut do
 10:42:03 AM: Hold hands and smile","[AM] [00:13:54] Bildmaterial: S x D↓.
 AM [05:30:29] Normaler Morgen.
 AM [09:28:04] Versprechen an meinen Freund.
-AM [10:42:03] Händchen halten und lachen."
+AM [10:42:03] Händchen halten und lachen.","A.M. [00:13:54] S x D ↓ Visual.
+A.M. [05:30:29] Regular morning
+A.M. [09:28:04] Promise to my boyfriend
+A.M. [10:42:03] Holding hands and laughing"
 ,,,,,,"_02",23,"壊れてゆく姿を見せて 
 君は僕だけの Marionette
 「愚者ノ皆様、御退場ハコチラデ御座イマス。」
@@ -346,7 +423,13 @@ Du bist meine eigene Marionette.
 
 Ich werde dich mit endlosen Albträumen verzaubern
 Bis meine Sinne verwirrt sind.
-Des Teufels Plan, die Welt der Wunder schwarz zu machen."
+Des Teufels Plan, die Welt der Wunder schwarz zu machen.","Let me see you break down
+You are my own Marionette
+""Ladies and gentlemen, this is your exit.""
+
+I'll charm you with endless nightmares
+Till my senses become disoriented
+The devil's plan to paint the world black"
 1,2,15,"MARETU_DanceOfLife","MARETU","inochi no odori / The Dance of Life","_01",23,"もう、あんなことや、そんなことも、忘れてみよう。
 傷んだ体、病んだあなた、つくりなおそう。
 とりどりのお花が、愛と死を紡いでいる
@@ -371,7 +454,13 @@ Die bunten Blumen weben Liebe und Tod zusammen.
 (Hand in Hand).
 
 Traurig und bitter, lass uns den Früchten der Gegenwart trotzen.
-Glücklich und freudig, verbinden wir uns mit dem himmlischen Reich."
+Glücklich und freudig, verbinden wir uns mit dem himmlischen Reich.","Let's forget about such-and-such.
+Let's rebuild your damaged body, your sick body.
+The flowers in every color weave together love and death.
+(Hand in hand)
+
+Sad and bitter, let us defy the fruits of the present.
+Happy and joyful, let's connect with the heavenly kingdom."
 ,,,,,,"_02",29,"いのちのおどりを さあ
 踊らせて 踊らせて さあ
 その いのちの灯火を
@@ -404,7 +493,15 @@ Lass es flattern, lass es flattern, hey
 Lass den Tanz des Lebens, komm schon
 Lass es tanzen, lass es tanzen, lass es tanzen
 Lass das Funkeln des Lebens
-Lass mich es berühren, lass mich es berühren, hey"
+Lass mich es berühren, lass mich es berühren, hey","Dance the dance of life. Come on.
+Let it dance, let it dance, let it dance
+Let the light of life
+Let it flutter, let it flutter Hey
+
+Let the dance of life dance
+Let it dance, let it dance, let it dance
+Let the sparkle of life
+Let me touch it, let me touch it, hey"
 1,1,16,"nashimotoUi_Hyperventilation","NASHIMOTO Ui","Kakokyuu Dansu / Hyperventilation Dance","_01",28,"深夜二時過ぎ 酔いは冷めた
 布団かぶれど ノーミソは覚めた
 テレビつけても 話題は暗々
@@ -437,7 +534,15 @@ Ich kann nicht schlafen, ich warte nur auf den Morgen.
 Oh, ich habe gelauscht und ich habe etwas gehört.
 Ich habe etwas gehört, ein schreckliches Geräusch, wie eine Festkapelle.
 Und da ist ein dumpfes, dumpfes Geräusch aus dem Fenster.
-""Komm, lass uns unser Zombie-Ding machen."""
+""Komm, lass uns unser Zombie-Ding machen.""","It's past 2:00 a.m. I'm sober.
+I've got the covers on, but I'm still sober.
+I turn on the TV, but the news is dark.
+I can't sleep. I'm just waiting for morning.
+
+I heard something.
+I heard something... a terrible noise, like a festival music.
+And there's a muffled, muffled sound out the window.
+""Come on, let's go do our zombie thing."""
 1,1,17,"nashimotoUi_wanna_die","NASHIMOTO Ui","Shinitagari / Wanna Die","_02",19,"死にたがり 死んでもいーよ
 誰も気付いちゃくれやしないよ
 死にたがり 死んでもいーよ
@@ -471,7 +576,15 @@ Ich bin sowieso unglücklich. Es ist mir egal, ob ich sterbe.
 Du willst sterben, warum bist du noch am Leben?
 Du willst sterben, warum bist du noch am Leben?
 Du willst sterben, du willst sterben, du kannst sterben!
-Du willst sterben, also warum lebst du noch?"
+Du willst sterben, also warum lebst du noch?","I want to die. I don't care if I die.
+No one will notice me
+I want to die, I don't care if I die
+I'm so miserable, I don't care if I die
+
+You want to die, why are you still alive?
+You want to die, why are you still alive?
+You want to die, so you can die
+You want to die, so why are you still alive?"
 1,2,18,"niki_finger","niki","yubi enpitsu / finger pencil","_01",23,"街の灯の影に
 枯れた命 何故に
 百合の花がひらり
@@ -504,7 +617,15 @@ Jahreszeiten, die kommen und gehen, am Fenster.
 Frühling ist, wenn sie blühen
 Der Sommer ist der Duft der Träume
 Der Herbst ist die Farbe eines Augenblicks
-Der Winter ist der weiße Atem"
+Der Winter ist der weiße Atem","In the shadow of the city lights
+Withered life, why
+Lilies are fluttering
+Seasons that come and go, at the window.
+
+Spring is in bloom
+Summer is the fragrance of dreams
+Autumn is the color of a moment
+Winter is white breath"
 ,,,,,,"_03",36,"描いた
 心の奥の
 大切なトコロ
@@ -569,7 +690,23 @@ Ich habe gemalt
 Im Fenster zu allen Zeiten
 Transparente Stimmen und Augen
 Deine zitternden Hände, deine Träume.
-Ich habe sie alle aufgeschrieben."
+Ich habe sie alle aufgeschrieben.","Painted.
+Deep in the heart
+The important part of my heart
+I watched the seasons go by
+All of them, but
+
+Goodbye
+The backs that stand still
+The sad voice of the backs that stand still
+The world I'm listening to now
+What does it say?
+
+I have painted
+At the window at any time
+Transparent voices and eyes
+My trembling hands, my dreams
+I wrote it all down"
 1,1,20,"NiTSUKa_DivaOfThunder","NiTSUKa","Banrai no utahime / Diva of thunder","_01",22,"星が降る頃 曇天の空 
 黎明前夜 君の隣で 
 快晴を待つ 祈りを込める 
@@ -582,7 +719,10 @@ Waiting for clear skies, Praying
 Compose your feelings, weave your words","Wenn die Sterne fallen Bewölkter Himmel
 Am Vorabend der Morgendämmerung, neben dir
 Ich warte auf einen klaren Himmel und bete
-Komponiere deine Gefühle Webe deine Worte"
+Komponiere deine Gefühle Webe deine Worte","When the stars are falling Cloudy skies
+On the eve of dawn, next to you
+Waiting for clear skies Praying
+Compose your feelings, weave your words"
 1,1,21,"PowaPowa_SykFish","PowaPowa","Sora no sakana / Sky fish","_02",23,"眠る私は思い出す
 ステレオな思い出から
 眠る私は思い出す　思い出す","nemuru watashi wa, omoi dasu
@@ -591,7 +731,9 @@ nemuru watashi wa, omoi dasu, omoi dasu","As I sleep, I recall
 From stereo memories
 Sleeping I remember, remember","Schlafen Ich erinnere mich
 Aus Stereo-Erinnerungen
-Schlafen Ich erinnere mich Ich erinnere mich"
+Schlafen Ich erinnere mich Ich erinnere mich","As I sleep, I recall
+From stereo memories
+Sleeping I remember, I remember, I remember"
 1,1,22,"regulus_weißerschnee","regulus","Weißer Schnee","_01",30,"瞬く白に溶かして消えゆく
 独りぽつりと息を染めて
 空に落ちた","[shi]batataku shiro ni tokashite kie yuku
@@ -600,7 +742,9 @@ sora ni ochita","dissolving into the [blinking] white and fading away
 A solitary breath dyes the air
 I fell into the sky","sich im blinkenden Weiß auflösend und verblasst
 Eingefärbt mit einem einsamen Innehalten und Atem
-fiel ich in den Himmel"
+fiel ich in den Himmel","dissolving into the blinking white and fading away
+A solitary breath dyes the air
+I fell into the sky"
 1,1,26,"ryuryu_mathematics","ryuryu","Mathematics","_01",33,"静かにただ眺めていた 誰かが立てた予想を 
 単純に見えた景色は色を変えた 
 そしてまた繰り返すよ　僕は過ちを重ね 
@@ -613,7 +757,10 @@ And I'll do it all over again I've made so many mistakes
 I don't even know why I was born... and I'm still shaking.","In aller Stille beobachtete ich die Vorhersagen, die jemand gemacht hatte.
 Der einfache Blick wechselte die Farbe.
 Und ich werde es immer wieder tun, einen Fehler nach dem anderen machen.
-Ich weiß nicht einmal, was es bedeutet, geboren zu sein, und ich zittere immer noch."
+Ich weiß nicht einmal, was es bedeutet, geboren zu sein, und ich zittere immer noch.","I just watched in silence... the predictions that someone else had made.
+The simple view changed color.
+And I'll do it all over again I've made so many mistakes
+I don't even know what it means to be born... and I'm still shaking."
 1,1,27,"syudou_dendera","syudou","DenDeRa / Going out","_01",23,"出ん出らりゅうば　出て来るばってん 
 追跡　乱闘　24時 
 あっけらかんとしてるこの界隈 
@@ -642,7 +789,14 @@ Sag ihnen einfach, was für eine Abscheulichkeit sie sind.
 Sag tschüss von hinten.
 Hinten ist ein Tatoo vor dir.
 Ich kann keine Nicht-Zigaretten gebrauchen.
-Dann seid auf alles gefasst!"
+Dann seid auf alles gefasst!","If they're coming out, they're coming out.
+Chase, brawl, 24:00.
+It's so easy in this neighborhood.
+Just tell them what an abomination they are.
+say bye-bye from behind with a straight face
+tatoo is right in front of you
+I can't have non-cigarettes!
+Then be prepared for anything!"
 1,1,28,"tamakiNeko_Hatsukoi","tamaki_neko","Hatsukoi Hydrangea / First love hydrangea","_02",29,"君はきっと隣街の素敵なひとと
 恋に落ちているかもしれない
 青むらさきの綺麗な思い出だけが
@@ -654,7 +808,10 @@ Only my beautiful memories painted in bluish-purple
 Keep appearing conveniently in my daydream","Vielleicht sind Sie in einen netten Kerl aus der nächsten Stadt verliebt.
 Du könntest in einen netten Menschen in der nächsten Stadt verliebt sein.
 Nur schöne Erinnerungen an Blau und Lila
-tauchen bequem in meinem Kopf auf."
+tauchen bequem in meinem Kopf auf.","You might be in love with a nice guy in the next town
+You might be in love with a nice guy in the next town
+Only beautiful memories of blue and purple
+Conveniently floating in my mind"
 1,1,29,"tamakiNeko_NeedToLove","tamaki_neko","Ai no hitsuyou / Need to Love","_01",25,"愛してる 
 くちづけでゆれるコスモス 
 暗い夜の片隅で ひそか In my heart","ai shiteru 
@@ -663,7 +820,9 @@ kurai yoru no katasumi de, hisoka in my heart","I love you.
 Cosmos (flowers) swaying with a kiss 
 In a dark corner of the night, secretly In my heart","Ich liebe dich.
 Der Kosmos wiegt sich mit einem Kuss
-In einer dunklen Ecke der Nacht, heimlich in meinem Herzen"
+In einer dunklen Ecke der Nacht, heimlich in meinem Herzen","I love you.
+Cosmos swaying with a kiss
+In a dark corner of the night, secretly In my heart"
 1,1,30,"tamakiNeko_shinyDays","tamaki_neko","Shiny days","_01",30,"Morning greets 
 I wake up with your voice 
 This moment is so sweet 
@@ -686,7 +845,18 @@ In der Dunkelheit weinte ich wie ein Kind
 Hoffnungslos und verloren
 Ich fühlte mich so einsam
 Aber schließlich fand ich das Licht
-Unnötig zu sagen, dass es du warst, Baby"
+Unnötig zu sagen, dass es du warst, Baby","Morning greets
+I wake up with your voice
+This moment is so sweet
+Precious and lovely
+Ever since you stepped into my life
+The sun has been shining
+Always in my heart
+In the dark I was crying like a child
+Hopeless and lost
+Feeling so lonely
+But finally I found the light
+Needless to say it was you Baby"
 1,2,31,"tamaz_flutter","tamaz","hirari, hirari / flutter, flutter","_01",23,"季節　繰り返すたび 
 ほつれてく絆を 
 つよく、つよく抱きしめて 
@@ -699,7 +869,10 @@ Strongly, strongly embrace them
 So that they won't be lost","Jahreszeiten, jede Jahreszeit wiederholt sich.
 Die Bande, die ausgefranst sind
 Halt dich fest, halt dich fest
-Damit wir sie nicht verlieren"
+Damit wir sie nicht verlieren","Seasons, each season repeating itself
+The bonds that are fraying
+Hold on tight, hold on tight
+So that we don't lose them"
 ,,,,,,"_02",23,"抱えた言葉の重たさに 
 動けなくなって 
 ただ　暖かな夢に溺れてた 
@@ -712,8 +885,11 @@ merely, wallowing in a warm dream
 when I woke, I lost sight of you","Das Gewicht der Worte, an denen ich mich festhielt.
 Ich konnte mich nicht bewegen.
 Ich ertrank einfach in warmen Träumen.
-Und dann wurde mir klar, dass ich dich verloren hatte."
-1,2,32,"tennen_ashesToAshes","ten'nen","HaiHaHaiNi / Ashes to Ashes","_01",15,"さらば　現身の華　露と消えぬ","saraba, utsushimi no hana, tsuyu to kienu","Farewell. A bloom of self in the present. It shall disappear like a dew.","Lebe wohl, Blume dieses Lebens, verschwunden wie der Tau."
+Und dann wurde mir klar, dass ich dich verloren hatte.","The weight of the words I held
+I couldn't move
+Just drowning in warm dreams
+And then I realized I'd lost you."
+1,2,32,"tennen_ashesToAshes","ten'nen","HaiHaHaiNi / Ashes to Ashes","_01",15,"さらば　現身の華　露と消えぬ","saraba, utsushimi no hana, tsuyu to kienu","Farewell. A bloom of self in the present. It shall disappear like a dew.","Lebe wohl, Blume dieses Lebens, verschwunden wie der Tau.","Farewell, flower of this life, gone as dew"
 ,,,,,,"_02",22,"千年の眠りを覚ます　
 鐘の音に似た響きあれ　
 黄銅羊の夢を見る
@@ -752,7 +928,17 @@ Die mit dem schimmernden Schlag des Herzens resoniert
 
 Neu fließende Zahnräder blühen
 Schließe den Riegel vor und gleite in die Fremde
-Verliere dich in den Echos"
+Verliere dich in den Echos","Waking up from a thousand years of sleep
+Let it echo like the sound of bells
+I dream of a brass sheep
+
+a sea of luxurious carpets
+of a clown vanishing into a magical cave
+resonating with the shimmering heartbeat of the clown
+
+Newly flowing gears bloom
+the latch is lowered and the strange slips in
+I let myself fall in love with the echoes"
 1,3,33,"whinartense_theOutsider","whinartense (89P)","ippiki ookami (The Outsider) / Lone Wolf","_01",22,"小さい頃から虐げられて　
 波風立てず生きていた
 
@@ -841,7 +1027,29 @@ Es geht nicht nur darum, akzeptiert zu werden.
 Es macht mir nichts aus, isoliert zu sein.
 
 Ich bin ein stolzer Außenseiter
-So nennt man mich, ein Bauer [ist]."
+So nennt man mich, ein Bauer [ist].","Abused from a young age.
+I've lived my life without making waves.
+
+I didn't talk much, didn't do much with others.
+And yet, I've made it this far.
+
+No matter what happened to me, I lived my life without a care in the world.
+Not overly concerned about what's going on around me
+
+I've lived my life without a care in the world
+I've been living my life with the finger pointing back at me
+
+As I grew up and my circle of friends grew
+I'll go my own way and not be beholden to the powers that be.
+
+I don't have to be in the majority.
+I'll be fine on my own
+
+It's not just a question of being accepted
+I don't care if I'm isolated
+
+Outsider with pride
+That's what I'm called, a pawn"
 ,,,,,,"_02",22,"..の駒だ
 
 いつの間にか　
@@ -874,7 +1082,15 @@ Ich bin es leid, in meinen Gedanken festzustecken.
 Ich habe es satt.
 Ich will nicht einsam genannt werden.
 Aber die Einsamkeit, die das alles mit sich bringt...
-Sie verletzt meinen Stolz."
+Sie verletzt meinen Stolz.","... Pieces of.
+
+I don't know how long it's been since I've
+I've become a lonely eccentric
+I'm sick of being stuck in my mind.
+I'm sick and tired of it.
+I don't want to be called ""lonely.""
+But the loneliness of it all
+It hurts my pride."
 ,,,,,,"_03",22,"ねぇ
 愛されたいの　もう一度
 僕の自我が邪魔をしていても
@@ -915,7 +1131,17 @@ Ah!
 Ich will näher kommen, noch einmal.
 Dieses gefrorene Herz auftauen
 Autsch, autsch, autsch
-Dieses Lamento wird dich nie erreichen"
+Dieses Lamento wird dich nie erreichen","Hey.
+I need to be loved again
+Even if my ego gets in the way
+I hate, hate, hate, hate.
+I have no one to turn to.
+
+Ah!
+I want to get closer. One more time.
+Thaw this frozen heart
+Ouch, ouch, ouch
+This lament will never reach you"
 1,1,34,"whinartense_thoughtinversion","whinartense (89P)","Thought Inversion","_01",30,"いつだって僕ら 壁にぶつかって 泣いて
 明日に備える そんな日々だらけで
 失敗を恐れて 身動きできなくても
@@ -948,7 +1174,15 @@ Aber trotzdem machen wir weiter mit unseren Tagen.
 Und warum? Warum nur? Mein Kopf ist voll von Fragen.
 Und trotzdem tauchen die Fragen immer wieder auf
 Für die fehlenden Antworten suchen wir nach den Hinweisen (Teilen)
-Geh einfach in deinem eigenen Tempo, einen Schritt nach dem anderen"
+Geh einfach in deinem eigenen Tempo, einen Schritt nach dem anderen","We always hit a wall, we cry.
+We prepare for tomorrow.
+We're stuck in the fear of failure.
+But still we go on with our days
+
+Why? Why? My head is full of questions
+And still the questions keep popping up
+We search for the missing answers, we search for the clues
+Just go at your own pace, one step at a time"
 1,1,35,"yauyauke_aCityToFindYou","tsu-ni- (ya-ya)","kimi wo sagasu machi / A city to find you","_02",22,"ああ 空っぽの街に君を探しては
 何度も 同じ場所をさまよい続け
 淡くなってく取り残された景色の中で
@@ -961,4 +1195,7 @@ In the fading landscape left behind
 I saw a vision of you","Oh, ich suche dich immer wieder in der leeren Stadt.
 Ich wandere immer wieder am selben Ort umher
 In der verblassenden Landschaft, die zurückbleibt.
-Ich sah eine Vision von dir."
+Ich sah eine Vision von dir.","Oh, I keep looking for you in that empty city.
+I keep wandering the same place over and over
+In the fading landscape left behind
+I saw a vision of you"

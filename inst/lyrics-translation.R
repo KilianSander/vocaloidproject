@@ -18,10 +18,11 @@ lyrics <-
     !dplyr::starts_with("...1")
   )
 
-translate <- function(words) {
+translate <- function(words,
+                      target_lang = "DE") {
   deeplr::translate2(
     text = words,
-    target_lang = "DE",
+    target_lang = target_lang,
     source_lang = "JA",
     split_sentences = TRUE,
     preserve_formatting = FALSE,
@@ -33,6 +34,17 @@ lyrics$LYRICS_de_deepL <-
   purrr::map_chr(
     lyrics$`LYRICS (original language)`,
     translate
+  )
+
+lyrics$LYRICS_en_deepL <-
+  purrr::map_chr(
+    lyrics$`LYRICS (original language)`,
+    function(words) {
+      translate(
+        words = words,
+        target_lang = "EN"
+      )
+    }
   )
 
 save(
