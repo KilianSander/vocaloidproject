@@ -433,4 +433,14 @@ general_dict_raw <-
     )
   )
 
+vocaloidproject_dict_raw <-
+  general_dict_raw |>
+  dplyr::add_row(
+    gms_dict
+  )
+
+vocaloidproject_dict <-
+  vocaloidproject_dict_raw |>
+  psychTestR::i18n_dict$new()
+
 usethis::use_data(vocaloidproject_dict, overwrite = TRUE)
