@@ -397,7 +397,7 @@ general_dict_raw <-
     y = tibble::tribble(
       ~key, ~ja,
       "CONTINUE", "次へ",
-      "RESULTS_SAVED", "結果が保存されました", # deepl
+      "RESULTS_SAVED", "結果が保存されました。", # deepl
       "CLOSE_BROWSER", "ブラウザウィンドウを閉じることができます。", # deepl
       "PAGE_HEADER", "{{test_length}}問中{{num_question}}問", # deepl
       "JANUARY", "1月", # arabic numerals or Kanji?
@@ -412,24 +412,24 @@ general_dict_raw <-
       "OCTOBER", "10月",
       "NOVEMBER", "11月",
       "DECEMBER", "12月",
-      "NONE", "",
+      "NONE", "なし", # deepl
       "YEAR", "年",
       "MONTH", "月",
-      "OTHER_NATIONALITY", "",
-      "OTHER_COUNTRY", "",
-      "OTHER_LANGUAGE", "",
-      "CHOOSE_ANSWER", "",
-      "CHOOSE_AT_LEAST_ONE_ANSWER", "",
-      "ANSWER_NEEDED", "",
-      "SELECT_MONTH", "",
-      "SELECT_YEAR", "",
+      "OTHER_NATIONALITY", "その他の国籍", # deepl
+      "OTHER_COUNTRY", "その他の国", # deepl
+      "OTHER_LANGUAGE", "その他の言語", # deepl
+      "CHOOSE_ANSWER", "まず答えを選びなさい！", # deepl based on de
+      "CHOOSE_AT_LEAST_ONE_ANSWER", "少なくとも1つの答えを選びなさい！", # deepl based on de
+      "ANSWER_NEEDED", "何か入力してください！", #deepl based on de/de_f
+      "SELECT_MONTH", "月を選択してください！", # deepl
+      "SELECT_YEAR", "年を選択してください！", # deepl
       "E.G.", "例", # deepl
-      "SELECT_MONTH_AND_YEAR", "",
-      "ENTER_ID", "",
-      "ENTER_ID_FORMAL", "",
-      "PROBLEMS_INFO_1", "",
-      "PROBLEMS_INFO_2", "",
-      "PROBLEMS_INFO_3", "",
+      "SELECT_MONTH_AND_YEAR", "月と年を選択してください！", # deepl
+      "ENTER_ID", "IDを入力してください", # deepl
+      "ENTER_ID_FORMAL", "IDを入力してください", # deepl
+      "PROBLEMS_INFO_1", "問題？", # deepl
+      "PROBLEMS_INFO_2", "このページへのリンクを添えて", # deepl based on en
+      "PROBLEMS_INFO_3", "までご連絡ください。", # deepl based on en
     )
   )
 
