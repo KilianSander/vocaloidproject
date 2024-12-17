@@ -12,7 +12,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
     psychTestR (>= 2.25.0),
-    psyquest (>= 1.4.10)
+    psyquest (>= 1.4.10),
+    shiny
 Remotes: 
     github::pmcharrison/psychTestR,
     github::klausfrieler/psyquest
