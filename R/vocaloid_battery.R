@@ -3,13 +3,16 @@
 #' @inheritParams last_page_redirect
 #'
 #' @param languages (character vector) languages for the battery of questionnaires
-vocaloid_battery <- function(admin_password,
+vocaloid_battery <- function(title = "vocaloidproject",
+                             admin_password = "vocaloid",
                              researcher_email = NULL,
                              demo = FALSE,
                              dict = vocaloidproject::vocaloidproject_dict,
                              allow_any_p_id_url = TRUE,
+                             force_p_id_from_url = FALSE,
                              languages = c("de_f", "ja"),
                              back_link = NA_character_,
+                             gms_subscales = c("Abilities"),
                              logo = NULL) {
 
   elts <-
@@ -18,7 +21,8 @@ vocaloid_battery <- function(admin_password,
         dict = dict
       ),
       psyquest::GMS(
-        dict = dict
+        dict = dict,
+        subscales = gms_subscales
       ),
       psychTestR::elt_save_results_to_disk(
         complete = TRUE
@@ -31,6 +35,7 @@ vocaloid_battery <- function(admin_password,
   psychTestR::make_test(
     elts = elts,
     opt = psychTestR::test_options(
+      title = "",
       admin_password = admin_password,
       researcher_email = researcher_email,
       demo = demo,
