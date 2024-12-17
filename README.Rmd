@@ -1,0 +1,50 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# vocaloidproject
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This package includes material for a research project on vocaloid music.
+In terms of software, it is based on the `psychTestR` package (Harrison, 2020)
+and on the `psyquest` package.
+In terms of questionnaires and measurement, the package uses the
+Goldsmiths Musical Sophistication Index (Gold-MSI; Müllensiefen et al., 2014) in
+German (Schaal et al., 2014) and Japanese (Sadakata et al., 2022).
+
+## References
+Harrison, P. (2020). psychTestR: An R package for designing and conducting
+behavioural psychological experiments. *Journal of Open Source Software*,
+*5*(49), 2088. https://doi.org/10.21105/joss.02088
+
+Höger, F., Frieler, K., Pausch, V., Sander, K., & Ruth, N. (2024).
+psyquest (Version 1.5.9) [R package]. https://github.com/klausfrieler/psyquest
+
+Müllensiefen, D., Gingras, B., Musil, J., & Stewart, L. (2014).
+The musicality of non-musicians: An index for assessing musical sophistication
+in the general population. *PLoS ONE*, *9*(2), Article e89642.
+https://doi.org/10.1371/journal.pone.0089642
+
+Sadakata, M., Yamaguchi, Y., Ohsawa, C., Matsubara, M., Terasawa, H.,
+von Schnehen, A., Müllensiefen, D., & Sekiyama, K. (2022). The Japanese
+translation of the Gold-MSI: Adaptation and validation of the self-report
+questionnaire of musical sophistication. *Musicae Scientiae*, *27*(3), 798–810.
+https://doi.org/10.1177/10298649221110089
+
+Schaal, N. K., Bauer, A.-K. R., & Müllensiefen, D. (2014). Der Gold-MSI:
+Replikation und Validierung eines Fragebogeninstrumentes zur Messung
+Musikalischer Erfahrenheit anhand einer deutschen Stichprobe.
+*Musicae Scientiae*, *18*(4), 423–447. https://doi.org/10.1177/1029864914541851
