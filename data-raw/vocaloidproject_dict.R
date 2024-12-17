@@ -433,10 +433,40 @@ general_dict_raw <-
     )
   )
 
+info_redirect <-
+  tibble::tibble(
+    key = c(
+      "info_text",
+      "return_to_prolific",
+      "thanks"
+    ),
+    de = c(
+      "Informationstext", # include html tags
+      "Zurück zu Prolific",
+      "Vielen Dank für Deine Teilnahme!"
+    ),
+    de_f = c(
+      "Informationstext", # include html tags
+      "Zurück zu Prolific",
+      "Vielen Dank für Ihre Teilnahme!"
+    ),
+    en = c(
+      "Information on the study",
+      "Back to Prolific",
+      "Thank you for participating!"
+    ),
+    ja = c(
+      "ja: Informationstext", # include html tags
+      "Prolificに戻る", # based on deepl
+      "ご参加ありがとうございました" # based on deepl
+    )
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
-  dplyr::add_row(
-    gms_dict
+  dplyr::bind_rows(
+    gms_dict,
+    info_redirect
   )
 
 vocaloidproject_dict <-
