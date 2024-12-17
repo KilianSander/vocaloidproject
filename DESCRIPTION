@@ -1,10 +1,11 @@
 Package: vocaloidproject
-Title: What the Package Does (One Line, Title Case)
+Title: Package for a research project on vocaloid music
 Version: 0.0.0.9000
 Authors@R: 
     person("Kilian", "Sander", , "kilian.sander@hmtm-hannover.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3770-7483"))
-Description: Package for a research project on vocaloid music
+Description: This package includes material for a research project on
+    vocaloid music.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
