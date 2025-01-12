@@ -5,9 +5,17 @@
 \title{Battery}
 \usage{
 vocaloid_battery(
+  title = "vocaloidproject",
+  admin_password = "vocaloid",
+  researcher_email = NULL,
+  demo = FALSE,
   dict = vocaloidproject::vocaloidproject_dict,
+  allow_any_p_id_url = TRUE,
+  force_p_id_from_url = FALSE,
   languages = c("de_f", "ja"),
-  back_link
+  back_link = NA_character_,
+  gms_subscales = c("Abilities"),
+  logo = NULL
 )
 }
 \arguments{
