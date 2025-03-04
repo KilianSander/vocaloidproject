@@ -8,7 +8,8 @@ last_page_redirect(
   redirect_heading = "thanks",
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
-  back_link
+  back_link,
+  back_link_key = "return_to_prolific"
 )
 }
 \arguments{
