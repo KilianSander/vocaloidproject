@@ -6,22 +6,40 @@
 #'
 #' @param default_lang (scalar character) default language.
 #'
-#' @param back_link link to redirect participants.
+#' @param back_link link containing the placeholder `%s` for `p_id` to redirect
+#' participants.
 #'
-last_page_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
+last_page_redirect <- function(redirect_heading = "thanks",
+                               dict = vocaloidproject::vocaloidproject_dict,
                                default_lang = "de_f",
-                               back_link) {
+                               back_link,
+                               back_link_key = "return_to_prolific") {
   psychTestR::new_timeline(
-    psychTestR::final_page(
-      body =
-        shiny::div(
-          shiny::h3(psychTestR::i18n("thanks")),
-          shiny::a(
-            psychTestR::i18n("return_to_prolific"),
-            href = back_link,
-            style = "font-size:large;color:red"
+    psychTestR::reactive_page(
+      fun = function(state, ...) {
+        res <-
+          psychTestR::get_session_info(
+            state,
+            complete = TRUE
+          )$p_id
+        message(sprintf("p_id: %s", res))
+        back_link <-
+          sprintf(
+            back_link,
+            res
           )
+        psychTestR::final_page(
+          body =
+            shiny::div(
+              shiny::h3(psychTestR::i18n(redirect_heading)),
+              shiny::a(
+                psychTestR::i18n(back_link_key),
+                href = back_link,
+                style = "font-size:large;color:red"
+              )
+            )
         )
+      }
     ),
     dict = dict,
     default_lang = default_lang

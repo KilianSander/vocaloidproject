@@ -14,8 +14,9 @@ vocaloid_battery(
   force_p_id_from_url = FALSE,
   languages = c("de_f", "ja"),
   back_link = NA_character_,
-  gms_subscales = c("Abilities"),
-  logo = NULL
+  gms_subscales = c("General"),
+  logo = NULL,
+  debug = FALSE
 )
 }
 \arguments{
@@ -23,7 +24,8 @@ vocaloid_battery(
 
 \item{languages}{(character vector) languages for the battery of questionnaires}
 
-\item{back_link}{link to redirect participants.}
+\item{back_link}{link containing the placeholder \verb{\%s} for \code{p_id} to redirect
+participants.}
 }
 \description{
 Battery

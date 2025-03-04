@@ -5,6 +5,7 @@
 \title{Last page of psychTestR questionnaire}
 \usage{
 last_page_redirect(
+  redirect_heading = "thanks",
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
   back_link
@@ -15,7 +16,8 @@ last_page_redirect(
 
 \item{default_lang}{(scalar character) default language.}
 
-\item{back_link}{link to redirect participants.}
+\item{back_link}{link containing the placeholder \verb{\%s} for \code{p_id} to redirect
+participants.}
 }
 \description{
 Generate the last page for a \code{psychTestR} questionnaire.

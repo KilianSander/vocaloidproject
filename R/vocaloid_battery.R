@@ -15,13 +15,15 @@ vocaloid_battery <- function(title = "vocaloidproject",
                              languages = c("de_f", "ja"),
                              back_link = NA_character_,
                              gms_subscales = c("General"),
-                             logo = NULL) {
+                             logo = NULL,
+                             debug = FALSE) {
 
   elts <-
     psychTestR::join(
       info_page(
         dict = dict
       ),
+      stimuli_order(),
       psyquest::GMS(
         dict = dict,
         subscales = gms_subscales
