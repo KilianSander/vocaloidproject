@@ -433,6 +433,36 @@ general_dict_raw <-
     )
   )
 
+DEG_dict_raw <-
+  readr::read_csv2(
+    file = "https://raw.githubusercontent.com/klausfrieler/psyquest/refs/heads/master/data_raw/dicts/DEG_dict.csv"
+  ) |>
+  dplyr::select(
+    key,
+    tidyselect::any_of(c("de", "de_f", "en"))
+  ) |>
+  dplyr::filter(
+    stringr::str_detect(
+      key,
+      pattern = "0000|0004|0005|0010"
+    )
+  ) |>
+  dplyr::left_join(
+    by = "key",
+    y = tibble::tribble(
+      ~key, ~ja,
+      "TDEG_0000_PROMPT", "簡単な人口統計学的アンケート", # deepl
+      "TDEG_0004_CHOICE1", "女性", # deepl
+      "TDEG_0004_CHOICE2", "男性", # deepl
+      "TDEG_0004_CHOICE3", "多様", # deepl
+      "TDEG_0004_CHOICE4", "言いたくない", # deepl
+      "TDEG_0004_PROMPT", "あなたの性別を教えてください。", # deepl
+      "TDEG_0005_CHOICE1", "さいです。", # own translation
+      "TDEG_0005_PROMPT", "年齢を教えてください。", # deepl
+      "TDEG_0010_PROMPT", "いつ生まれましたか？" # deepl
+    )
+  )
+
 info_redirect <-
   tibble::tibble(
     key = c(
@@ -466,6 +496,7 @@ vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
     gms_dict,
+    DEG_dict_raw,
     info_redirect
   )
 
