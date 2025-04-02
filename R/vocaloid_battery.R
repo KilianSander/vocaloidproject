@@ -23,6 +23,12 @@ vocaloid_battery <- function(title = "vocaloidproject",
       info_page(
         dict = dict
       ),
+      psyquest::DEG(
+        subscales = c("Age", "Gender"),
+        # show_months = FALSE,
+        year_range = c(1925, 2007),
+        dict = dict
+      ),
       stimuli_order(),
       psyquest::GMS(
         dict = dict,
