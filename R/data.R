@@ -40,3 +40,13 @@
 #' @name vocaloidproject_dict
 #'
 "vocaloidproject_dict"
+
+
+#' Language codes
+#'
+#' A named vector with two-letter language codes.
+#' Names are the corresponding dictionary keys.
+#' @docType data
+#' @name language_codes
+#'
+"language_codes"

@@ -490,12 +490,22 @@ info_redirect <-
       "ご参加ありがとうございました" # based on deepl
     )
   )
-
+languages <-
+  tibble::tribble(
+    ~key, ~de, ~ja, ~en,
+    "GERMAN", "Deutsch", "ドイツ語", "German",
+    "JAPANESE", "Japanisch", "日本語", "Japanese",
+    "ENGLISH", "Englisch", "英語", "English"
+  ) |>
+  dplyr::mutate(
+    de_f = de
+  )
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
     gms_dict,
     DEG_dict_raw,
+    languages,
     info_redirect
   )
 
