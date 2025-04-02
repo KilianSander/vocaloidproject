@@ -444,7 +444,7 @@ DEG_dict_raw <-
   dplyr::filter(
     stringr::str_detect(
       key,
-      pattern = "0000|0004|0005|0010"
+      pattern = "0000|0004|0010"
     )
   ) |>
   dplyr::left_join(
@@ -457,8 +457,6 @@ DEG_dict_raw <-
       "TDEG_0004_CHOICE3", "多様", # deepl
       "TDEG_0004_CHOICE4", "言いたくない", # deepl
       "TDEG_0004_PROMPT", "あなたの性別を教えてください。", # deepl
-      "TDEG_0005_CHOICE1", "さいです。", # own translation
-      "TDEG_0005_PROMPT", "年齢を教えてください。", # deepl
       "TDEG_0010_PROMPT", "いつ生まれましたか？" # deepl
     )
   )

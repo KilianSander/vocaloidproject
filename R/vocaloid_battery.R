@@ -25,7 +25,7 @@ vocaloid_battery <- function(title = "vocaloidproject",
       ),
       psyquest::DEG(
         subscales = c("Age", "Gender"),
-        # show_months = FALSE,
+        # show_month = FALSE,
         year_range = c(1925, 2007),
         dict = dict
       ),
