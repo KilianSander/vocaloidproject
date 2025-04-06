@@ -8,7 +8,10 @@ educational_degrees <-
     "EDU_CHOICE4", "Bachelor (Uni)", "学士",
     "EDU_CHOICE5", "Master", "修士",
     "EDU_CHOICE6", "Promotion/PhD", "博士",
-    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", ""
+    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "EDU_PROMPT"
+  ) |>
+  dplyr::mutate(
+    de = de_f |> stringr::str_replace("Ihr", "Dein")
   )
 
 ## get GMS dict from psyquest
@@ -506,6 +509,7 @@ vocaloidproject_dict_raw <-
     gms_dict,
     DEG_dict_raw,
     languages,
+    educational_degrees,
     info_redirect
   )
 

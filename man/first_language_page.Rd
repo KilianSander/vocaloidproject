@@ -11,7 +11,7 @@ first_language_page(
 )
 }
 \arguments{
-\item{label}{(character scalar)}
+\item{label}{(scalar character)}
 
 \item{dict}{internationalization dictionary.}
 
