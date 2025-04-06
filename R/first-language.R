@@ -1,5 +1,9 @@
 #' First language
 #'
+#' This function creates a page to ask for the first language.
+#' For this research project, the choices are German (`de`), Japanese (`ja`),
+#' English (`en`), and other language (`other`).
+#'
 #' @param label (character scalar)
 #' @inheritParams last_page_redirect
 #'

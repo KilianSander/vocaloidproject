@@ -18,5 +18,7 @@ first_language_page(
 \item{default_lang}{(scalar character) default language.}
 }
 \description{
-First language
+This function creates a page to ask for the first language.
+For this research project, the choices are German (\code{de}), Japanese (\code{ja}),
+English (\code{en}), and other language (\code{other}).
 }
