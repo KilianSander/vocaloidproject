@@ -23,6 +23,7 @@ vocaloid_battery <- function(title = "vocaloidproject",
       info_page(
         dict = dict
       ),
+      emotional_baseline_page(dict = dict),
       psyquest::DEG(
         subscales = c("Age", "Gender"),
         # show_month = FALSE,
