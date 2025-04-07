@@ -11,7 +11,8 @@
 first_language_page <- function(label = "first_language",
                                 dict = vocaloidproject::vocaloidproject_dict,
                                 default_lang = "de_f") {
-  stopifnot(psyquest:::is.scalar.character(label))
+  stopifnot(psyquest:::is.scalar.character(label),
+            is.character(default_lang))
   psychTestR::new_timeline(
     psychTestR::NAFC_page(
       label = label,
