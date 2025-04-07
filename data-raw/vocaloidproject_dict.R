@@ -503,6 +503,29 @@ languages <-
   dplyr::mutate(
     de_f = de
   )
+
+emotional_baseline <-
+  tibble::tibble(
+    key = c(
+      paste0("EMOBASE_CHOICE", 1:5),
+      "EMOBASE_PROMPT",
+      paste0("EMOBASE_ITEM", 1:6)
+    ),
+    de_f = c(
+      "gar nicht", "", "", "", "sehr",
+      "Wie sehr haben Sie in den letzten 24 Stunden folgende Emotionen empfunden bzw. gelacht?",
+      "Wut",
+      "Sorge",
+      "Traurigkeit",
+      "Glück",
+      "Freude",
+      "Lachen"
+    ),
+    de = de_f |> stringr::str_replace("haben Sie", "hast Du"),
+    ja = paste0("ja: ", de_f),
+    en = NA_character_
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -510,6 +533,7 @@ vocaloidproject_dict_raw <-
     DEG_dict_raw,
     languages,
     educational_degrees,
+    emotional_baseline,
     info_redirect
   )
 
