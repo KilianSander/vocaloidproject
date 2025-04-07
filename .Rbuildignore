@@ -4,3 +4,4 @@
 ^data-raw$
 ^deepL-api-key$
 ^README\.Rmd$
+^output
