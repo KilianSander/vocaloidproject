@@ -107,9 +107,7 @@ vas_page <- function(label,
     ticks = ticks,
     animate = animate,
     slider_width = slider_width,
-    sep = sep, pre = pre, post = post,
-    timeFormat = NULL, timezone = NULL,
-    dragRange = FALSE
+    sep = sep, pre = pre, post = post
   )
   body <- shiny::div(
     psychTestR:::tagify(prompt),
