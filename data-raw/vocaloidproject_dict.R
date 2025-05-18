@@ -540,5 +540,17 @@ vocaloidproject_dict_raw <-
 vocaloidproject_dict <-
   vocaloidproject_dict_raw |>
   psychTestR::i18n_dict$new()
+vocaloidproject_dict_df <-
+  vocaloidproject_dict$as.data.frame()
 
-usethis::use_data(vocaloidproject_dict, overwrite = TRUE)
+usethis::use_data(
+  vocaloidproject_dict,
+  overwrite = TRUE,
+  internal = FALSE
+)
+
+usethis::use_data(
+  vocaloidproject_dict_df,
+  overwrite = TRUE,
+  internal = FALSE
+)
