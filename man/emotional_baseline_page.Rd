@@ -10,6 +10,13 @@ emotional_baseline_page(
   default_lang = "de_f"
 )
 }
+\arguments{
+\item{label}{Label for the current page.}
+
+\item{dict}{internationalization dictionary.}
+
+\item{default_lang}{Default language for the page.}
+}
 \description{
 This function creates a page examining the emotional baseline of
 a participant.

@@ -52,6 +52,9 @@ according to some simple heuristics.}
 settings; \code{FALSE} not to; or a custom settings list, such as those
 created using \code{\link[shiny:animationOptions]{animationOptions()}}.}
 
+\item{slider_width}{(scalar) Width of the slider. Must be valid for use as a
+CSS unit of length.}
+
 \item{sep}{Separator between thousands places in numbers.}
 
 \item{pre}{A prefix string to put in front of the value.}

@@ -3,12 +3,20 @@
 #' This function creates a page examining the emotional baseline of
 #' a participant.
 #'
+#' @param dict internationalization dictionary.
 #'
+#' @param label Label for the current page.
+#'
+#' @param default_lang Default language for the page.
+#'
+#' @export
 emotional_baseline_page <- function(label = "emotional_baseline",
                                     dict = vocaloidproject::vocaloidproject_dict,
                                     default_lang = "de_f") {
   stopifnot(psyquest:::is.scalar.character(label),
             is.character(default_lang))
+
+  failed_validation_message <- psychTestR::i18n("ANSWER_NEEDED")
 
   psychTestR::new_timeline(
     psychTestR::page(

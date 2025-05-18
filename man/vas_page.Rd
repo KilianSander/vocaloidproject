@@ -27,6 +27,10 @@ vas_page(
 )
 }
 \arguments{
+\item{label}{Label for the current page (character scalar).}
+
+\item{prompt}{Prompt to display (character scalar or Shiny tag object).}
+
 \item{min_label}{(scalar character) Label for the left endpoint of the scale,
 which corresponds to the minimum value of the slider.}
 
@@ -39,6 +43,22 @@ scale, which corresponds to the maximum value of the slider.}
 
 \item{value}{(scalar numeric) Initial value of the slider.
 Must lie between \code{min} and \code{max}.}
+
+\item{save_answer}{Whether or not to save the answer.}
+
+\item{button_text}{Text for the submit button (character scalar).}
+
+\item{on_complete}{Optional function to execute on leaving the page
+(after successful validation).
+The argument list should include \code{...},
+and any of:
+\code{state}, the participant's state object;
+\code{answer}, the participant's most recent answer;
+\code{input}, the current page's Shiny input object;
+\code{session}, the current Shiny session object;
+\code{opt}, the test's option list as created by \code{test_options()}.}
+
+\item{admin_ui}{Optional UI component for the admin panel.}
 
 \item{step}{Specifies the interval between each selectable value on the
 slider. Either \code{NULL}, the default, which uses a heuristic to determine the
@@ -57,6 +77,9 @@ according to some simple heuristics.}
 \item{animate}{\code{TRUE} to show simple animation controls with default
 settings; \code{FALSE} not to; or a custom settings list, such as those
 created using \code{\link[shiny:animationOptions]{animationOptions()}}.}
+
+\item{slider_width}{(scalar) Width of the slider. Must be valid for use as a
+CSS unit of length.}
 
 \item{sep}{Separator between thousands places in numbers.}
 

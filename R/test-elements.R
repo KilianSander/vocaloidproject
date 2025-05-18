@@ -15,6 +15,9 @@
 #' @param value (scalar numeric) Initial value of the slider.
 #' Must lie between `min` and `max`.
 #'
+#' @param slider_width (scalar) Width of the slider. Must be valid for use as a
+#' CSS unit of length.
+#'
 #' @inheritParams shiny::sliderInput
 #'
 #' @export
@@ -73,6 +76,8 @@ make_ui_vas <- function(min_label,
 #' visual analog scale.
 #'
 #' @inheritParams make_ui_vas
+#'
+#' @inheritParams psychTestR::slider_page
 #'
 #' @export
 vas_page <- function(label,
