@@ -41,3 +41,12 @@
 #'
 "vocaloidproject_dict"
 
+#' Data frame of the dictionary for the project
+#'
+#' This is the project dictionary as a data.frame.
+#' For details on the dictionary, see [vocaloidproject_dict].
+#'
+#' @docType data
+#' @name vocaloidproject_dict_df
+#'
+"vocaloidproject_dict_df"

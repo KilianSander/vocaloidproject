@@ -1,4 +1,4 @@
-## code to prepare `vocaloidproject_dict` dataset goes here
+## code to prepare `vocaloidproject_dict`
 educational_degrees <-
   tibble::tribble(
     ~key, ~de_f, ~ja,
@@ -12,6 +12,17 @@ educational_degrees <-
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace("Ihr", "Dein")
+  )
+
+student <-
+  tibble::tribble(
+    ~key, ~de_f, ~de, ~en, ~ja,
+    "STUDENT_PROMPT", "Studieren Sie aktuell (z.&nbsp;B. an einer Universität)?",
+    "Studierst Du aktuell (z.&nbsp;B. an einer Universität)?",
+    "Are you currently studying (e.&nbsp;g. at a university)",
+    "現在勉強中ですか（大学など）？", # deepl
+    "STUDENT_CHOICE1", "ja", "ja", "yes", "はい",
+    "STUDENT_CHOICE2", "nein", "nein", "no", "いいえ"
   )
 
 ## get GMS dict from psyquest
@@ -526,6 +537,23 @@ emotional_baseline <-
     en = NA_character_
   )
 
+# deepl for ja translations in `field`
+field <-
+  tibble::tribble(
+    ~key, ~de_f, ~de, ~en, ~ja,
+    "PROFESSIONALFIELDSTUDY_PROMPT",
+    "Was ist Ihr Studienfach bzw. Ihr berfuliches Fachgebiet?",
+    "Was ist Dein Studienfach bzw. Dein berfuliches Fachgebiet?",
+    "What is your field of study or your professional field?",
+    "研究分野や好きな科目は何ですか？",
+    "PROFESSIONALFIELDSTUDY_CHOICE1", "Psychologie", "Psychologie", "Psychology", "心理学",
+    "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽、ミュージシャン",
+    "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenscahft", "Musicology", "音楽学",
+    "PROFESSIONALFIELDSTUDY_CHOICE4", "Tontechnik", "Tontechnik", "Sound engineering", "音響工学",
+    "PROFESSIONALFIELDSTUDY_CHOICE5", "Andere musikbezogene Fächer", "Andere musikbezogene Fächer", "Other music-related subjects", "その他の音楽関連科目",
+    "PROFESSIONALFIELDSTUDY_CHOICE6", "Anderes", "Anderes", "Other", "その他"
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -533,6 +561,7 @@ vocaloidproject_dict_raw <-
     DEG_dict_raw,
     languages,
     educational_degrees,
+    student,
     emotional_baseline,
     info_redirect
   )
