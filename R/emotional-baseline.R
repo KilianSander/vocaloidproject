@@ -13,7 +13,7 @@
 emotional_baseline_page <- function(label = "emotional_baseline",
                                     dict = vocaloidproject::vocaloidproject_dict,
                                     default_lang = "de_f") {
-  stopifnot(psyquest:::is.scalar.character(label),
+  stopifnot(is.scalar.character(label),
             is.character(default_lang))
 
   failed_validation_message <- psychTestR::i18n("ANSWER_NEEDED")
@@ -21,7 +21,7 @@ emotional_baseline_page <- function(label = "emotional_baseline",
   psychTestR::new_timeline(
     psychTestR::page(
       ui = shiny::tags$div(
-        GAR:::tagify(psychTestR::i18n("EMOBASE_PROMPT")),
+        tagify(psychTestR::i18n("EMOBASE_PROMPT")),
         GAR::make_ui_radiobutton_matrix(
           polarity = "unipolar",
           items = sapply(paste0("EMOBASE_ITEM", 1:6), psychTestR::i18n, simplify = TRUE, USE.NAMES = TRUE),

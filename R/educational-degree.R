@@ -9,7 +9,7 @@
 education_page <- function(label = "educational_degree",
                            dict = vocaloidproject::vocaloidproject_dict,
                            default_lang = "de_f") {
-  stopifnot(psyquest:::is.scalar.character(label),
+  stopifnot(is.scalar.character(label),
             is.character(default_lang))
   psychTestR::new_timeline(
     psychTestR::NAFC_page(

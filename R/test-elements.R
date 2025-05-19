@@ -33,13 +33,13 @@ make_ui_vas <- function(min_label,
                         slider_width = "300px",
                         sep = ",",
                         pre = NULL, post = NULL) {
-  stopifnot(psychTestR:::is.scalar.character(min_label),
-            psychTestR:::is.scalar.character(max_label),
-            psychTestR:::is.scalar.numeric(min_numeric),
-            psychTestR:::is.scalar.numeric(max_numeric),
-            psychTestR:::is.scalar.numeric(value),
-            psychTestR:::is.scalar.numeric(step),
-            psychTestR:::is.scalar(slider_width),
+  stopifnot(is.scalar.character(min_label),
+            is.scalar.character(max_label),
+            is.scalar.numeric(min_numeric),
+            is.scalar.numeric(max_numeric),
+            is.scalar.numeric(value),
+            is.scalar.numeric(step),
+            is.scalar(slider_width),
             value <= max_numeric,
             value >= min_numeric)
 
@@ -99,7 +99,7 @@ vas_page <- function(label,
                      sep = ",",
                      pre = NULL,
                      post = NULL) {
-  stopifnot(psychTestR:::is.scalar.character(label))
+  stopifnot(is.scalar.character(label))
 
   slider <- make_ui_vas(
     min_label = min_label,
@@ -115,7 +115,7 @@ vas_page <- function(label,
     sep = sep, pre = pre, post = post
   )
   body <- shiny::div(
-    psychTestR:::tagify(prompt),
+    tagify(prompt),
     slider
   )
   ui <- shiny::div(
