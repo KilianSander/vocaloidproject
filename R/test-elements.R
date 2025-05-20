@@ -273,3 +273,130 @@ audio_vas_page <- function(label,
     post = post
   )
 }
+
+audio_vas_page_battery <- function(battery_label,
+                                   prompt,
+                                   min_label,
+                                   max_label,
+                                   min_numeric,
+                                   max_numeric,
+                                   value,
+                                   num_stimuli,
+                                   stimulus_prefix_pattern = "s%03d",
+                                   base_url,
+                                   randomise_at_runtime = FALSE,
+                                   type = "mp3",
+                                   wait = TRUE,
+                                   loop = FALSE,
+                                   btn_play_prompt = if (!show_controls) "Click here to play",
+                                   show_controls = TRUE,
+                                   allow_download = FALSE,
+                                   autoplay = "autoplay",
+                                   save_answer = TRUE,
+                                   button_text = "Next",
+                                   on_complete = NULL,
+                                   admin_ui = NULL,
+                                   step,
+                                   hide_numeric_values = TRUE,
+                                   round = FALSE,
+                                   ticks = FALSE,
+                                   animate = FALSE,
+                                   slider_width = "300px",
+                                   sep = ",",
+                                   pre = NULL,
+                                   post = NULL) {
+  stopifnot(is.scalar.character(battery_label),
+            is.scalar.integerlike(num_stimuli),
+            num_stimuli > 0,
+            is.scalar.character(stimulus_prefix_pattern),
+            is.scalar.character(base_url),
+            is.scalar.logical(randomise_at_runtime))
+  # see https://github.com/klausfrieler/GAR/blob/09f69e3b6707dd13baa21ee996a84fda3eb9da72/R/GAR.R#L70C1-L176C2
+  audio_vas_pages <-
+    lapply(
+      1:num_stimuli,
+      function(n) {
+        page_label <- sprintf(
+          paste0("%s_", stimulus_prefix_pattern),
+          battery_label, n
+        )
+        stimulus_url <- file.path(
+          base_url,
+          sprintf(
+            "%s.%s",
+            sprintf(stimulus_prefix_pattern, n),
+            type
+          )
+        )
+        psychTestR::join(
+          audio_vas_page(
+            label = page_label,
+            prompt = prompt,
+            min_label = min_label,
+            max_label = max_label,
+            min_numeric = min_numeric,
+            max_numeric = max_numeric,
+            value = value,
+            url = stimulus_url,
+            type = ,
+            wait = wait,
+            loop = loop,
+            btn_play_prompt = btn_play_prompt,
+            show_controls = show_controls,
+            allow_download = allow_download,
+            autoplay = autoplay,
+            save_answer = save_answer,
+            button_text = button_text,
+            on_complete = on_complete,
+            admin_ui = admin_ui,
+            step = step,
+            hide_numeric_values = hide_numeric_values,
+            round = round,
+            ticks = ticks,
+            animate = animate,
+            slider_width = slider_width,
+            sep = sep, pre = pre, post = post
+          ),
+          psychTestR::elt_save_results_to_disk(complete = FALSE)
+        )
+      }
+    )
+
+  # see https://github.com/klausfrieler/GAR/blob/09f69e3b6707dd13baa21ee996a84fda3eb9da72/R/GAR.R#L139C1-L173C6
+  save_stimuli <- function(label) {
+    function(order, state, ...) {
+      stimuli <- sprintf(stimulus_prefix_pattern, 1:num_stimuli)[order]
+      message(
+        sprintf("Saving stimulus order for  %s (length: %d): %s",
+                label, length(order),
+                paste(stimuli, collapse = ", "))
+      )
+      psychTestR::save_result(state, label, stimuli)
+    }
+  }
+
+  if (randomise_at_runtime) {
+    psychTestR::join(
+      psychTestR::begin_module(label = battery_label),
+      psychTestR::randomise_at_run_time(
+        label = battery_label,
+        logic = audio_vas_pages,
+        save_order = save_stimuli(sprintf("%s_stimulus_order", battery_label))
+      ),
+      # psychTestR::elt_save_results_to_disk(complete = TRUE),
+      psychTestR::end_module()
+    )
+  } else {
+    psychTestR::join(
+      psychTestR::begin_module(label = battery_label),
+      psychTestR::order_at_run_time(
+        label = battery_label,
+        logic = audio_vas_pages,
+        get_order = function(...) 1:num_stimuli,
+        save_order = save_stimuli(sprintf("%s_stimulus_order", battery_label))
+      ),
+      # psychTestR::elt_save_results_to_disk(complete = TRUE),
+      psychTestR::end_module()
+    )
+  }
+}

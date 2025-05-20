@@ -14,6 +14,14 @@ is.scalar.logical <- function(x) {
   is.logical(x) && is.scalar(x)
 }
 
+is.integerlike <- function(x) {
+  all(round(x) == x)
+}
+
+is.scalar.integerlike <- function(x) {
+  is.scalar(x) && is.integerlike(x)
+}
+
 tagify <- function(x) {
   stopifnot(is.character(x) || is(x, "shiny.tag"))
   if (is.character(x)) {
