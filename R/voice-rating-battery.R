@@ -1,5 +1,6 @@
 voice_rating_battery <- function(title = "Voiceratingbattery",
                                  admin_password = "vocaloid",
+                                 randomise_stimuli_at_runtime = TRUE,
                                  researcher_email = NULL,
                                  demo = FALSE,
                                  dict = vocaloidproject::vocaloidproject_dict,
@@ -29,7 +30,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         year_range = c(1925, 2007),
         dict = dict
       ),
-      psychTestR::begin_module(label = "EDU")
+      psychTestR::begin_module(label = "EDU"),
       student_page(
         dict = dict
       ),
@@ -51,7 +52,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         min_numeric = 1, max_numeric = 100, value = 50.5,
         num_stimuli = 2, stimulus_prefix_pattern = "s%02d",
         base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
-        randomise_at_runtime = FALSE,
+        randomise_at_runtime = randomise_stimuli_at_runtime,
         type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",
         step = 1, hide_numeric_values = TRUE, round = TRUE
       ),
