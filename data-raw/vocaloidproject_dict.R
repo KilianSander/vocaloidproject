@@ -563,6 +563,7 @@ vocaloidproject_dict_raw <-
     educational_degrees,
     student,
     emotional_baseline,
+    field,
     info_redirect
   )
 

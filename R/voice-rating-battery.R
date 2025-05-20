@@ -29,14 +29,19 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         year_range = c(1925, 2007),
         dict = dict
       ),
-      # university student
-      # professional field / field of study
+      student_page(
+        dict = dict
+      ),
+      field_page(
+        dict = dict
+      ),
       first_language_page(
         dict = dict
       ),
       education_page(
         dict = dict
       ),
+      psychTestR::elt_save_results_to_disk(complete = TRUE),
       psychTestR::final_page(
         body = info_plast
       )
