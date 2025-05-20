@@ -11,6 +11,7 @@ make_ui_vas(
   max_numeric,
   value,
   step,
+  hide_numeric_values = TRUE,
   round = FALSE,
   ticks = FALSE,
   animate = FALSE,
@@ -38,6 +39,9 @@ Must lie between \code{min} and \code{max}.}
 slider. Either \code{NULL}, the default, which uses a heuristic to determine the
 step size or a single number. If the values are dates, \code{step} is in days;
 if the values are date-times, \code{step} is in seconds.}
+
+\item{hide_numeric_values}{(logical scalar) Whether or not to hide the
+numeric values in the UI, that is, \code{min_numeric}, \code{max_numeric}, and \code{value}.}
 
 \item{round}{\code{TRUE} to round all values to the nearest integer;
 \code{FALSE} if no rounding is desired; or an integer to round to that

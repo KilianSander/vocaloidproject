@@ -18,6 +18,9 @@
 #' @param slider_width (scalar) Width of the slider. Must be valid for use as a
 #' CSS unit of length.
 #'
+#' @param hide_numeric_values (logical scalar) Whether or not to hide the
+#' numeric values in the UI, that is, `min_numeric`, `max_numeric`, and `value`.
+#'
 #' @inheritParams shiny::sliderInput
 #'
 #' @export
@@ -27,6 +30,7 @@ make_ui_vas <- function(min_label,
                         max_numeric,
                         value,
                         step,
+                        hide_numeric_values = TRUE,
                         round = FALSE,
                         ticks = FALSE,
                         animate = FALSE,
@@ -68,6 +72,26 @@ make_ui_vas <- function(min_label,
     timezone = NULL,
     dragRange = FALSE
   )
+
+  if (hide_numeric_values) {
+    ui <- shiny::div(
+      # see https://stackoverflow.com/questions/35251788/hide-values-of-sliderinput-in-shiny
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              '.irs-from, .irs-to, ',
+              '.irs-min, .irs-max, ',
+              '.irs-single {visibility: hidden !important;}'
+            )
+          )
+        )
+      ),
+      ui
+    )
+  }
+
+  ui
 }
 
 #' New Visual Analog Scale Page
@@ -92,6 +116,7 @@ vas_page <- function(label,
                      on_complete = NULL,
                      admin_ui = NULL,
                      step,
+                     hide_numeric_values = TRUE,
                      round = FALSE,
                      ticks = FALSE,
                      animate = FALSE,
@@ -139,5 +164,112 @@ vas_page <- function(label,
     save_answer = save_answer,
     on_complete = on_complete,
     next_elt = TRUE
+  )
+}
+
+# see https://github.com/pmcharrison/psychTestR/blob/cf42f20d3c156ebb42721af1310849ff8735ea1d/R/test-elements.R#L847C1-L857C2
+media.js <- list(
+  media_not_played = "var media_played = false;",
+  media_played = "media_played = true;",
+  play_media = "document.getElementById('media').play();",
+  show_media_btn = paste0("if (!media_played) ",
+                          "{document.getElementById('btn_play_media')",
+                          ".style.visibility='inherit'};"),
+  hide_media_btn = paste0("document.getElementById('btn_play_media')",
+                          ".style.visibility='hidden';"),
+  show_responses = "document.getElementById('response_ui').style.visibility = 'inherit';"
+)
+
+# see https://github.com/pmcharrison/psychTestR/blob/cf42f20d3c156ebb42721af1310849ff8735ea1d/R/test-elements.R#L859C1-L863C53
+media_mobile_play_button <- function(btn_play_prompt) shiny::tags$p(
+  shiny::tags$strong(btn_play_prompt,
+                     id = "btn_play_media",
+                     style = "visibility: hidden",
+                     onclick = media.js$play_media))
+
+#' New Audio Visual Analog Scale Page
+#'
+#' Creates a page with an audio prompt where the participant responds by
+#' using a slider like a visual analog scale.
+#'
+#' @inheritParams vas_page
+#'
+#' @inheritParams psychTestR::audio_NAFC_page
+#'
+#' @export
+audio_vas_page <- function(label,
+                           prompt,
+                           min_label,
+                           max_label,
+                           min_numeric,
+                           max_numeric,
+                           value,
+                           url,
+                           type = tools::file_ext(url),
+                           wait = TRUE,
+                           loop = FALSE,
+                           btn_play_prompt = if (!show_controls) "Click here to play",
+                           show_controls = TRUE,
+                           allow_download = FALSE,
+                           autoplay = "autoplay",
+                           save_answer = TRUE,
+                           button_text = "Next",
+                           on_complete = NULL,
+                           admin_ui = NULL,
+                           step,
+                           hide_numeric_values = TRUE,
+                           round = FALSE,
+                           ticks = FALSE,
+                           animate = FALSE,
+                           slider_width = "300px",
+                           sep = ",",
+                           pre = NULL,
+                           post = NULL) {
+  stopifnot(is.scalar.character(label),
+            is.scalar.character(url),
+            is.scalar.logical(loop),
+            is.scalar.logical(wait))
+  # see https://github.com/pmcharrison/psychTestR/blob/cf42f20d3c156ebb42721af1310849ff8735ea1d/R/test-elements.R#L928C1-L942C50
+  audio_ui <- shiny::tags$div(
+    shiny::tags$audio(
+      shiny::tags$head(shiny::tags$script(shiny::HTML(media.js$media_not_played))),
+      shiny::tags$source(src = url, type = paste0("audio/", type)),
+      id = "media",
+      preload = "auto",
+      autoplay = if(nchar(autoplay) > 0) "autoplay",
+      loop = if (loop) "loop",
+      oncanplaythrough = media.js$show_media_btn,
+      onplay = paste0(media.js$media_played, media.js$hide_media_btn),
+      onended = if (wait) media.js$show_responses else "null",
+      controls = if (show_controls) "controls",
+      controlsList = if (!allow_download) "nodownload"
+    ),
+    media_mobile_play_button(btn_play_prompt)
+  )
+  prompt2 <- shiny::div(
+    tagify(prompt),
+    audio_ui
+  )
+
+  vas_page(
+    label = label,
+    prompt = prompt2,
+    min_label = min_label,
+    max_label = max_label,
+    min_numeric = min_numeric,
+    max_numeric = max_numeric,
+    value = value,
+    save_answer = save_answer,
+    button_text = button_text,
+    on_complete = on_complete,
+    admin_ui = admin_ui,
+    step = step,
+    round = round,
+    ticks = ticks,
+    animate = animate,
+    slider_width = slider_width,
+    sep = sep,
+    pre = pre,
+    post = post
   )
 }
