@@ -29,6 +29,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         year_range = c(1925, 2007),
         dict = dict
       ),
+      psychTestR::begin_module(label = "EDU")
       student_page(
         dict = dict
       ),
@@ -42,6 +43,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         dict = dict
       ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
+      psychTestR::end_module(),
       audio_vas_page_battery(
         battery_label = "voice_rating",
         prompt = "Wie klingt diese Stimme?",
