@@ -13,12 +13,18 @@ last_page_redirect(
 )
 }
 \arguments{
+\item{redirect_heading}{(scalar character) Key \code{dict}. Its translation is
+shown as the heading of this page.}
+
 \item{dict}{internationalization dictionary.}
 
 \item{default_lang}{(scalar character) default language.}
 
 \item{back_link}{link containing the placeholder \verb{\%s} for \code{p_id} to redirect
 participants.}
+
+\item{back_link_key}{(scalar character) Key in \code{dict}. Its translation is
+the text shown for \code{back_link}.}
 }
 \description{
 Generate the last page for a \code{psychTestR} questionnaire.

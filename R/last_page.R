@@ -9,11 +9,19 @@
 #' @param back_link link containing the placeholder `%s` for `p_id` to redirect
 #' participants.
 #'
+#' @param back_link_key (scalar character) Key in `dict`. Its translation is
+#' the text shown for `back_link`.
+#'
+#' @param redirect_heading (scalar character) Key `dict`. Its translation is
+#' shown as the heading of this page.
+#'
 last_page_redirect <- function(redirect_heading = "thanks",
                                dict = vocaloidproject::vocaloidproject_dict,
                                default_lang = "de_f",
                                back_link,
                                back_link_key = "return_to_prolific") {
+  stopifnot(is.scalar.character(back_link_key))
+
   psychTestR::new_timeline(
     psychTestR::reactive_page(
       fun = function(state, ...) {
