@@ -4,7 +4,7 @@
 #' For this research project, the choices are German (`de`), Japanese (`ja`),
 #' English (`en`), and other language (`other`).
 #'
-#' @param label (scalar character)
+#' @param label (scalar character) Label for the current page.
 #' @inheritParams last_page_redirect
 #'
 #' @export
