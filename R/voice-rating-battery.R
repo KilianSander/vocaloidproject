@@ -48,7 +48,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
       audio_vas_page_battery(
         battery_label = "voice_rating",
         prompt = "Wie klingt diese Stimme?",
-        min_label = "künstlich", max_label = "menschlich",
+        min_label = "kuenstlich", max_label = "menschlich",
         min_numeric = 1, max_numeric = 100, value = 50.5,
         num_stimuli = 2, stimulus_prefix_pattern = "s%02d",
         base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
