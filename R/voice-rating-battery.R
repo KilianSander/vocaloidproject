@@ -1,3 +1,6 @@
+#' psychTestR Battery for Voice Rating Study
+#'
+#' @export
 voice_rating_battery <- function(title = "Voiceratingbattery",
                                  admin_password = "vocaloid",
                                  randomise_stimuli_at_runtime = TRUE,
@@ -23,7 +26,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
       psychTestR::new_timeline(
         psychTestR::one_button_page(
           body = info_p1,
-          button_text = "Weiter"
+          button_text = psychTestR::i18n("CONTINUE")
         ),
         dict = dict
       ),
