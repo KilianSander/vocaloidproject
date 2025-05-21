@@ -14,15 +14,18 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
     shiny::HTML(
       "Voice rating info"
     )
-  info_plast <-
-    shiny::HTML(
-      "This is the last page."
-    )
+  # info_plast <-
+  #   shiny::HTML(
+  #     "This is the last page."
+  #   )
   elts <-
     psychTestR::join(
-      psychTestR::one_button_page(
-        body = info_p1,
-        button_text = "Weiter"
+      psychTestR::new_timeline(
+        psychTestR::one_button_page(
+          body = info_p1,
+          button_text = "Weiter"
+        ),
+        dict = dict
       ),
       psyquest::DEG(
         subscales = c("Age", "Gender"),
@@ -45,10 +48,12 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
       ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       psychTestR::end_module(),
+      psychTestR::new_timeline(
       audio_vas_page_battery(
         battery_label = "voice_rating",
-        prompt = "Wie klingt diese Stimme?",
-        min_label = "kuenstlich", max_label = "menschlich",
+        prompt = psychTestR::i18n("VOICERATING_PROMPT"),
+        min_label = psychTestR::i18n("VOICERATING_MIN"),
+        max_label = psychTestR::i18n("VOICERATING_MAX"),
         min_numeric = 1, max_numeric = 100, value = 50.5,
         num_stimuli = 2, stimulus_prefix_pattern = "s%02d",
         base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
@@ -56,8 +61,19 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",
         step = 1, hide_numeric_values = TRUE, round = TRUE
       ),
-      psychTestR::final_page(
-        body = info_plast
+      dict = dict
+      ),
+      psychTestR::new_timeline(
+        psychTestR::final_page(
+          body = shiny::div(
+            shiny::p(psychTestR::i18n("thanks")),
+            shiny::p(
+              psychTestR::i18n("RESULTS_SAVED"),
+              psychTestR::i18n("CLOSE_BROWSER")
+            )
+          )
+        ),
+        dict = dict
       )
     )
 

@@ -367,7 +367,7 @@ audio_vas_page_battery <- function(battery_label,
     function(order, state, ...) {
       stimuli <- sprintf(stimulus_prefix_pattern, 1:num_stimuli)[order]
       message(
-        sprintf("Saving stimulus order for  %s (length: %d): %s",
+        sprintf("Saving stimulus order for %s (length: %d): %s",
                 label, length(order),
                 paste(stimuli, collapse = ", "))
       )
