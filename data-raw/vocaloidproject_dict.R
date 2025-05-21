@@ -554,6 +554,18 @@ field <-
     "PROFESSIONALFIELDSTUDY_CHOICE6", "Anderes", "Anderes", "Other", "その他"
   )
 
+voice_rating <-
+  tibble::tribble(
+    ~key, ~de, ~en, ~ja,
+    # deepl
+    "VOICERATING_PROMPT", "Wie klingt die Stimme?", "How does the voice sound?", "声の響きとは？",
+    "VOICERATING_MIN", "künstlich", "artificial", "人工",
+    "VOICERATING_MAX", "menschlich", "human", "人間的"
+  ) |>
+  dplyr::mutate(
+    de_f = de
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -564,6 +576,7 @@ vocaloidproject_dict_raw <-
     student,
     emotional_baseline,
     field,
+    voice_rating,
     info_redirect
   )
 
