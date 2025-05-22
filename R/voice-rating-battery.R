@@ -49,7 +49,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
       education_page(
         dict = dict
       ),
-      psychTestR::elt_save_results_to_disk(complete = TRUE),
+      psychTestR::elt_save_results_to_disk(complete = FALSE),
       psychTestR::end_module(),
       psychTestR::new_timeline(
       audio_vas_page_battery(
@@ -66,6 +66,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
       ),
       dict = dict
       ),
+      psychTestR::elt_save_results_to_disk(complete = TRUE),
       psychTestR::new_timeline(
         psychTestR::final_page(
           body = shiny::div(

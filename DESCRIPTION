@@ -17,7 +17,8 @@ Imports:
     methods,
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10),
-    shiny
+    shiny,
+    tibble
 Remotes: 
     github::pmcharrison/psychTestR,
     github::klausfrieler/psyquest,

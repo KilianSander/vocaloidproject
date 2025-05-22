@@ -12,15 +12,6 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
     results_dir <- offline_results_dir
   }
 
-  read_data <- function(results_dir = results_dir) {
-    results <- purrr::map(
-      list.files(path = results_dir, pattern = "*.rds", full.names = TRUE),
-      function(x) {
-        readRDS(x) %>% as.list()
-      }
-    )
-  }
-
   ui <- fluidPage(
     #
   )
