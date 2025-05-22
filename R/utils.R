@@ -64,7 +64,7 @@ remove_doublets <- function(results){
   results[setdiff(1:length(results), remove_idx)]
 }
 
-read_data <- function(results_dir = results_dir) {
+read_voice_rating_data <- function(results_dir = results_dir) {
   # browser()
   results <- purrr::map(
     list.files(path = results_dir, pattern = "*.rds", full.names = TRUE),
@@ -104,7 +104,7 @@ read_data <- function(results_dir = results_dir) {
       dplyr::arrange(time_started)
   } else {
     ret <- data.frame(
-      P_id = character(0L)
+      p_id = character(0L)
     )
   }
   return(ret)
@@ -145,4 +145,16 @@ parse_voice_rating <- function(voice_rating_data) {
     ] %>%
     as.data.frame()
   cbind(stimulus_order, ratings)
+}
+
+# see https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L351C1-L420C2
+setup_voice_rating_workspace <- function(results = "data_raw",
+                                         reload = FALSE) {
+  if (reload || !file.exists("data/master.rds")) {
+    master <- read_voice_rating_data(results)
+    saveRDS(master, "data/master.rds")
+  } else {
+    master <- readRDS("data/master.rds")
+  }
+  assign("master", master, globalenv())
 }
