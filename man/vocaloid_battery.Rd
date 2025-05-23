@@ -20,12 +20,42 @@ vocaloid_battery(
 )
 }
 \arguments{
+\item{title}{The test's title.
+This can either be an unnamed character scalar,
+in which case the same title will be shown irrespective of internationalisation,
+or a named vector of titles with the names
+corresponding to language codes.}
+
+\item{admin_password}{Password to access the admin panel.}
+
+\item{researcher_email}{Researcher's email; used in participant help message.}
+
+\item{demo}{Whether the test is to be run in demo mode.}
+
 \item{dict}{internationalization dictionary.}
 
-\item{languages}{(character vector) languages for the battery of questionnaires}
+\item{allow_any_p_id_url}{Whether to allow new participants
+to give themselves an arbitrary participant ID by passing it
+as a URL parameter.}
+
+\item{force_p_id_from_url}{Whether to force new participants
+to provide their participant ID as a URL parameter.}
+
+\item{languages}{Character vector of languages that may be selected
+via the URL parameter 'language'. If no language is provided by
+the URL parameter, defaults to the first language in this vector.
+Languages should be encoded according to ISO 639-2 conventions, lower-case,
+e.g. 'en'.}
 
 \item{back_link}{link containing the placeholder \verb{\%s} for \code{p_id} to redirect
 participants.}
+
+\item{gms_subscales}{(character vector) passed to the \code{subscales} argument of
+\code{\link[psyquest:GMS]{psyquest::GMS()}}.}
+
+\item{logo}{Path to a logo to display in the header (optional).}
+
+\item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 }
 \description{
 Battery

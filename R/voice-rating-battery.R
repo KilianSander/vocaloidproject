@@ -1,5 +1,14 @@
 #' psychTestR Battery for Voice Rating Study
 #'
+#' @inheritParams psychTestR::test_options
+#'
+#' @param randomise_stimuli_at_runtime (logical scalar) Whether or not to
+#' randomise the order of the stimuli (see [audio_vas_page_battery()]).
+#'
+#' @inheritParams vocaloid_battery
+#'
+#' @inheritParams audio_vas_page_battery
+#'
 #' @export
 voice_rating_battery <- function(title = "Voiceratingbattery",
                                  admin_password = "vocaloid",
@@ -10,7 +19,9 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
                                  allow_any_p_id_url = TRUE,
                                  force_p_id_from_url = FALSE,
                                  languages = c("de_f"),
-                                 stimulus_url = character(),
+                                 num_stimuli = 2,
+                                 stimulus_prefix_pattern = character(),
+                                 base_url = character(),
                                  logo = NULL,
                                  debug = FALSE) {
   info_p1 <-
@@ -58,7 +69,7 @@ voice_rating_battery <- function(title = "Voiceratingbattery",
         min_label = psychTestR::i18n("VOICERATING_MIN"),
         max_label = psychTestR::i18n("VOICERATING_MAX"),
         min_numeric = 1, max_numeric = 100, value = 50.5,
-        num_stimuli = 2, stimulus_prefix_pattern = "s%02d",
+        num_stimuli = num_stimuli, stimulus_prefix_pattern = "s%02d",
         base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
         randomise_at_runtime = randomise_stimuli_at_runtime,
         type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",

@@ -41,7 +41,7 @@ audio_vas_page_battery(
 }
 \arguments{
 \item{battery_label}{(character scalar) Name for the results section of the
-battery. Individual page labels (see \code{psychTestR::page()}) are generated
+battery. Individual page labels (see \code{\link[psychTestR:page]{psychTestR::page()}}) are generated
 from \code{battery_label} and \code{stimulus_prefix_pattern}.}
 
 \item{prompt}{Prompt to display (character scalar or Shiny tag object).}
@@ -68,6 +68,9 @@ For example, \code{num_stimuli = 4}, \code{stimulus_prefix_pattern = "s\%03d"}, 
 \code{s003.mp3}, and \code{s004.mp3}.}
 
 \item{base_url}{(character scalar) URL without the stimulus file names.}
+
+\item{randomise_at_runtime}{(logical scalar) Whether or not to randomise the
+order of the VAS pages.}
 
 \item{type}{Audio type (e.g. 'mp3'). Defaults to the provided file extension.}
 

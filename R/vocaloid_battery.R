@@ -2,7 +2,12 @@
 #'
 #' @inheritParams last_page_redirect
 #'
-#' @param languages (character vector) languages for the battery of questionnaires
+#' @inheritParams psychTestR::test_options
+#'
+#' @param gms_subscales (character vector) passed to the `subscales` argument of
+#' [psyquest::GMS()].
+#'
+#' @param debug (logical scalar) `r lifecycle::badge("experimental")`
 #'
 #' @export
 vocaloid_battery <- function(title = "vocaloidproject",

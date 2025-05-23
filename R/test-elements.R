@@ -312,7 +312,7 @@ audio_vas_page <- function(label,
 #' @inheritParams audio_vas_page
 #'
 #' @param battery_label (character scalar) Name for the results section of the
-#' battery. Individual page labels (see `psychTestR::page()`) are generated
+#' battery. Individual page labels (see [psychTestR::page()]) are generated
 #' from `battery_label` and `stimulus_prefix_pattern`.
 #'
 #' @param num_stimuli (integer-like scalar) Number of stimuli / pages.
@@ -324,6 +324,9 @@ audio_vas_page <- function(label,
 #' `s003.mp3`, and `s004.mp3`.
 #'
 #' @param base_url (character scalar) URL without the stimulus file names.
+#'
+#' @param randomise_at_runtime (logical scalar) Whether or not to randomise the
+#' order of the VAS pages.
 #'
 #' @export
 audio_vas_page_battery <- function(battery_label,

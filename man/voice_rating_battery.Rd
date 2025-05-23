@@ -14,10 +14,57 @@ voice_rating_battery(
   allow_any_p_id_url = TRUE,
   force_p_id_from_url = FALSE,
   languages = c("de_f"),
-  stimulus_url = character(),
+  num_stimuli = 2,
+  stimulus_prefix_pattern = character(),
+  base_url = character(),
   logo = NULL,
   debug = FALSE
 )
+}
+\arguments{
+\item{title}{The test's title.
+This can either be an unnamed character scalar,
+in which case the same title will be shown irrespective of internationalisation,
+or a named vector of titles with the names
+corresponding to language codes.}
+
+\item{admin_password}{Password to access the admin panel.}
+
+\item{randomise_stimuli_at_runtime}{(logical scalar) Whether or not to
+randomise the order of the stimuli (see \code{\link[=audio_vas_page_battery]{audio_vas_page_battery()}}).}
+
+\item{researcher_email}{Researcher's email; used in participant help message.}
+
+\item{demo}{Whether the test is to be run in demo mode.}
+
+\item{dict}{internationalization dictionary.}
+
+\item{allow_any_p_id_url}{Whether to allow new participants
+to give themselves an arbitrary participant ID by passing it
+as a URL parameter.}
+
+\item{force_p_id_from_url}{Whether to force new participants
+to provide their participant ID as a URL parameter.}
+
+\item{languages}{Character vector of languages that may be selected
+via the URL parameter 'language'. If no language is provided by
+the URL parameter, defaults to the first language in this vector.
+Languages should be encoded according to ISO 639-2 conventions, lower-case,
+e.g. 'en'.}
+
+\item{num_stimuli}{(integer-like scalar) Number of stimuli / pages.}
+
+\item{stimulus_prefix_pattern}{(character scalar) File name pattern of the
+stimuli (internally used in \code{base::sprintf()}).
+For example, \code{num_stimuli = 4}, \code{stimulus_prefix_pattern = "s\%03d"}, and
+\code{type = "mp3"} results in the file names \code{s001.mp3}, \code{s002.mp3},
+\code{s003.mp3}, and \code{s004.mp3}.}
+
+\item{base_url}{(character scalar) URL without the stimulus file names.}
+
+\item{logo}{Path to a logo to display in the header (optional).}
+
+\item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}}
 }
 \description{
 psychTestR Battery for Voice Rating Study
