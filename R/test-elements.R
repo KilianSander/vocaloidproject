@@ -21,6 +21,11 @@
 #' @param hide_numeric_values (logical scalar) Whether or not to hide the
 #' numeric values in the UI, that is, `min_numeric`, `max_numeric`, and `value`.
 #'
+#' @param fill_bar (logical scalar) `r lifecycle::badge("experimental")`
+#' Whether or not to fill the bar from
+#' the minimum to the position of the slider.
+#' Currently only works for the first occurrence of a slider.
+#'
 #' @inheritParams shiny::sliderInput
 #'
 #' @export
@@ -31,6 +36,7 @@ make_ui_vas <- function(min_label,
                         value,
                         step,
                         hide_numeric_values = TRUE,
+                        fill_bar = FALSE,
                         round = FALSE,
                         ticks = FALSE,
                         animate = FALSE,
@@ -45,7 +51,9 @@ make_ui_vas <- function(min_label,
             is.scalar.numeric(step),
             is.scalar(slider_width),
             value <= max_numeric,
-            value >= min_numeric)
+            value >= min_numeric,
+            is.scalar.logical(hide_numeric_values),
+            is.scalar.logical(fill_bar))
 
   slider_width <- shiny::validateCssUnit(slider_width)
 
@@ -90,6 +98,25 @@ make_ui_vas <- function(min_label,
       ui
     )
   }
+  if (!fill_bar) {
+    ui <- shiny::div(
+      shiny::tags$head(
+        shiny::tags$style(
+          shiny::HTML(
+            paste0(
+              ".js-irs-0 .irs-bar",
+              "{background: transparent; border-color: transparent;}"
+            )
+          )
+        )
+      ),
+      # shinyWidgets::chooseSliderSkin(color = "transparent"),
+      # shiny::singleton(shiny::tags$head(shiny::tags$style(
+      #   shiny::HTML(".irs-bar-edge, .irs-bar, .irs-single, .irs-from, .irs-to {background: transparent border: transparent !important;}")
+      # ))),
+      ui
+    )
+  }
 
   ui
 }
@@ -117,6 +144,7 @@ vas_page <- function(label,
                      admin_ui = NULL,
                      step,
                      hide_numeric_values = TRUE,
+                     fill_bar = TRUE,
                      round = FALSE,
                      ticks = FALSE,
                      animate = FALSE,
@@ -133,6 +161,8 @@ vas_page <- function(label,
     max_numeric = max_numeric,
     value = value,
     step = step,
+    hide_numeric_values = hide_numeric_values,
+    fill_bar = fill_bar,
     round = round,
     ticks = ticks,
     animate = animate,
@@ -218,6 +248,7 @@ audio_vas_page <- function(label,
                            admin_ui = NULL,
                            step,
                            hide_numeric_values = TRUE,
+                           fill_bar = TRUE,
                            round = FALSE,
                            ticks = FALSE,
                            animate = FALSE,
@@ -263,6 +294,8 @@ audio_vas_page <- function(label,
     button_text = button_text,
     on_complete = on_complete,
     admin_ui = admin_ui,
+    hide_numeric_values = hide_numeric_values,
+    fill_bar = fill_bar,
     step = step,
     round = round,
     ticks = ticks,
@@ -274,6 +307,25 @@ audio_vas_page <- function(label,
   )
 }
 
+#' Battery of Audio Visual Analog Scale Pages
+#'
+#' @inheritParams audio_vas_page
+#'
+#' @param battery_label (character scalar) Name for the results section of the
+#' battery. Individual page labels (see `psychTestR::page()`) are generated
+#' from `battery_label` and `stimulus_prefix_pattern`.
+#'
+#' @param num_stimuli (integer-like scalar) Number of stimuli / pages.
+#'
+#' @param stimulus_prefix_pattern (character scalar) File name pattern of the
+#' stimuli (internally used in `base::sprintf()`).
+#' For example, `num_stimuli = 4`, `stimulus_prefix_pattern = "s%03d"`, and
+#' `type = "mp3"` results in the file names `s001.mp3`, `s002.mp3`,
+#' `s003.mp3`, and `s004.mp3`.
+#'
+#' @param base_url (character scalar) URL without the stimulus file names.
+#'
+#' @export
 audio_vas_page_battery <- function(battery_label,
                                    prompt,
                                    min_label,
@@ -298,6 +350,7 @@ audio_vas_page_battery <- function(battery_label,
                                    admin_ui = NULL,
                                    step,
                                    hide_numeric_values = TRUE,
+                                   fill_bar = TRUE,
                                    round = FALSE,
                                    ticks = FALSE,
                                    animate = FALSE,
@@ -351,6 +404,7 @@ audio_vas_page_battery <- function(battery_label,
             admin_ui = admin_ui,
             step = step,
             hide_numeric_values = hide_numeric_values,
+            fill_bar = fill_bar,
             round = round,
             ticks = ticks,
             animate = animate,

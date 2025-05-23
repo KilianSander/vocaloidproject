@@ -26,6 +26,7 @@ audio_vas_page(
   admin_ui = NULL,
   step,
   hide_numeric_values = TRUE,
+  fill_bar = TRUE,
   round = FALSE,
   ticks = FALSE,
   animate = FALSE,
@@ -102,6 +103,11 @@ if the values are date-times, \code{step} is in seconds.}
 
 \item{hide_numeric_values}{(logical scalar) Whether or not to hide the
 numeric values in the UI, that is, \code{min_numeric}, \code{max_numeric}, and \code{value}.}
+
+\item{fill_bar}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+Whether or not to fill the bar from
+the minimum to the position of the slider.
+Currently only works for the first occurrence of a slider.}
 
 \item{round}{\code{TRUE} to round all values to the nearest integer;
 \code{FALSE} if no rounding is desired; or an integer to round to that
