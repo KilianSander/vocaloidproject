@@ -20,7 +20,9 @@ Imports:
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10),
     shiny,
-    tibble
+    stringr,
+    tibble,
+    utils
 Remotes: 
     github::pmcharrison/psychTestR,
     github::klausfrieler/psyquest,
