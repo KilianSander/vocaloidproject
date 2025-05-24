@@ -19,6 +19,7 @@ vas_page(
   step,
   hide_numeric_values = TRUE,
   fill_bar = TRUE,
+  reverse = FALSE,
   round = FALSE,
   ticks = FALSE,
   animate = FALSE,
@@ -74,6 +75,11 @@ numeric values in the UI, that is, \code{min_numeric}, \code{max_numeric}, and \
 Whether or not to fill the bar from
 the minimum to the position of the slider.
 Currently only works for the first occurrence of a slider.}
+
+\item{reverse}{(logical scalar) Whether or not the slider should be reversed.
+Usually (i.e., \code{reversed = FALSE}) \verb{min_*} is left and \verb{max_*} is right.
+When reversed (i.e., \code{reversed = TRUE}),
+\verb{min_*} is right and \verb{max_*} is left.}
 
 \item{round}{\code{TRUE} to round all values to the nearest integer;
 \code{FALSE} if no rounding is desired; or an integer to round to that

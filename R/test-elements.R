@@ -130,6 +130,11 @@ make_ui_vas <- function(min_label,
 #'
 #' @inheritParams psychTestR::slider_page
 #'
+#' @param reverse (logical scalar) Whether or not the slider should be reversed.
+#' Usually (i.e., `reversed = FALSE`) `min_*` is left and `max_*` is right.
+#' When reversed (i.e., `reversed = TRUE`),
+#' `min_*` is right and `max_*` is left.
+#'
 #' @export
 vas_page <- function(label,
                      prompt,
@@ -145,6 +150,7 @@ vas_page <- function(label,
                      step,
                      hide_numeric_values = TRUE,
                      fill_bar = TRUE,
+                     reverse = FALSE,
                      round = FALSE,
                      ticks = FALSE,
                      animate = FALSE,
@@ -152,11 +158,12 @@ vas_page <- function(label,
                      sep = ",",
                      pre = NULL,
                      post = NULL) {
-  stopifnot(is.scalar.character(label))
+  stopifnot(is.scalar.character(label),
+            is.scalar.logical(reverse))
 
   slider <- make_ui_vas(
-    min_label = min_label,
-    max_label = max_label,
+    min_label = ifelse(reverse, max_label, min_label),
+    max_label = ifelse(reverse, min_label, max_label),
     min_numeric = min_numeric,
     max_numeric = max_numeric,
     value = value,
@@ -183,7 +190,13 @@ vas_page <- function(label,
   #           visibility: hidden !important;
   #   }')))
 
-  get_answer <- function(input, ...) input$slider
+  get_answer <- function(input, ...) {
+    answer <- input$slider
+    if(reverse) {
+      answer <- max_numeric - answer + min_numeric
+    }
+    answer
+  }
 
   psychTestR::page(
     ui = ui,
@@ -249,6 +262,7 @@ audio_vas_page <- function(label,
                            step,
                            hide_numeric_values = TRUE,
                            fill_bar = TRUE,
+                           reverse = FALSE,
                            round = FALSE,
                            ticks = FALSE,
                            animate = FALSE,
@@ -296,6 +310,7 @@ audio_vas_page <- function(label,
     admin_ui = admin_ui,
     hide_numeric_values = hide_numeric_values,
     fill_bar = fill_bar,
+    reverse = reverse,
     step = step,
     round = round,
     ticks = ticks,
@@ -354,6 +369,7 @@ audio_vas_page_battery <- function(battery_label,
                                    step,
                                    hide_numeric_values = TRUE,
                                    fill_bar = TRUE,
+                                   reverse = FALSE,
                                    round = FALSE,
                                    ticks = FALSE,
                                    animate = FALSE,
@@ -408,6 +424,7 @@ audio_vas_page_battery <- function(battery_label,
             step = step,
             hide_numeric_values = hide_numeric_values,
             fill_bar = fill_bar,
+            reverse = reverse,
             round = round,
             ticks = ticks,
             animate = animate,
