@@ -7,7 +7,7 @@
 #' server that hosts the voice rating battery, this is the name of the folder
 #' where the `app.R` containing the voice rating battery lives.
 #' @param offline_results_dir When you run the monitor app locally
-#' (e.g., in RStudio) you need specify a directory where the `psychTestR`
+#' (e.g., in RStudio) you need to specify a directory where the `psychTestR`
 #' results of [voice_rating_battery()] are stored.
 #' When using [voice_rating_battery()] locally, this is `output/results` in
 #' the current working directory.
