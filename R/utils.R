@@ -131,7 +131,15 @@ parse_edu <- function(edu_data) {
   edu_data %>%
     as.data.frame() %>%
     dplyr::mutate(
-      educational_degree = ordered(educational_degree)
+      educational_degree = ordered(
+        educational_degree,
+        levels = 1:6,
+        labels = c(
+          "Berufsausbildung/Fachhochschule/Fachoberschule",
+          "Abitur", "Fachhochschuldiplom",
+          "Bachelor", "Master", "PhD"
+        )
+      )
     )
 }
 
