@@ -1,5 +1,22 @@
+#' Voice Rating Monitor App
+#'
+#' This functions calls the monitor app for the voice rating battery (see
+#' [voice_rating_battery()]).
+#'
+#' @param battery_folder_name (character scalar) When using the app on a shiny
+#' server that hosts the voice rating battery, this is the name of the folder
+#' where the `app.R` containing the voice rating battery lives.
+#' @param offline_results_dir When you run the monitor app locally
+#' (e.g., in RStudio) you need specify a directory where the `psychTestR`
+#' results of [voice_rating_battery()] are stored.
+#' When using [voice_rating_battery()] locally, this is `output/results` in
+#' the current working directory.
+#'
+#' @export
 voice_rating_monitor <- function(battery_folder_name = "voice-rating",
                                  offline_results_dir = "data-raw") {
+  stopifnot(is.scalar.character(battery_folder_name),
+            is.scalar.character(offline_results_dir))
   # require(shiny)
   #
   # require(DT)
