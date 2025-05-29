@@ -548,7 +548,7 @@ field <-
     "研究分野や好きな科目は何ですか？",
     "PROFESSIONALFIELDSTUDY_CHOICE1", "Psychologie", "Psychologie", "Psychology", "心理学",
     "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽、ミュージシャン",
-    "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenscahft", "Musicology", "音楽学",
+    "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenschaft", "Musicology", "音楽学",
     "PROFESSIONALFIELDSTUDY_CHOICE4", "Tontechnik", "Tontechnik", "Sound engineering", "音響工学",
     "PROFESSIONALFIELDSTUDY_CHOICE5", "Andere musikbezogene Fächer", "Andere musikbezogene Fächer", "Other music-related subjects", "その他の音楽関連科目",
     "PROFESSIONALFIELDSTUDY_CHOICE6", "Anderes", "Anderes", "Other", "その他"
