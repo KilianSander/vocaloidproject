@@ -1,9 +1,9 @@
 voice_rating_monitor <- function(battery_folder_name = "voice-rating",
                                  offline_results_dir = "data-raw") {
-  require(shiny)
-
-  require(DT)
-  require(dplyr)
+  # require(shiny)
+  #
+  # require(DT)
+  # require(dplyr)
   # thanks to Klaus
   on_server <- grepl("shiny-server", getwd())
   if (on_server) {
@@ -16,15 +16,40 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
 
   setup_voice_rating_workspace(results = results_dir, reload = FALSE)
 
-  ui <- fluidPage(
-    titlePanel("Voice Rating Monitor"),
+  ui <- shiny::fluidPage(
+    shiny::titlePanel("Voice Rating Monitor"),
+    shiny::tabsetPanel(
+      shiny::tabPanel(
+        title = "Summary",
+        shiny::fluidRow(
+          shiny::column(
+            width = 4,
+            DT::dataTableOutput("summary_tbl")
+          ),
+          shiny::column(
+            width = 8,
+            plotly::plotlyOutput("gender_plot")
+          )
+        )
+      ),
+      shiny::tabPanel(
+        title = "Data",
+        DT::dataTableOutput("data_raw")
+      ),
+      shiny::tabPanel(
+        title = "Download",
+        shiny::downloadButton(
+          "download_all_data_csv",
+          label = "Download Data Set"
+        )
+      )
+    )
     # bslib::layout_columns()
-    DT::dataTableOutput("data_raw")
   )
 
   server <- function(input, output, session) {
     check_data <-
-      reactiveFileReader(
+      shiny::reactiveFileReader(
         1000, session, results_dir, setup_voice_rating_workspace
       )
 
@@ -33,8 +58,38 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
       master
     }, rownames = FALSE)
 
+    output$gender_plot <- plotly::renderPlotly({
+      check_data()
+      plot <-
+        master %>%
+        ggplot2::ggplot() +
+        ggplot2::geom_bar(
+          ggplot2::aes(
+            x = Gender
+          )
+        )
+      plotly::ggplotly(plot)
+    })
+
+    output$summary_tbl <- DT::renderDataTable({
+      check_data()
+      long <-
+        master %>%
+        tidyr::pivot_longer(
+          cols = tidyr::starts_with("voice_rating_"),
+          names_to = "stimulus",
+          values_to = "voice_rating",
+          names_pattern = "voice_rating_(.*)"
+        ) %>%
+        tidyr::drop_na(voice_rating)
+      data.frame(
+        Participants = length(unique(long$p_id)),
+        Ratings = nrow(long)
+      )
+    }, rownames = FALSE, options = list(dom = 't'))
+
     output$download_all_data_csv <-
-      downloadHandler(
+      shiny::downloadHandler(
         filename = paste0(
           "voice-rating-data-",
           Sys.time() |>
@@ -53,5 +108,5 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
       )
   }
 
-  shinyApp(ui = ui, server = server)
+  shiny::shinyApp(ui = ui, server = server)
 }

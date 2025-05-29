@@ -14,14 +14,17 @@ Imports:
     digest,
     DT,
     GAR,
+    ggplot2,
     lifecycle,
     magrittr,
     methods,
+    plotly,
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10),
     shiny,
     stringr,
     tibble,
+    tidyr,
     utils
 Remotes: 
     github::pmcharrison/psychTestR,
