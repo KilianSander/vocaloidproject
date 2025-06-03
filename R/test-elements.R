@@ -62,8 +62,14 @@ make_ui_vas <- function(min_label,
     # https://stackoverflow.com/questions/40415471/sliderinput-max-min-text-labels
     label = shiny::tags$div(
       style = paste0('width:', slider_width,';'),
-      shiny::tags$div(style='float:left;', min_label),
-      shiny::tags$div(style='float:right;', max_label)
+      shiny::tags$div(
+        style='float:left;',
+        shiny::div(min_label, style='font-size:120%;')
+      ),
+      shiny::tags$div(
+        style='float:right;',
+        shiny::div(max_label, style='font-size:120%;')
+      )
     ),
     min = min_numeric,
     max = max_numeric,
