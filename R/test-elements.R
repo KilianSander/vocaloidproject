@@ -110,16 +110,26 @@ make_ui_vas <- function(min_label,
         shiny::tags$style(
           shiny::HTML(
             paste0(
-              ".js-irs-0 .irs-bar",
-              "{background: transparent; border-color: transparent;}"
+              # thanks to @violapsch !
+              ".irs-bar",
+              "{background: transparent!important; ",
+              "border-color: transparent!important;}"
             )
           )
         )
       ),
       # shinyWidgets::chooseSliderSkin(color = "transparent"),
-      # shiny::singleton(shiny::tags$head(shiny::tags$style(
-      #   shiny::HTML(".irs-bar-edge, .irs-bar, .irs-single, .irs-from, .irs-to {background: transparent border: transparent !important;}")
-      # ))),
+      # shiny::singleton(
+      #   shiny::tags$head(
+      #     shiny::tags$style(
+      #       shiny::HTML(
+      #         paste0(".irs-bar-edge, .irs-bar, .irs-single, .irs-from, ",
+      #                ".irs-to {background: transparent border: transparent !important;}"
+      #         )
+      #       )
+      #     )
+      #   )
+      # ),
       ui
     )
   }

@@ -131,7 +131,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
         randomise_at_runtime = randomise_stimuli_at_runtime,
         type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",
-        step = 1, hide_numeric_values = TRUE, fill_bar = TRUE, round = TRUE,
+        step = 1, hide_numeric_values = TRUE, fill_bar = FALSE, round = TRUE,
         reverse = FALSE
       ),
       dict = dict
