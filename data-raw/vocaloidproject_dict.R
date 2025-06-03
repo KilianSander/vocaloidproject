@@ -17,10 +17,10 @@ educational_degrees <-
 student <-
   tibble::tribble(
     ~key, ~de_f, ~de, ~en, ~ja,
-    "STUDENT_PROMPT", "Studieren Sie aktuell (z.&nbsp;B. an einer Universität)?",
-    "Studierst Du aktuell (z.&nbsp;B. an einer Universität)?",
-    "Are you currently studying (e.&nbsp;g. at a university)",
-    "現在勉強中ですか（大学など）？", # deepl
+    "STUDENT_PROMPT", "Studieren Sie aktuell?",
+    "Studierst Du aktuell?",
+    "Are you currently studying",
+    "現在勉強中ですか？", # deepl
     "STUDENT_CHOICE1", "ja", "ja", "yes", "はい",
     "STUDENT_CHOICE2", "nein", "nein", "no", "いいえ"
   )
