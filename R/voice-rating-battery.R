@@ -115,7 +115,10 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
       psychTestR::end_module(),
       psychTestR::new_timeline(
         psychTestR::one_button_page(
-          body = info_pre_stimuli,
+          body = shiny::div(
+            info_pre_stimuli,
+            shinyWidgets::chooseSliderSkin("Square")
+          ),
           button_text = psychTestR::i18n("CONTINUE")
         ),
         dict = dict
