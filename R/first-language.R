@@ -38,3 +38,29 @@ language_codes <-
     "ENGLISH" = "en",
     "OTHER_LANGUAGE" = "other"
   )
+
+#' Japanese skills
+#'
+#' This function creates a page to ask for Japanese skills.
+#'
+#' @export
+japanese_skills_page <- function(label = "japanese_skills",
+                                 dict = vocaloidproject::vocaloidproject_dict,
+                                 default_lang = "de_f") {
+  stopifnot(is.scalar.character(label),
+            is.character(default_lang))
+  psychTestR::new_timeline(
+    psychTestR::NAFC_page(
+      label = label,
+      prompt = psychTestR::i18n("JAPANESE_SKILLS_PROMPT"),
+      choices = as.character(1:4),
+      labels = purrr::map(
+        paste0("JAPANESE_SKILLS_CHOICE", 1:4),
+        psychTestR::i18n
+      ),
+      button_style = "width:140px"
+    ),
+    dict = dict,
+    default_lang = default_lang
+  )
+}

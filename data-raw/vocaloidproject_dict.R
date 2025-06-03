@@ -603,6 +603,7 @@ vocaloidproject_dict_raw <-
     field,
     voice_rating,
     consent,
+    japanese_skills,
     info_redirect
   )
 

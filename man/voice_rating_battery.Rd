@@ -5,7 +5,7 @@
 \title{psychTestR Battery for Voice Rating Study}
 \usage{
 voice_rating_battery(
-  title = "Voiceratingbattery",
+  title = "Wie klingen die Stimmen von Sängern?",
   admin_password = "vocaloid",
   randomise_stimuli_at_runtime = TRUE,
   researcher_email = NULL,

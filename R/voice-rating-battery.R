@@ -105,6 +105,9 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
       first_language_page(
         dict = dict
       ),
+      japanese_skills_page(
+        dict = dict
+      ),
       education_page(
         dict = dict
       ),
