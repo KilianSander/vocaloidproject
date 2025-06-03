@@ -43,6 +43,8 @@ language_codes <-
 #'
 #' This function creates a page to ask for Japanese skills.
 #'
+#' @inheritParams first_language_page
+#'
 #' @export
 japanese_skills_page <- function(label = "japanese_skills",
                                  dict = vocaloidproject::vocaloidproject_dict,

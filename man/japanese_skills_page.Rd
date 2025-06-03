@@ -10,6 +10,13 @@ japanese_skills_page(
   default_lang = "de_f"
 )
 }
+\arguments{
+\item{label}{(scalar character) Label for the current page.}
+
+\item{dict}{internationalization dictionary.}
+
+\item{default_lang}{(scalar character) default language.}
+}
 \description{
 This function creates a page to ask for Japanese skills.
 }
