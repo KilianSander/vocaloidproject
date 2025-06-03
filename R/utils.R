@@ -128,6 +128,13 @@ parse_deg <- function(deg_data) {
 }
 
 parse_edu <- function(edu_data) {
+  ja_skills_key <-
+    dplyr::filter(
+      vocaloidproject::vocaloidproject_dict_df,
+      stringr::str_detect(key, "JAPANESE_SKILLS_CHOICE")
+    ) %>%
+    dplyr::select(key, de_f) %>%
+    tibble::deframe()
   edu_data %>%
     as.data.frame() %>%
     dplyr::mutate(
@@ -139,7 +146,10 @@ parse_edu <- function(edu_data) {
           "Abitur", "Fachhochschuldiplom",
           "Bachelor", "Master", "PhD"
         )
-      )
+      ),
+      japanese_skills = ja_skills_key[
+        paste0("JAPANESE_SKILLS_CHOICE", japanese_skills)
+      ]
     )
 }
 
