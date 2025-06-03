@@ -578,6 +578,19 @@ consent <-
     de_f = de
   )
 
+japanese_skills <-
+  tibble::tribble(
+    ~key, ~de_f,
+    "JAPANESE_SKILLS_PROMPT", "Haben Sie Kenntnisse der Japanischen Sprache?",
+    "JAPANESE_SKILLS_CHOICE1", "nein",
+    "JAPANESE_SKILLS_CHOICE2", "kaum",
+    "JAPANESE_SKILLS_CHOICE3", "einige",
+    "JAPANESE_SKILLS_CHOICE4", "solide"
+  ) |>
+  dplyr::mutate(
+    de = de_f |> stringr::str_replace_all("Haben Sie", "Hast Du")
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
