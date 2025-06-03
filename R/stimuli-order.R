@@ -1,6 +1,6 @@
-#' Set stimuli order
-#'
-#'
+# Set stimuli order
+#
+#
 # stimuli_order <- function(...) {
 #   psychTestR::code_block(
 #     function(state, ...) {
@@ -42,12 +42,7 @@ stimuli_order_for_participant <- function(stimuli_set) {
       message("p_id NULL")
       p_id <- -1
     }
-    seed <-
-      p_id %>%
-      digest::sha1() %>%
-      charToRaw() %>%
-      as.integer() %>%
-      sum()
+    seed <- p_id_to_seed()
     set.seed(seed)
     random_stimuli_set <-
       sample(

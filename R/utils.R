@@ -176,3 +176,11 @@ setup_voice_rating_workspace <- function(results = "data_raw",
   }
   assign("master", master, globalenv())
 }
+
+p_id_to_seed <- function(p_id) {
+  p_id %>%
+    digest::sha1() %>%
+    charToRaw() %>%
+    as.integer() %>%
+    sum()
+}
