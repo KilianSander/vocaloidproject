@@ -566,6 +566,18 @@ voice_rating <-
     de_f = de
   )
 
+consent <-
+  tibble::tribble(
+    ~key, ~de, ~en, ~ja,
+    "CONSENT_BUTTON",
+    "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
+    "I agree to the terms and conditions and would like to participate in the study.",
+    "参加条件に同意し、本研究に参加を希望します。" # deepl
+  ) |>
+  dplyr::mutate(
+    de_f = de
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -577,6 +589,7 @@ vocaloidproject_dict_raw <-
     emotional_baseline,
     field,
     voice_rating,
+    consent,
     info_redirect
   )
 
