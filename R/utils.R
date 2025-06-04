@@ -90,7 +90,7 @@ read_voice_rating_data <- function(results_dir = results_dir) {
           }
           deg <- parse_deg(x$DEG)
           edu <- parse_edu(x$EDU)
-          voice_rating <- parse_voice_rating(x$voice_rating)
+          voice_rating <- parse_voice_rating(x)
           person_data <-
             dplyr::bind_cols(
               session_data,
@@ -153,16 +153,21 @@ parse_edu <- function(edu_data) {
     )
 }
 
-parse_voice_rating <- function(voice_rating_data) {
+parse_voice_rating <- function(x) {
+  voice_rating_data <- x$voice_rating
   stimulus_order <-
     voice_rating_data[["voice_rating_stimulus_order"]] %>%
     paste0(collapse = ";")
+  rating_scale <- ifelse(
+    x$results$voice_rating_reversed,
+    "human-artificial", "artificial-human"
+  )
   ratings <-
     voice_rating_data[
       names(voice_rating_data) != "voice_rating_stimulus_order"
     ] %>%
     as.data.frame()
-  cbind(stimulus_order, ratings)
+  cbind(stimulus_order, rating_scale, ratings)
 }
 
 # see https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L351C1-L420C2

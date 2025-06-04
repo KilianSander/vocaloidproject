@@ -86,3 +86,31 @@ stimuli_order <- function() {
     )
   )
 }
+
+pick_random_on_p_id <- function(pick_check,
+                                pick_from = c(FALSE, TRUE),
+                                key = "random_pick",
+                                label = "random_pick_label") {
+  stopifnot(is.vector(pick_from),
+            is.scalar.character(key),
+            is.scalar.character(label))
+  function(state, ...) {
+    p_id <- psychTestR::get_session_info(state, complete = FALSE)$p_id
+    if (is.null(p_id)) {
+      message("p_id NULL")
+      p_id <- -1
+    }
+    seed <- p_id_to_seed(p_id)
+    set.seed(seed)
+    random_pick <- sample(pick_from, size = 1)
+    if (pick_check == random_pick) {
+      psychTestR::set_global(key = key,
+                             value = random_pick,
+                             state = state)
+      psychTestR::save_result(place = state,
+                              label = label,
+                              value = random_pick)
+    }
+    return(pick_check == random_pick)
+  }
+}

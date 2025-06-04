@@ -123,21 +123,33 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         ),
         dict = dict
       ),
-      psychTestR::new_timeline(
-      audio_vas_page_battery(
-        battery_label = "voice_rating",
-        prompt = psychTestR::i18n("VOICERATING_PROMPT"),
-        min_label = psychTestR::i18n("VOICERATING_MIN"),
-        max_label = psychTestR::i18n("VOICERATING_MAX"),
-        min_numeric = 1, max_numeric = 100, value = 50.5,
-        num_stimuli = num_stimuli, stimulus_prefix_pattern = "s%02d",
-        base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
-        randomise_at_runtime = randomise_stimuli_at_runtime,
-        type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",
-        step = 1, hide_numeric_values = TRUE, fill_bar = FALSE, round = TRUE,
-        reverse = FALSE
-      ),
-      dict = dict
+      purrr::map(
+        c(FALSE, TRUE) -> pick_from,
+        function(boolean) {
+          psychTestR::new_timeline(
+            psychTestR::conditional(
+              test = pick_random_on_p_id(
+                pick_check = boolean,
+                pick_from = pick_from,
+                label = "voice_rating_reversed"
+              ),
+              logic = audio_vas_page_battery(
+                battery_label = "voice_rating",
+                prompt = psychTestR::i18n("VOICERATING_PROMPT"),
+                min_label = psychTestR::i18n("VOICERATING_MIN"),
+                max_label = psychTestR::i18n("VOICERATING_MAX"),
+                min_numeric = 1, max_numeric = 100, value = 50.5,
+                num_stimuli = num_stimuli, stimulus_prefix_pattern = "s%02d",
+                base_url = "https://s3.eu-west-1.amazonaws.com/media.gold-msi.org/test_materials/GAR/EMO1",
+                randomise_at_runtime = randomise_stimuli_at_runtime,
+                type = "wav", btn_play_prompt = "Abspielen", button_text = "Weiter",
+                step = 1, hide_numeric_values = TRUE, fill_bar = FALSE, round = TRUE,
+                reverse = boolean
+              )
+            ),
+            dict = dict
+          )
+        }
       ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       psychTestR::new_timeline(
