@@ -22,6 +22,7 @@ Imports:
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10),
     shiny,
+    shinyWidgets,
     stringr,
     tibble,
     tidyr,
