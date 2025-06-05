@@ -44,7 +44,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Bei vorzeitigem Abbruch werden Ihre Daten gelöscht."
       ),
       shiny::p(
-        "Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.&nbsp;h., sie können in keiner Weise zu Ihrer Person zurückverfolgt werden.",
+        shiny::HTML("Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.&nbsp;h., sie können in keiner Weise zu Ihrer Person zurückverfolgt werden."),
         "Die erhobenen, anonymisierten Daten dienen der Grundlagenforschung und werden sowohl in Fachzeitschriften oder Konferenzpräsentationen veröffentlicht als auch in öffentlich zugänglichen Datenbanken,",
         shiny::HTML("um <q>open science</q>, d.&nbsp;h. die Nachvollziehbarkeit wissenschaftlicher Forschung, zu unterstützen.")
       ),
