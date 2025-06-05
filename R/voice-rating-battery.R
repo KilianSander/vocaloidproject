@@ -66,7 +66,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Manche der Stimmen könnten künstlicher und andere menschlicher klingen.",
         "Es gibt keine richtigen oder falschen Antworten. Uns interessiert Ihre Meinung.",
         "Bitte überlegen Sie, ob die jeweilige Gesangsstimme für Sie eher künstlich oder eher menschlich klingt.",
-        "Sie können Ihr Urteil über die Skala eingeben und dazu den runden Knopf nach links oder rechts verschieben,",
+        "Sie können Ihr Urteil über die Skala eingeben und dazu den Regler nach links oder rechts verschieben,",
         shiny::HTML("z.&nbsp;B. in Richtung <q>künstlich</q> oder in Richtung <q>menschlich</q>.")
       ),
       shiny::p(
