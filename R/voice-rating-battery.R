@@ -33,7 +33,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Vielen Dank, dass Sie an unserer Studie teilnehmen wollen!",
         "Wir interessieren uns dafür, wie für Sie die Stimmen verschiedener Sänger klingen: künstlich oder menschlich?",
         "Dabei gibt es kein richtig oder falsch.",
-        "Sie werden 60 kurze Ausschnitte hören bewerten.",
+        "Sie werden 60 kurze Ausschnitte hören und bewerten.",
         "Der Fragebogen startet mit Fragen zu Ihrer Person.",
         "Er dauert insgesamt ca. 45 min [check!!!]."
       ),
@@ -44,9 +44,9 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Bei vorzeitigem Abbruch werden Ihre Daten gelöscht."
       ),
       shiny::p(
-        "Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.h. können in keiner Weise zu Ihrer Person zurückverfolgt werden.",
-        "Die erhobenen, anonymisierten Daten dienen der Grundlagenforschung und werden sowohl in Fachzeitschriften oder Konferenzpräsentationen veröffentlich, als auch in öffentlich zugänglichen Datenbanken,",
-        shiny::HTML("um <q>open science</q>, d.h. die Nachvollziehbarkeit wissenschaftlicher Forschung, zu unterstützen.")
+        "Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.&nbsp;h., sie können in keiner Weise zu Ihrer Person zurückverfolgt werden.",
+        "Die erhobenen, anonymisierten Daten dienen der Grundlagenforschung und werden sowohl in Fachzeitschriften oder Konferenzpräsentationen veröffentlicht als auch in öffentlich zugänglichen Datenbanken,",
+        shiny::HTML("um <q>open science</q>, d.&nbsp;h. die Nachvollziehbarkeit wissenschaftlicher Forschung, zu unterstützen.")
       ),
       shiny::p(
         "Bei Fragen oder Anregungen kontaktieren Sie bitte die Leiterin der Studie Dr. Elke Lange, ",
