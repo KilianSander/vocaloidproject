@@ -172,14 +172,23 @@ parse_voice_rating <- function(x) {
 
 # see https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L351C1-L420C2
 setup_voice_rating_workspace <- function(results = "data_raw",
-                                         reload = FALSE) {
-  if (reload || !file.exists("data/master.rds")) {
+                                         reload = FALSE,
+                                         save_update = FALSE) {
+  if (!file.exists("data/master.rds")) {
     master <- read_voice_rating_data(results)
     saveRDS(master, "data/master.rds")
   } else {
-    master <- readRDS("data/master.rds")
+    if (reload) {
+      master <- read_voice_rating_data(results)
+      if (save_update) {
+        saveRDS(master, "data/master.rds")
+      }
+    } else {
+      master <- readRDS("data/master.rds")
+    }
   }
   assign("master", master, globalenv())
+  invisible(master)
 }
 
 p_id_to_seed <- function(p_id) {

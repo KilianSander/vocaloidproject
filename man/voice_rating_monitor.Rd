@@ -6,7 +6,9 @@
 \usage{
 voice_rating_monitor(
   battery_folder_name = "voice-rating",
-  offline_results_dir = "data-raw"
+  offline_results_dir = "data-raw",
+  reload = FALSE,
+  save_update = FALSE
 )
 }
 \arguments{
@@ -19,6 +21,15 @@ where the \code{app.R} containing the voice rating battery lives.}
 results of \code{\link[=voice_rating_battery]{voice_rating_battery()}} are stored.
 When using \code{\link[=voice_rating_battery]{voice_rating_battery()}} locally, this is \code{output/results} in
 the current working directory.}
+
+\item{reload}{(logical scalar) Whether or not to look for new data.
+The app will look for \code{data/master.rds} in the working directory.
+When the file exists, \code{reload = FALSE} will use the existing \code{master.rds}.
+If there is no \code{master.rds} or \code{reload = TRUE}, the app will look for data
+in \code{battery_folder_name} or \code{offline_results_dir}.}
+
+\item{save_update}{(logical scalar) Whether or not to save data as
+\code{data/master.rds}.}
 }
 \description{
 This functions calls the monitor app for the voice rating battery (see

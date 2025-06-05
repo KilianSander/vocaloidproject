@@ -11,12 +11,23 @@
 #' results of [voice_rating_battery()] are stored.
 #' When using [voice_rating_battery()] locally, this is `output/results` in
 #' the current working directory.
+#' @param reload (logical scalar) Whether or not to look for new data.
+#' The app will look for `data/master.rds` in the working directory.
+#' When the file exists, `reload = FALSE` will use the existing `master.rds`.
+#' If there is no `master.rds` or `reload = TRUE`, the app will look for data
+#' in `battery_folder_name` or `offline_results_dir`.
+#' @param save_update (logical scalar) Whether or not to save data as
+#' `data/master.rds`.
 #'
 #' @export
 voice_rating_monitor <- function(battery_folder_name = "voice-rating",
-                                 offline_results_dir = "data-raw") {
+                                 offline_results_dir = "data-raw",
+                                 reload = FALSE,
+                                 save_update = FALSE) {
   stopifnot(is.scalar.character(battery_folder_name),
-            is.scalar.character(offline_results_dir))
+            is.scalar.character(offline_results_dir),
+            is.scalar.logical(reload),
+            is.scalar.logical(save_update))
   # require(shiny)
   #
   # require(DT)
@@ -67,7 +78,12 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
   server <- function(input, output, session) {
     check_data <-
       shiny::reactiveFileReader(
-        1000, session, results_dir, setup_voice_rating_workspace
+        10000, session, results_dir,
+        function(x) {
+          setup_voice_rating_workspace(x,
+                                       reload = reload,
+                                       save_update = save_update)
+        }
       )
 
     output$data_raw <- DT::renderDataTable({
