@@ -173,6 +173,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
       title = title,
       admin_password = admin_password,
       researcher_email = researcher_email,
+      problems_info = problems_info(researcher_email),
       demo = demo,
       languages = languages,
       allow_any_p_id_url = allow_any_p_id_url,

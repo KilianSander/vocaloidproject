@@ -14,9 +14,9 @@ voice_rating_battery(
   allow_any_p_id_url = TRUE,
   force_p_id_from_url = FALSE,
   languages = c("de_f"),
-  num_stimuli = 2,
-  stimulus_prefix_pattern = character(),
-  base_url = character(),
+  num_stimuli = 60,
+  stimulus_prefix_pattern = "s\%02d",
+  base_url = "https://s3.eu-west-1.amazonaws.com/media.dots.org/stimuli/eblvr",
   logo = NULL,
   debug = FALSE
 )

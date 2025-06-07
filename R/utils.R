@@ -30,6 +30,29 @@ tagify <- function(x) {
   } else x
 }
 
+# see https://github.com/klausfrieler/psyquest/blob/a14d0ab7cc75e82e394f4149868d04d829eae2cb/R/utils.R#L325C1-L339C2
+problems_info <- function(researcher_email) {
+  stopifnot(is.scalar.character(researcher_email))
+  langs <- c("de", "de_f", "en", "ja")
+  problems_info_html <-
+    purrr::map(
+      langs,
+      function(lang) {
+        span <-
+          shiny::tags$span(
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_1", lang),
+            shiny::tags$br(),
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_2", lang),
+            shiny::tags$a(href = paste0("mailto:", researcher_email), researcher_email),
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_3", lang),
+            shiny::tags$br()
+          )
+      }
+    ) %>%
+    setNames(langs)
+  problems_info_html
+}
+
 # helper functions for monitor app
 # https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L246C1-L270C2
 remove_doublets <- function(results){
