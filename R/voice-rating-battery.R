@@ -62,15 +62,20 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
   info_pre_stimuli <-
     shiny::div(
       shiny::p(
-        "Es folgen nun 60 kurze Ausschnitte mit Pop-songs.",
+        "Es folgen nun 60 kurze Ausschnitte mit Popsongs.",
         "Manche der Stimmen könnten künstlicher und andere menschlicher klingen.",
         "Es gibt keine richtigen oder falschen Antworten. Uns interessiert Ihre Meinung.",
         "Bitte überlegen Sie, ob die jeweilige Gesangsstimme für Sie eher künstlich oder eher menschlich klingt.",
-        "Sie können Ihr Urteil über die Skala eingeben und dazu den Regler nach links oder rechts verschieben,",
-        shiny::HTML("z.&nbsp;B. in Richtung <q>künstlich</q> oder in Richtung <q>menschlich</q>.")
+        "Sie können Ihr Urteil auf einem Kontinuum zwischen ",
+        shiny::HTML("<q>künstlich</q> und <q>menschlich</q>"),
+        " eingeben und dazu den Regler verschieben.",
+        "Wenn Sie den Regler ans Ende schieben, ist die Stimme für sie völlig künstlich oder völlig menschlich.",
+        "Wenn die Stimme für Sie nur wenig künstlich oder wenig menschlich klingen, bewegen Sie den Regler nur wenig.",
+        shiny::HTML("Für die Antwort <q>teils/teils</q> oder <q>sowohl als auch</q>, "),
+        "lassen Sie den Schieberegler einfach so stehen und klicken auf weiter."
       ),
       shiny::p(
-        "Damit es ein wenig abwechslungsreicher ist, haben wir 30 songs gewählt,",
+        "Damit es ein wenig abwechslungsreicher ist, haben wir 30 Songs gewählt,",
         "bei denen die Sänger auf Japanisch singen und 30,",
         shiny::HTML("bei denen die Sänger Silben wie <q>lalala</q> verwenden.")
       ),
