@@ -35,7 +35,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Dabei gibt es kein richtig oder falsch.",
         "Sie werden 60 kurze Ausschnitte hören und bewerten.",
         "Der Fragebogen startet mit Fragen zu Ihrer Person.",
-        "Er dauert insgesamt ca. 45 min [check!!!]."
+        "Er dauert zwischen 10 und 20 Minuten, je nachdem, wie viel Zeit Sie sich für Ihre Bewertung nehmen."
       ),
       shiny::p(
         "Ihre Teilnahme ist freiwillig.",
@@ -62,7 +62,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
   info_pre_stimuli <-
     shiny::div(
       shiny::p(
-        "Es folgen nun 60 kurze Ausschnitte mit Popsongs.",
+        "Es folgen nun 60 kurze Ausschnitte aus Popsongs.",
         "Manche der Stimmen könnten künstlicher und andere menschlicher klingen.",
         "Es gibt keine richtigen oder falschen Antworten. Uns interessiert Ihre Meinung.",
         "Bitte überlegen Sie, ob die jeweilige Gesangsstimme für Sie eher künstlich oder eher menschlich klingt.",
