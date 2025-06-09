@@ -56,7 +56,7 @@ problems_info <- function(researcher_email) {
 # helper functions for monitor app
 # https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L246C1-L270C2
 remove_doublets <- function(results){
-  #browser()
+  # browser()
   diagnostic <-
     purrr::map(
       1:length(results),
@@ -177,6 +177,7 @@ parse_edu <- function(edu_data) {
 }
 
 parse_voice_rating <- function(x) {
+  # browser()
   voice_rating_data <- x$voice_rating
   stimulus_order <-
     voice_rating_data[["voice_rating_stimulus_order"]] %>%
@@ -189,7 +190,10 @@ parse_voice_rating <- function(x) {
     voice_rating_data[
       names(voice_rating_data) != "voice_rating_stimulus_order"
     ] %>%
-    as.data.frame()
+    as.data.frame() %>%
+    dplyr::select(
+      order(colnames(.))
+    )
   cbind(stimulus_order, rating_scale, ratings)
 }
 
