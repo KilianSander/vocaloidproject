@@ -69,7 +69,7 @@ voice_rating_battery <- function(title = "Wie klingen die Stimmen von Sängern?"
         "Sie können Ihr Urteil auf einem Kontinuum zwischen ",
         shiny::HTML("<q>künstlich</q> und <q>menschlich</q>"),
         " eingeben und dazu den Regler verschieben.",
-        "Wenn Sie den Regler ans Ende schieben, ist die Stimme für sie völlig künstlich oder völlig menschlich.",
+        "Wenn Sie den Regler ans Ende schieben, ist die Stimme für Sie völlig künstlich oder völlig menschlich.",
         "Wenn die Stimme für Sie nur wenig künstlich oder wenig menschlich klingen, bewegen Sie den Regler nur wenig.",
         shiny::HTML("Für die Antwort <q>teils/teils</q> oder <q>sowohl als auch</q>, "),
         "lassen Sie den Schieberegler einfach so stehen und klicken auf weiter."
