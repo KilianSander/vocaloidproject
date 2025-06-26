@@ -591,6 +591,15 @@ japanese_skills <-
     de = de_f |> stringr::str_replace_all("Haben Sie", "Hast Du")
   )
 
+volume_calibration <-
+  tibble::tibble(
+    key = "volume_calibration_prompt",
+    de = "Du solltest eine Tonwiedergabe hören. Bitte stelle die Lautstärke auf ein angenehmes Niveau ein, bevor Sie fortfahren.",
+    de_f = "Sie sollten eine Tonwiedergabe hören. Bitte stellen Sie die Lautstärke auf ein angenehmes Niveau ein, bevor Sie fortfahren.",
+    en = "You should hear some audio playing. Please adjust the volume to a comfortable level before continuing.",
+    ja = NA_character_
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -604,6 +613,7 @@ vocaloidproject_dict_raw <-
     voice_rating,
     consent,
     japanese_skills,
+    volume_calibration,
     info_redirect
   )
 
