@@ -538,6 +538,31 @@ emotional_baseline <-
       "Not at all", "", "", "", "very much",
       "How much have you felt the following emotions or laughed in the last 24 hours?",
       "Anger", "Worry", "Sadness", "Happiness", "Joy", "Laughing")
+  ) |>
+  tibble::add_case(
+    key = paste0("EMOBASE_ITEMPROMPT", 1:6),
+    de_f = paste0(
+      "Wie sehr haben Sie in den letzten 24 Stunden ",
+      c(
+        paste0(c("Wut", "Sorge", "Traurigkeit", "Glück", "Freude"), " empfunden?"),
+        "gelacht?"
+      )
+    ),
+    de = paste0(
+      "Wie sehr hast Du in den letzten 24 Stunden ",
+      c(
+        paste0(c("Wut", "Sorge", "Traurigkeit", "Glück", "Freude"), " empfunden?"),
+        "gelacht?"
+      )
+    ),
+    en = paste0(
+      "How much ",
+      c(
+        paste0(c("anger", "worry", "sadness", "happiness", "joy"), " have you felt"),
+        "have you laughed"
+      ),
+      " in the last 24 hours?"
+    )
   )
 
 # deepl for ja translations in `field`

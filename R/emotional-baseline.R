@@ -1,4 +1,4 @@
-#' Individual emotional baseline
+#' Individual emotional baseline (single page)
 #'
 #' `r lifecycle::badge("experimental")`
 #' This function creates a page examining the emotional baseline of
@@ -20,6 +20,7 @@ emotional_baseline_page <- function(label = "emotional_baseline",
                                     vertical = TRUE,
                                     default_lang = "de_f") {
   stopifnot(is.scalar.character(label),
+            is.scalar.logical(vertical),
             is.character(default_lang))
 
   # failed_validation_message <- psychTestR::i18n("ANSWER_NEEDED")
@@ -152,3 +153,47 @@ emotional_baseline_page <- function(label = "emotional_baseline",
 #   choices = as.character(1:4),
 #   labels = paste("Response", 1:4)
 # )
+
+#' Individual emotional baseline (multi page)
+#'
+#' `r lifecycle::badge("experimental")`
+#' This function creates multiple pages examining the emotional baseline of
+#' a participant.
+#'
+#' @inheritParams emotional_baseline_page
+#'
+#' @param vertical (logical scalar) Whether or not to arrange the
+#' response buttons vertically.
+#'
+#' @export
+emotional_baseline_single_pages <- function(label = "emotional_baseline",
+                                            dict = vocaloidproject::vocaloidproject_dict,
+                                            vertical = TRUE,
+                                            default_lang = "de_f") {
+  stopifnot(is.scalar.character(label),
+            is.scalar.logical(vertical),
+            is.character(default_lang))
+  psychTestR::new_timeline(
+    psychTestR::join(
+      purrr::map(
+        1:6,
+        function(x) {
+          psychTestR::NAFC_page(
+            label = sprintf("%s.q%d", label, x),
+            prompt = psychTestR::i18n(paste0("EMOBASE_ITEMPROMPT", x)),
+            choices = as.character(1:5),
+            labels = sapply(paste0("EMOBASE_CHOICE", 1:5), psychTestR::i18n, simplify = TRUE, USE.NAMES = FALSE),
+            save_answer = TRUE,
+            arrange_vertically = vertical,
+            hide_response_ui = FALSE,
+            on_complete = NULL,
+            admin_ui = NULL,
+            button_style = "min-width: 100px; min-height: 39 px;"
+          )
+        }
+      )
+    ),
+    dict = dict,
+    default_lang = default_lang
+  )
+}
