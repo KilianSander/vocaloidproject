@@ -89,3 +89,11 @@ emotional_baseline_page <- function(label = "emotional_baseline",
 # header = "double",
 # trigger_button_text = psychTestR::i18n("NEXT"),
 # allow_na = FALSE,
+
+
+# GAR::make_ui_radiobutton_multi_NAFC(
+#   label = "test",
+#   items = paste0("Item ", 1:6),
+#   choices = as.character(1:4),
+#   labels = paste("Response", 1:4)
+# )
