@@ -35,7 +35,9 @@ Suggests:
     deeplr,
     dplyr,
     purrr,
+    quarto,
     readr
 Depends: 
     R (>= 3.5)
 LazyData: true
+Config/Needs/website: quarto

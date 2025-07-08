@@ -6,3 +6,6 @@
 ^README\.Rmd$
 ^output
 ^test-slider
+^vignettes/articles/\.quarto$
+^vignettes/articles/*_files$
+^vignettes/articles$
