@@ -1,0 +1,115 @@
+---
+title: "Presentation Order"
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+This article documents the implementation of the presentation order in
+SoSci Survey.
+
+## Sessions and 'designs'
+There are four presentation *designs* `a`, `b`, `c`, and `d` as well as
+two sessions `1` and `2`.
+When a participant enters the SoSci Survey the questionnaire will look for
+URL parameters `uses` and `udes` which are placed in the variables `session`
+and `design`, respectively, in the data set.
+The following `php` checks whether the php variables `$session` and `$design`
+already exist in the current SoSci Survey questionnaire session (`isset()`).
+If they do not exist, it sets them to the values found in the data set
+or to default values when those found in the data set are not meaningful.
+It also registers the php variables `$session` and `$design` for the
+SoSci Survey questionnaire session so that they can be used throughout the
+questionnaire session.
+```{.php filename="php"}
+// get session and order
+if (!isset($session)) {
+    $session = value('session', 'code:ifany');
+    if ($session === null || strlen($session) == 0) {
+        $session = 1;
+    }
+    registerVariable($session);
+}
+if (!isset($design)) {
+    $design = value('design', 'code:ifany');
+    if ($design === null || strlen($design) == 0) {
+        $design = 'a';
+    }
+    registerVariable($design);
+}
+```
+
+### Creating the presentation designs
+Each stimulus and its questionnaire page are coded as a three-digit number.
+The first digit indicates the condition, with the remaining digits
+denoting the musical excerpt
+(e.g., Excerpt 11 in Condition 2 is coded as `211`).
+As the experiment is divided into two sessions, half of the stimuli are
+to be presented in the first session and the other half in the second session.
+For a given order of the stimulus/page codes, the presentation designs are
+created in the following way:
+Design `a` is the same as the given order;
+design `b` is created by reversing the serial order of design `a`
+design `c` is created by presenting the first half of the stimuli of design `a`
+in Session 2 and the second half in Session 1;
+design `d` is created by presenting the first half of the stimuli of design `b`
+in Session 2 and the second half in Session 1.
+
+```{.php filename="php"}
+// designs
+$a1 = array('101', '201', '301', '401');
+$a2 = array('102', '202', '302', '402');
+// create design B by reversing the serial order of stimuli
+$b1 = array();
+$b2 = array();
+for ($i = 3; $i >= 0; $i--) { // set $i to half of the number of stimuli
+    $b1[] = $a2[$i];
+    $b2[] = $a1[$i];
+}
+// design C = design A but changing the session order of stimuli
+$c1 = $a2;
+$c2 = $a1;
+// design D = design B but changing the session order of stimuli
+$d1 = $b2;
+$d2 = $b1;
+// look-up array
+$designs = array(
+    '1' => array('a' => $a1, 'b' => $b1, 'c' => $c1, 'd' => $d1),
+    '2' => array('a' => $a2, 'b' => $b2, 'c' => $c2, 'd' => $d2)
+);
+registerVariable($designs);
+```
+
+### Set the presentation order
+After the presentation designs are created and the php variables
+`$session` and `$designs` are available in the SoSci Survey questionnaire
+session, the stimulus/page order is set.
+The `php` code checks whether a `$page_order` variable already exists.
+If not, it is created from the array `$designs` which contains arrays
+representing the two sessions of the presentation designs
+`a`, `b`, `c`, and `d`.
+`array_splice()` then inserts pages announcing a new stimulus block.
+```{.php filename="php"}
+// adapt to the total number of stimuli !!!
+if (!isset($page_order)) {
+    $page_order= $designs[$session][$design];
+    $page_order[] = 'backlink';
+    array_splice($page_order, 0, 0, "block1");
+// index 9 (instead of 2)
+    array_splice($page_order, 2, 0, "block2");
+// index 17 (instead of 4)
+    array_splice($page_order, 4, 0, "block3");
+//    array_splice($page_order, 26, 0, "block4");
+//    array_splice($page_order, 34, 0, "block5");
+//    array_splice($page_order, 43, 0, "block6");
+}
+$page_order_string = implode(';', $page_order);
+setPageOrder($page_order);
+put('page_order', $page_order_string);
+html(
+    '<h1>Test</1>' .
+    '<p>Page order: ' . $page_order_string . '</p>'
+);
+```
+
