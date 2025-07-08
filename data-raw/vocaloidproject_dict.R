@@ -534,7 +534,10 @@ emotional_baseline <-
     ),
     de = de_f |> stringr::str_replace("haben Sie", "hast Du"),
     ja = paste0("ja: ", de_f),
-    en = NA_character_
+    en = c(
+      "Not at all", "", "", "", "very much",
+      "How much have you felt the following emotions or laughed in the last 24 hours?",
+      "Anger", "Worry", "Sadness", "Happiness", "Joy", "Laughing")
   )
 
 # deepl for ja translations in `field`

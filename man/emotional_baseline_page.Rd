@@ -7,6 +7,7 @@
 emotional_baseline_page(
   label = "emotional_baseline",
   dict = vocaloidproject::vocaloidproject_dict,
+  vertical = TRUE,
   default_lang = "de_f"
 )
 }
@@ -15,9 +16,14 @@ emotional_baseline_page(
 
 \item{dict}{internationalization dictionary.}
 
+\item{vertical}{(logical scalar) If \code{TRUE}, radio buttons are created
+vertically below each of the items.
+If \code{FALSE}, a radio button matrix will be used.}
+
 \item{default_lang}{Default language for the page.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 This function creates a page examining the emotional baseline of
 a participant.
 }
