@@ -10,6 +10,8 @@
 #'
 #' @param debug (scalar logical) whether or not to display the URL parameter
 #' `udes` (i.e., the design) on the page.
+#'
+#' @export
 session_design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict,
                                             default_lang = "de_f",
                                             debug = FALSE) {
