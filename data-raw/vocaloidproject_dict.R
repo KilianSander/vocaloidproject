@@ -600,7 +600,10 @@ consent <-
     "CONSENT_BUTTON",
     "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
     "I agree to the terms and conditions and would like to participate in the study.",
-    "参加条件に同意し、本研究に参加を希望します。" # deepl
+    "参加条件に同意し、本研究に参加を希望します。", # deepl
+    "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", NA_character_,
+    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", NA_character_,
+    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", NA_character_
   ) |>
   dplyr::mutate(
     de_f = de
