@@ -16,6 +16,7 @@ international1(
   gms_subscales = c("General"),
   logo = NULL,
   technical_error_back_link = "",
+  follow_up_link = "",
   debug = FALSE
 )
 }
@@ -56,6 +57,9 @@ e.g. 'en'.}
 Prolific when URL parameter \code{uses} or \code{udes} is missing.
 It has to contain the placeholder \verb{\%s} for \code{p_id} to redirect
 participants correctly.}
+
+\item{follow_up_link}{(character scalar) link for redirecting participants
+to the next section of the experiment (on a different platform).}
 
 \item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} whether
 or not to display debug information.}

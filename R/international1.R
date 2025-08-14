@@ -9,6 +9,9 @@
 #' It has to contain the placeholder `%s` for `p_id` to redirect
 #' participants correctly.
 #'
+#' @param follow_up_link (character scalar) link for redirecting participants
+#' to the next section of the experiment (on a different platform).
+#'
 #' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether
 #' or not to display debug information.
 #'
@@ -16,6 +19,7 @@
 #' @inheritParams psyquest::DEG
 #' @inheritParams psychTestR::test_options
 #'
+#' @export
 international1 <- function(title = "",
                            admin_password = "vocaloid",
                            researcher_email = "kilian.vogt@hmtm-hannover.de",
@@ -27,7 +31,12 @@ international1 <- function(title = "",
                            gms_subscales = c("General"),
                            logo = NULL,
                            technical_error_back_link = "",
+                           follow_up_link = "",
                            debug = FALSE){
+  stopifnot(is.character(languages),
+            is.scalar.character(technical_error_back_link),
+            is.scalar.character(follow_up_link),
+            is.scalar.logical(debug))
   #
   elts <-
     psychTestR::join(
@@ -47,9 +56,10 @@ international1 <- function(title = "",
           )
         },
         logic = last_page_redirect(
-          redirect_heading = "thanks",
+          redirect_heading = "technical_error",
           back_link_key = "return_to_prolific",
-          back_link = technical_error_back_link
+          back_link = technical_error_back_link,
+          debug = debug
         )
       ),
       psychTestR::conditional(
@@ -79,7 +89,13 @@ international1 <- function(title = "",
       # ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       # preliminary
-      psychTestR::final_page("Finale")
+      last_page_redirect_session_design(
+        redirect_heading = NULL,
+        dict = dict,
+        back_link = follow_up_link,
+        back_link_key = "CONTINUE",
+        debug = TRUE
+      )
     )
   #
   psychTestR::make_test(
