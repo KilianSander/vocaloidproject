@@ -481,27 +481,32 @@ info_redirect <-
     key = c(
       "info_text",
       "return_to_prolific",
-      "thanks"
+      "thanks",
+      "technical_error"
     ),
     de = c(
       "Informationstext", # include html tags
       "Zurück zu Prolific",
-      "Vielen Dank für Deine Teilnahme!"
+      "Vielen Dank für Deine Teilnahme!",
+      "Etwas ist schief gelaufen"
     ),
     de_f = c(
       "Informationstext", # include html tags
       "Zurück zu Prolific",
-      "Vielen Dank für Ihre Teilnahme!"
+      "Vielen Dank für Ihre Teilnahme!",
+      "Etwas ist schief gelaufen"
     ),
     en = c(
       "Information on the study",
       "Back to Prolific",
-      "Thank you for participating!"
+      "Thank you for participating!",
+      "Something went wrong"
     ),
     ja = c(
       "ja: Informationstext", # include html tags
       "Prolificに戻る", # based on deepl
-      "ご参加ありがとうございました" # based on deepl
+      "ご参加ありがとうございました", # based on deepl
+      "何かがうまくいきませんでした。" # based on deepl
     )
   )
 languages <-
