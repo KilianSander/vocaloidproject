@@ -9,11 +9,11 @@
 
 This package includes material for a research project on vocaloid music.
 In terms of software, it is based on the `psychTestR` package (Harrison,
-2020) and on the `psyquest` (Höger et al., 2025) package. In terms of
-questionnaires and measurement, the package uses the Goldsmiths Musical
-Sophistication Index (Gold-MSI; Müllensiefen et al., 2014) and its
-German (Schaal et al., 2014) and Japanese (Sadakata et al., 2022)
-translations.
+2020; Harrison et al., 2024) and on the `psyquest` package (Höger et
+al., 2025). In terms of questionnaires and measurement, the package uses
+the Goldsmiths Musical Sophistication Index (Gold-MSI; Müllensiefen et
+al., 2014) and its German (Schaal et al., 2014) and Japanese (Sadakata
+et al., 2022) translations.
 
 ## References
 
@@ -21,8 +21,12 @@ Harrison, P. (2020). psychTestR: An R package for designing and
 conducting behavioural psychological experiments. *Journal of Open
 Source Software*, *5*(49), 2088. <https://doi.org/10.21105/joss.02088>
 
+Harrison, P., Höger, F., Silas, S., Pausch, V., Frieler, K., & Vogt, K.
+(2024). *psychTestR* (Version v2.27.3) \[R package\].
+<https://github.com/pmcharrison/psychTestR/>
+
 Höger, F., Frieler, K., Pausch, V., Sander, K., & Ruth, N. (2025).
-psyquest (Version 1.5.9) \[R package\].
+*psyquest* (Version 1.5.9) \[R package\].
 <https://github.com/klausfrieler/psyquest>
 
 Müllensiefen, D., Gingras, B., Musil, J., & Stewart, L. (2014). The
