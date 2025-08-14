@@ -7,6 +7,8 @@
 #' `p_id` is passed on as a URL parameter.
 #' `last_page_redirect_session_design()` also passes on `uses` (session)
 #' and `udes` (design).
+#' Optionally, you can specify a language URL parameter to pass on
+#' the participant's test language.
 #'
 #' @param dict internationalization dictionary.
 #'
@@ -74,33 +76,67 @@ last_page_redirect <- function(redirect_heading = "thanks",
 
 #' @rdname last_page_redirect
 #'
+#' @param language_url_param (character scalar or `NULL`) URL parameter to pass
+#' on the test language of a participant.
+#' If non-`NULL`, the URL parameter will be appended to the `back_link` and
+#' the language will be read from the participant's session info.
+#'
+#' @param language_url_codes (named character vector or `NULL`)
+#' A named character vector will be used when `language_url_param` is
+#' non-`NULL` to translate the psychTestR language codes
+#' (in most cases two lower-case letters according to ISO 639-2 conventions)
+#' to the codes for the redirect link
+#' (e.g., SoSci Survey uses three letter codes like `ger` for German, `eng` for
+#' English, or `jpn` for Japanese).
+#' If `NULL`, the character scalar retrieved by
+#' [psychTestR::get_session_info()]`$language` is used.
+#'
+#' @export
 last_page_redirect_session_design <- function(redirect_heading = "thanks",
                                               dict = vocaloidproject::vocaloidproject_dict,
                                               default_lang = "de_f",
                                               back_link,
                                               back_link_key = "CONTINUE",
+                                              language_url_param = "l",
+                                              language_url_codes = c("de" = "ger", "de_f" = "ger", "en" = "eng", "ja" = "jpn"),
                                               debug = FALSE) {
-  stopifnot(is.scalar.character(redirect_heading) | is.null(redirect_heading),
-            is.scalar.character(back_link_key),
-            stringr::str_count(back_link, pattern = "%s") == 3,
-            is.scalar.logical(debug))
+  stopifnot(
+    is.scalar.character(redirect_heading) | is.null(redirect_heading),
+    is.scalar.character(back_link_key),
+    stringr::str_count(back_link, pattern = "%s") == 3,
+    is.scalar.character(language_url_param) | is.null(language_url_param),
+    is.character(language_url_codes) | is.null(language_url_codes),
+    is.scalar.logical(debug)
+  )
 
   psychTestR::new_timeline(
     psychTestR::reactive_page(
       fun = function(state, ...) {
-        pid <-
+        sessinfo <-
           psychTestR::get_session_info(
             state,
             complete = TRUE
-          )$p_id
+          )
+        pid <- sessinfo$p_id
+        lang <- sessinfo$language
         uses <- psychTestR::get_global(key = "uses", state = state)
         udes <- psychTestR::get_global(key = "udes", state = state)
+
         if (debug) message(sprintf("p_id: %s\nSession: %s\nDesign: %s", pid, uses, udes))
         back_link <-
           sprintf(
             back_link,
             pid, uses, udes
           )
+        if (!is.null(language_url_param)) {
+          if (!is.null(language_url_codes)) {
+            lang <- language_url_codes[lang]
+          }
+          back_link <-
+            paste0(
+              back_link, "&", language_url_param, "=", lang
+            )
+        }
         psychTestR::final_page(
           body =
             shiny::div(

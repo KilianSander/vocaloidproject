@@ -18,6 +18,7 @@
 #' @inheritParams emotional_baseline_page
 #' @inheritParams psyquest::DEG
 #' @inheritParams psychTestR::test_options
+#' @inheritParams last_page_redirect_session_design
 #'
 #' @export
 international1 <- function(title = "",
@@ -32,6 +33,8 @@ international1 <- function(title = "",
                            logo = NULL,
                            technical_error_back_link = "",
                            follow_up_link = "",
+                           language_url_param = "l",
+                           language_url_codes = c("de" = "ger", "de_f" = "ger", "en" = "eng", "ja" = "jpn"),
                            debug = FALSE){
   stopifnot(is.character(languages),
             is.scalar.character(technical_error_back_link),

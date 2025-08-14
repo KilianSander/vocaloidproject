@@ -17,6 +17,8 @@ international1(
   logo = NULL,
   technical_error_back_link = "",
   follow_up_link = "",
+  language_url_param = "l",
+  language_url_codes = c(de = "ger", de_f = "ger", en = "eng", ja = "jpn"),
   debug = FALSE
 )
 }
@@ -60,6 +62,21 @@ participants correctly.}
 
 \item{follow_up_link}{(character scalar) link for redirecting participants
 to the next section of the experiment (on a different platform).}
+
+\item{language_url_param}{(character scalar or \code{NULL}) URL parameter to pass
+on the test language of a participant.
+If non-\code{NULL}, the URL parameter will be appended to the \code{back_link} and
+the language will be read from the participant's session info.}
+
+\item{language_url_codes}{(named character vector or \code{NULL})
+A named character vector will be used when \code{language_url_param} is
+non-\code{NULL} to translate the psychTestR language codes
+(in most cases two lower-case letters according to ISO 639-2 conventions)
+to the codes for the redirect link
+(e.g., SoSci Survey uses three letter codes like \code{ger} for German, \code{eng} for
+English, or \code{jpn} for Japanese).
+If \code{NULL}, the character scalar retrieved by
+\code{\link[psychTestR:get_session_info]{psychTestR::get_session_info()}}\verb{$language} is used.}
 
 \item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} whether
 or not to display debug information.}
