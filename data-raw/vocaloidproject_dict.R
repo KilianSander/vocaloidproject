@@ -523,50 +523,59 @@ languages <-
 emotional_baseline <-
   tibble::tibble(
     key = c(
-      paste0("EMOBASE_CHOICE", 1:5),
+      paste0("EMOBASE_MATRIX_CHOICE", 1:5),
       "EMOBASE_PROMPT",
       paste0("EMOBASE_ITEM", 1:6)
     ),
     de_f = c(
       "gar nicht", "", "", "", "sehr",
       "Wie sehr haben Sie in den letzten 24 Stunden folgende Emotionen empfunden bzw. gelacht?",
-      "Wut",
-      "Sorge",
-      "Traurigkeit",
-      "Glück",
-      "Freude",
-      "Lachen"
+      "**Wut**",
+      "**Sorge**",
+      "**Traurigkeit**",
+      "**Glück**",
+      "**Freude**",
+      "**Lachen**"
     ),
     de = de_f |> stringr::str_replace("haben Sie", "hast Du"),
     ja = paste0("ja: ", de_f),
     en = c(
       "Not at all", "", "", "", "very much",
       "How much have you felt the following emotions or laughed in the last 24 hours?",
-      "Anger", "Worry", "Sadness", "Happiness", "Joy", "Laughing")
+      "**Anger**", "**Worry**", "**Sadness**", "**Happiness**", "**Joy**", "**Laughing**")
   ) |>
   tibble::add_case(
     key = paste0("EMOBASE_ITEMPROMPT", 1:6),
     de_f = paste0(
       "Wie sehr haben Sie in den letzten 24 Stunden ",
       c(
-        paste0(c("Wut", "Sorge", "Traurigkeit", "Glück", "Freude"), " empfunden?"),
-        "gelacht?"
+        paste0(c("**Wut**", "**Sorge**", "**Traurigkeit**", "**Glück**", "**Freude**"), " empfunden?"),
+        "**gelacht**?"
       )
     ),
     de = paste0(
       "Wie sehr hast Du in den letzten 24 Stunden ",
       c(
-        paste0(c("Wut", "Sorge", "Traurigkeit", "Glück", "Freude"), " empfunden?"),
-        "gelacht?"
+        paste0(c("**Wut**", "**Sorge**", "**Traurigkeit**", "**Glück**", "**Freude**"), " empfunden?"),
+        "**gelacht**?"
       )
     ),
     en = paste0(
       "How much ",
       c(
-        paste0(c("anger", "worry", "sadness", "happiness", "joy"), " have you felt"),
-        "have you laughed"
+        paste0(c("**anger**", "**worry**", "**sadness**", "**happiness**", "**joy**"), " have you felt"),
+        "have you **laughed**"
       ),
       " in the last 24 hours?"
+    )
+  ) |>
+  tibble::add_case(
+    tibble::tibble(
+      key = paste0("EMOBASE_CHOICE", 1:5),
+      de = c("1 gar nicht", 2:4, "5 sehr"),
+      de_f = de,
+      en = c("1 not at all", 2:4, "5 very much"),
+      ja = c("1 まったくそうではありません", 2:4, "5 ja???") # deepL
     )
   )
 

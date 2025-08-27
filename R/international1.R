@@ -83,13 +83,13 @@ international1 <- function(title = "",
           subscales = gms_subscales
         )
       ),
-      emotional_baseline_page(
-        dict = dict,
-        vertical = FALSE # DOES NOT LOOK PRETTY ON MOBILE DEVICES!!
-      ),
-      # emotional_baseline_single_pages(
-      #   dict = dict
+      # emotional_baseline_page(
+      #   dict = dict,
+      #   vertical = FALSE # DOES NOT LOOK PRETTY ON MOBILE DEVICES!!
       # ),
+      emotional_baseline_single_pages(
+        dict = dict
+      ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       # preliminary
       last_page_redirect_session_design(

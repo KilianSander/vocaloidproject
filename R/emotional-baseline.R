@@ -79,7 +79,7 @@ emotional_baseline_page <- function(label = "emotional_baseline",
             GAR::make_ui_radiobutton_matrix(
               polarity = "unipolar",
               items = sapply(paste0("EMOBASE_ITEM", 1:6), psychTestR::i18n, simplify = TRUE, USE.NAMES = TRUE),
-              scale_labels = sapply(paste0("EMOBASE_CHOICE", 1:5), psychTestR::i18n, simplify = TRUE, USE.NAMES = TRUE),
+              scale_labels = sapply(paste0("EMOBASE_MATRIX_CHOICE", 1:5), psychTestR::i18n, simplify = TRUE, USE.NAMES = TRUE),
               choices = 1:5,
               reduce_labels = FALSE,
               anchors = FALSE,
@@ -168,7 +168,7 @@ emotional_baseline_page <- function(label = "emotional_baseline",
 #' @export
 emotional_baseline_single_pages <- function(label = "emotional_baseline",
                                             dict = vocaloidproject::vocaloidproject_dict,
-                                            vertical = TRUE,
+                                            vertical = FALSE,
                                             default_lang = "de_f") {
   stopifnot(is.scalar.character(label),
             is.scalar.logical(vertical),

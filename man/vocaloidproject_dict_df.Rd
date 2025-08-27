@@ -5,7 +5,7 @@
 \alias{vocaloidproject_dict_df}
 \title{Data frame of the dictionary for the project}
 \format{
-An object of class \code{data.frame} with 447 rows and 5 columns.
+An object of class \code{data.frame} with 452 rows and 5 columns.
 }
 \usage{
 vocaloidproject_dict_df

@@ -7,7 +7,7 @@
 emotional_baseline_single_pages(
   label = "emotional_baseline",
   dict = vocaloidproject::vocaloidproject_dict,
-  vertical = TRUE,
+  vertical = FALSE,
   default_lang = "de_f"
 )
 }
