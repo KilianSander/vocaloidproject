@@ -645,6 +645,70 @@ volume_calibration <-
     ja = NA_character_
   )
 
+HALT_dict <-
+  HALT::HALT_dict$as.data.frame() |>
+  dplyr::filter(
+    !(key %in% c(
+      "CONTINUE",
+      "ENTER_ID",
+      paste0("PROBLEMS_INFO_", 1:3),
+      "WELCOME"
+    ))
+  )
+HALT_dict <-
+  HALT_dict %>%
+  left_join(
+    tibble::tribble(
+      ~key, ~ja,
+      "AGAIN", "",
+      "DEVICE_CHOICE1", "",
+      "DEVICE_CHOICE2", "",
+      "DEVICE_CHOICE3", "",
+      "DEVICE_CHOICE4", "",
+      "DEVICE_CHOICE5", "",
+      "DEVICE_CHOICE6", "",
+      "DEVICE_PROMPT", "",
+      "INTRO_TEXT", "",
+      "PAGE_COUNTER", "",
+      "SCC_PROMPT_HP", "",
+      "SCC_PROMPT_LS", "",
+      "STOP_HEAD", "",
+      "STOP_TEXT", "",
+      "TESTNAME", "",
+      "TESTNAME_SHORT", "",
+      "THLT_0001_CHOICES", "",
+      "THLT_0001_PROMPT", "",
+      "THLT_0002_PROMPT", "",
+      "THLT_0003_PROMPT", "",
+      "THLT_0004_CHOICES1", "",
+      "THLT_0004_CHOICES2", "",
+      "THLT_0004_PROMPT", "",
+      "THLT_0005_PROMPT", "",
+      "THLT_0006_CHOICES1", "",
+      "THLT_0006_CHOICES2", "",
+      "THLT_0006_CHOICES3", "",
+      "THLT_0006_CHOICES4", "",
+      "THLT_0006_PROMPT", "",
+      "THLT_0007_CHOICES1", "",
+      "THLT_0007_CHOICES2", "",
+      "THLT_0007_CHOICES3", "",
+      "THLT_0007_CHOICES4", "",
+      "THLT_0007_PROMPT", "",
+      "THLT_0008_PROMPT", "",
+      "THLT_0009_PROMPT", "",
+      "THLT_0010_PROMPT", "",
+      "THLT_0011_PROMPT", "",
+      "THLT_0012_PROMPT", "",
+      "THLT_0013_CHOICES1", "",
+      "THLT_0013_CHOICES2", "",
+      "THLT_0013_CHOICES3", "",
+      "THLT_0013_PROMPT", "",
+      "WARNING_IMPRECISE", "",
+      "WARNING_INCORRECT", "",
+      "WARNING_TOO_QUIET", ""
+    )
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -659,6 +723,7 @@ vocaloidproject_dict_raw <-
     consent,
     japanese_skills,
     volume_calibration,
+    HALT_dict,
     info_redirect
   )
 
