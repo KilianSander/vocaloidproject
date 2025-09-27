@@ -25,6 +25,7 @@ international1 <- function(title = "",
                            admin_password = "vocaloid",
                            researcher_email = "kilian.vogt@hmtm-hannover.de",
                            dict = vocaloidproject::vocaloidproject_dict,
+                           session_number = 1,
                            allow_any_p_id_url = TRUE,
                            force_p_id_from_url = FALSE,
                            languages = c("de_f", "ja"),
@@ -43,8 +44,9 @@ international1 <- function(title = "",
   #
   elts <-
     psychTestR::join(
-      session_design_url_welcome_page(
+      design_url_welcome_page(
         dict = dict,
+        session_number = session_number,
         debug = debug
       ),
       psychTestR::conditional(

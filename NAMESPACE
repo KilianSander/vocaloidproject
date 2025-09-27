@@ -3,6 +3,7 @@
 export("%>%")
 export(audio_vas_page)
 export(audio_vas_page_battery)
+export(design_url_welcome_page)
 export(education_page)
 export(emotional_baseline_page)
 export(emotional_baseline_single_pages)
