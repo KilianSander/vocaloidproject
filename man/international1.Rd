@@ -9,6 +9,7 @@ international1(
   admin_password = "vocaloid",
   researcher_email = "kilian.vogt@hmtm-hannover.de",
   dict = vocaloidproject::vocaloidproject_dict,
+  session_number = 1,
   allow_any_p_id_url = TRUE,
   force_p_id_from_url = FALSE,
   languages = c("de_f", "ja"),

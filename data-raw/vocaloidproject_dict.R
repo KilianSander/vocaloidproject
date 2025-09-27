@@ -20,7 +20,7 @@ student <-
     "STUDENT_PROMPT", "Studieren Sie aktuell?",
     "Studierst Du aktuell?",
     "Are you currently studying",
-    "現在勉強中ですか？", # deepl
+    "現在、大学に在学中ですか。", # clc
     "STUDENT_CHOICE1", "ja", "ja", "yes", "はい",
     "STUDENT_CHOICE2", "nein", "nein", "no", "いいえ"
   )
@@ -411,10 +411,10 @@ general_dict_raw <-
     y = tibble::tribble(
       ~key, ~ja,
       "CONTINUE", "次へ",
-      "RESULTS_SAVED", "結果が保存されました。", # deepl
-      "CLOSE_BROWSER", "ブラウザウィンドウを閉じることができます。", # deepl
-      "PAGE_HEADER", "{{test_length}}問中{{num_question}}問", # deepl
-      "JANUARY", "1月", # arabic numerals or Kanji?
+      "RESULTS_SAVED", "結果が保存されています。", # clc
+      "CLOSE_BROWSER", "<br>ブラウザのウィンドウを閉じてください。", # clc
+      "PAGE_HEADER", "全{{test_length}}問中 {{num_question}}問目", # clc
+      "JANUARY", "1月", # Arabic numerals or Kanji? Arabic seems more modern.
       "FEBRUARY", "2月",
       "MARCH", "3月",
       "APRIL", "4月",
@@ -426,21 +426,21 @@ general_dict_raw <-
       "OCTOBER", "10月",
       "NOVEMBER", "11月",
       "DECEMBER", "12月",
-      "NONE", "なし", # deepl
-      "YEAR", "年",
+      "NONE", "無し", # clc
+      "YEAR", "年（西暦）", # clc
       "MONTH", "月",
-      "OTHER_NATIONALITY", "その他の国籍", # deepl
-      "OTHER_COUNTRY", "その他の国", # deepl
-      "OTHER_LANGUAGE", "その他の言語", # deepl
-      "CHOOSE_ANSWER", "まず答えを選びなさい！", # deepl based on de
-      "CHOOSE_AT_LEAST_ONE_ANSWER", "少なくとも1つの答えを選びなさい！", # deepl based on de
-      "ANSWER_NEEDED", "何か入力してください！", #deepl based on de/de_f
-      "SELECT_MONTH", "月を選択してください！", # deepl
-      "SELECT_YEAR", "年を選択してください！", # deepl
-      "E.G.", "例", # deepl
-      "SELECT_MONTH_AND_YEAR", "月と年を選択してください！", # deepl
-      "ENTER_ID", "IDを入力してください", # deepl
-      "ENTER_ID_FORMAL", "IDを入力してください", # deepl
+      "OTHER_NATIONALITY", "その他の国籍", # deepl & clc
+      "OTHER_COUNTRY", "その他の国", # deepl & clc
+      "OTHER_LANGUAGE", "その他の言語", # deepl & clc
+      "CHOOSE_ANSWER", "まず、答えを選んでください。", # clc
+      "CHOOSE_AT_LEAST_ONE_ANSWER", "少なくとも1つの回答を選択してください。", # clc
+      "ANSWER_NEEDED", "何か入力してください！", #deepl based on de/de_f # clc: 回答を選択してください。 for multiple choice
+      "SELECT_MONTH", "月を選択してください", # deepl & clc
+      "SELECT_YEAR", "年を選択してください", # deepl & clc
+      "E.G.", "例", # deepl & clc
+      "SELECT_MONTH_AND_YEAR", "年・月を選択してください", # clc
+      "ENTER_ID", "IDを入力してください", # deepl & clc
+      "ENTER_ID_FORMAL", "IDを入力してください", # deepl & clc
       "PROBLEMS_INFO_1", "問題？", # deepl
       "PROBLEMS_INFO_2", "このページへのリンクを添えて", # deepl based on en
       "PROBLEMS_INFO_3", "までご連絡ください。", # deepl based on en
@@ -465,14 +465,14 @@ DEG_dict_raw <-
     by = "key",
     y = tibble::tribble(
       ~key, ~ja,
-      "TDEG_0000_PROMPT", "簡単な人口統計学的アンケート", # deepl
-      "TDEG_0004_CHOICE1", "女性", # deepl
-      "TDEG_0004_CHOICE2", "男性", # deepl
-      "TDEG_0004_CHOICE3", "多様", # deepl
-      "TDEG_0004_CHOICE4", "言いたくない", # deepl
-      "TDEG_0004_PROMPT", "あなたの性別を教えてください。", # deepl
-      "TDEG_0008_PROMPT", "母国語は何ですか？", # deepl
-      "TDEG_0010_PROMPT", "いつ生まれましたか？" # deepl
+      "TDEG_0000_PROMPT", "簡単な人口動態調査", # clc
+      "TDEG_0004_CHOICE1", "女性", # deepl & clc
+      "TDEG_0004_CHOICE2", "男性", # deepl & clc
+      "TDEG_0004_CHOICE3", "その他", # deepl
+      "TDEG_0004_CHOICE4", "回答しない", # clc
+      "TDEG_0004_PROMPT", "あなたの性別を教えてください。", # deepl & clc
+      "TDEG_0008_PROMPT", "あなたの母語を教えてください", # clc
+      "TDEG_0010_PROMPT", "ご誕生年月を教えてください（西暦）" # clc
     )
   )
 
@@ -504,8 +504,8 @@ info_redirect <-
     ),
     ja = c(
       "ja: Informationstext", # include html tags
-      "Prolificに戻る", # based on deepl
-      "ご参加ありがとうございました", # based on deepl
+      "Prolificに戻る", # deepl & clc
+      "ご参加ありがとうございました！", # clc
       "何かがうまくいきませんでした。" # based on deepl
     )
   )
@@ -538,7 +538,16 @@ emotional_baseline <-
       "**Lachen**"
     ),
     de = de_f |> stringr::str_replace("haben Sie", "hast Du"),
-    ja = paste0("ja: ", de_f),
+    ja = c( # clc
+      "無し／まったくない", "", "", "", "非常に",
+      "この24時間で、次のような感情をどの程度感じたり笑ったりしましたか",
+      "**怒り**",
+      "**心配**",
+      "**悲しみ**",
+      "**幸福**",
+      "**喜び**",
+      "**笑い**"
+    ),
     en = c(
       "Not at all", "", "", "", "very much",
       "How much have you felt the following emotions or laughed in the last 24 hours?",
@@ -567,6 +576,13 @@ emotional_baseline <-
         "have you **laughed**"
       ),
       " in the last 24 hours?"
+    ),
+    ja = paste0( # clc
+      "この24時間で、どれくらい",
+      c(
+        paste0("**", c("怒りを感じ", "心配し", "悲しみを感じ", "幸福を感じ", "喜びを感じ", "笑い"), "**")
+      ),
+      "ましたか"
     )
   ) |>
   tibble::add_case(
@@ -575,7 +591,7 @@ emotional_baseline <-
       de = c("1 gar nicht", 2:4, "5 sehr"),
       de_f = de,
       en = c("1 not at all", 2:4, "5 very much"),
-      ja = c("1 まったくそうではありません", 2:4, "5 ja???") # deepL
+      ja = c("1 無し／まったくない", 2:4, "5 非常に") # clc
     )
   )
 
@@ -587,12 +603,12 @@ field <-
     "Was ist Ihr Studienfach bzw. Ihr berfuliches Fachgebiet?",
     "Was ist Dein Studienfach bzw. Dein berfuliches Fachgebiet?",
     "What is your field of study or your professional field?",
-    "研究分野や好きな科目は何ですか？",
+    "専攻・専門分野は何ですか？",
     "PROFESSIONALFIELDSTUDY_CHOICE1", "Psychologie", "Psychologie", "Psychology", "心理学",
-    "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽、ミュージシャン",
+    "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽・音楽家",
     "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenschaft", "Musicology", "音楽学",
     "PROFESSIONALFIELDSTUDY_CHOICE4", "Tontechnik", "Tontechnik", "Sound engineering", "音響工学",
-    "PROFESSIONALFIELDSTUDY_CHOICE5", "Andere musikbezogene Fächer", "Andere musikbezogene Fächer", "Other music-related subjects", "その他の音楽関連科目",
+    "PROFESSIONALFIELDSTUDY_CHOICE5", "Andere musikbezogene Fächer", "Andere musikbezogene Fächer", "Other music-related subjects", "他の音楽関係専攻",
     "PROFESSIONALFIELDSTUDY_CHOICE6", "Anderes", "Anderes", "Other", "その他"
   )
 
@@ -600,9 +616,9 @@ voice_rating <-
   tibble::tribble(
     ~key, ~de, ~en, ~ja,
     # deepl
-    "VOICERATING_PROMPT", "Wie klingt die Stimme?", "How does the voice sound?", "声の響きとは？",
-    "VOICERATING_MIN", "künstlich", "artificial", "人工",
-    "VOICERATING_MAX", "menschlich", "human", "人間的"
+    "VOICERATING_PROMPT", "Wie klingt die Stimme?", "How does the voice sound?", "声はどのように聞こえますか？", # clc
+    "VOICERATING_MIN", "künstlich", "artificial", "人工的", # clc
+    "VOICERATING_MAX", "menschlich", "human", "人間的" # clc
   ) |>
   dplyr::mutate(
     de_f = de
@@ -615,9 +631,9 @@ consent <-
     "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
     "I agree to the terms and conditions and would like to participate in the study.",
     "参加条件に同意し、本研究に参加を希望します。", # deepl
-    "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", NA_character_,
-    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", NA_character_,
-    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", NA_character_
+    "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", "当調査へようこそ！", # clc
+    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "これは全2回中の第1回です。", # clc
+    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "これは全2回中の第２回です。" # clc
   ) |>
   dplyr::mutate(
     de_f = de
@@ -633,7 +649,14 @@ japanese_skills <-
     "JAPANESE_SKILLS_CHOICE4", "solide"
   ) |>
   dplyr::mutate(
-    de = de_f |> stringr::str_replace_all("Haben Sie", "Hast Du")
+    de = de_f |> stringr::str_replace_all("Haben Sie", "Hast Du"),
+    ja = c(
+      "日本語の知識はありますか／日本語できますか",
+      "いいえ",
+      "あまりない",
+      "いくつか",
+      "心底"
+    )
   )
 
 volume_calibration <-
@@ -642,7 +665,7 @@ volume_calibration <-
     de = "Du solltest eine Tonwiedergabe hören. Bitte stelle die Lautstärke auf ein angenehmes Niveau ein, bevor Sie fortfahren.",
     de_f = "Sie sollten eine Tonwiedergabe hören. Bitte stellen Sie die Lautstärke auf ein angenehmes Niveau ein, bevor Sie fortfahren.",
     en = "You should hear some audio playing. Please adjust the volume to a comfortable level before continuing.",
-    ja = NA_character_
+    ja = "音の再生が聞こえるはずです。続行する前に、音量を快適なレベルに調整してください。" # clc
   )
 
 HALT_dict <-
@@ -656,8 +679,8 @@ HALT_dict <-
     ))
   )
 HALT_dict <-
-  HALT_dict %>%
-  left_join(
+  HALT_dict |>
+  dplyr::left_join(
     tibble::tribble(
       ~key, ~ja,
       "AGAIN", "",
