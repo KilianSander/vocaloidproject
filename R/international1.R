@@ -11,6 +11,9 @@
 #'
 #' @param follow_up_link (character scalar) link for redirecting participants
 #' to the next section of the experiment (on a different platform).
+#' It has to contain 3 placeholders, `%s`, for `p_id`, `uses`, and `udes`.
+#' The URL parameter for language, `language_url_param`, and its placeholder
+#' are appended automatically.
 #'
 #' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether
 #' or not to display debug information.

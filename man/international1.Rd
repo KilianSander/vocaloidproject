@@ -64,7 +64,10 @@ It has to contain the placeholder \verb{\%s} for \code{p_id} to redirect
 participants correctly.}
 
 \item{follow_up_link}{(character scalar) link for redirecting participants
-to the next section of the experiment (on a different platform).}
+to the next section of the experiment (on a different platform).
+It has to contain 3 placeholders, \verb{\%s}, for \code{p_id}, \code{uses}, and \code{udes}.
+The URL parameter for language, \code{language_url_param}, and its placeholder
+are appended automatically.}
 
 \item{language_url_param}{(character scalar or \code{NULL}) URL parameter to pass
 on the test language of a participant.
