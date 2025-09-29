@@ -19,6 +19,7 @@
 #' @inheritParams psyquest::DEG
 #' @inheritParams psychTestR::test_options
 #' @inheritParams last_page_redirect_session_design
+#' @inheritParams session_design_url_welcome_page
 #'
 #' @export
 international1 <- function(title = "",

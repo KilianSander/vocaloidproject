@@ -36,6 +36,8 @@ corresponding to language codes.}
 
 \item{dict}{internationalization dictionary.}
 
+\item{session_number}{(integer-like scalar) sets the session number.}
+
 \item{allow_any_p_id_url}{Whether to allow new participants
 to give themselves an arbitrary participant ID by passing it
 as a URL parameter.}
