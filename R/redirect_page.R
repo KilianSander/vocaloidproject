@@ -23,19 +23,25 @@
 #' the text shown for `back_link`.
 #'
 #' @param redirect_heading (scalar character or `NULL`) Key in `dict`.
-#' Its translation is shown as the heading of this page.
+#' Its translation is displayed as the heading of this page.
 #' `NULL` suppresses the heading.
+#'
+#' @param redirect_paragraph (scalar character or `NULL`) Key in `dict`.
+#' Its translation is displayed as a paragraph of text on the page.
+#' `NULL` suppresses a paragraph.
 #'
 #' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether or
 #' not to `message()` the URL parameter(s).
 #'
 last_page_redirect <- function(redirect_heading = "thanks",
+                               redirect_paragraph = NULL,
                                dict = vocaloidproject::vocaloidproject_dict,
                                default_lang = "de_f",
                                back_link,
                                back_link_key = "return_to_prolific",
                                debug = FALSE) {
   stopifnot(is.scalar.character(redirect_heading) | is.null(redirect_heading),
+            is.scalar.character(redirect_paragraph) | is.null(redirect_paragraph),
             is.scalar.character(back_link_key),
             stringr::str_count(back_link, pattern = "%s") == 1,
             is.scalar.logical(debug))
@@ -59,6 +65,9 @@ last_page_redirect <- function(redirect_heading = "thanks",
             shiny::div(
               if (!is.null(redirect_heading)) {
                 shiny::h3(psychTestR::i18n(redirect_heading))
+              },
+              if (!is.null(redirect_paragraph)) {
+                shiny::p(psychTestR::i18n(redirect_paragraph))
               },
               shiny::a(
                 psychTestR::i18n(back_link_key),
@@ -93,6 +102,7 @@ last_page_redirect <- function(redirect_heading = "thanks",
 #'
 #' @export
 last_page_redirect_session_design <- function(redirect_heading = "thanks",
+                                              redirect_paragraph = NULL,
                                               dict = vocaloidproject::vocaloidproject_dict,
                                               default_lang = "de_f",
                                               back_link,
@@ -102,6 +112,7 @@ last_page_redirect_session_design <- function(redirect_heading = "thanks",
                                               debug = FALSE) {
   stopifnot(
     is.scalar.character(redirect_heading) | is.null(redirect_heading),
+    is.scalar.character(redirect_paragraph) | is.null(redirect_paragraph),
     is.scalar.character(back_link_key),
     stringr::str_count(back_link, pattern = "%s") == 3,
     is.scalar.character(language_url_param) | is.null(language_url_param),
@@ -142,6 +153,9 @@ last_page_redirect_session_design <- function(redirect_heading = "thanks",
             shiny::div(
               if (!is.null(redirect_heading)) {
                 shiny::h3(psychTestR::i18n(redirect_heading))
+              },
+              if (!is.null(redirect_paragraph)) {
+                shiny::p(psychTestR::i18n(redirect_paragraph))
               },
               shiny::a(
                 psychTestR::i18n(back_link_key),
