@@ -593,6 +593,14 @@ emotional_baseline <-
       en = c("1 not at all", 2:4, "5 very much"),
       ja = c("1 無し／まったくない", 2:4, "5 非常に") # clc
     )
+  ) |>
+  tibble::add_case(
+    tibble::tibble(
+      key = c("picinfo"),
+      de_f = "Wir zeigen Ihnen im Folgenden sechs Fotos. Bitte beschreiben Sie anhand der Bild-Skala, wie positiv/negativ und aufgeregt/entspannt das jeweilige Foto ist.",
+      de = "Wir zeigen Dir im Folgenden sechs Fotos. Bitte beschreibe  anhand der Bild-Skala, wie positiv/negativ und aufgeregt/entspannt das jeweilige Foto ist.",
+      ja = "以下、6枚の写真をお見せします。画像スケールを用いて、それぞれの写真がどれほどポジティブ/ネガティブ、興奮/リラックスしているかを記述してください。"
+    )
   )
 
 # deepl for ja translations in `field`
