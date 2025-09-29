@@ -96,8 +96,23 @@ international1 <- function(title = "",
       emotional_baseline_single_pages(
         dict = dict
       ),
+      # loudness HALT and HP/LS test (Milne et al.?) go here
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       # preliminary
+      psychTestR::conditional(
+        test = function(state, ...) {
+          psychTestR::get_global(key = "uses", state = state) == 1
+        },
+        logic = last_page_redirect_session_design(
+          redirect_heading = NULL,
+          redirect_paragraph = "picinfo",
+          dict = dict,
+          back_link = follow_up_link,
+          back_link_key = "CONTINUE",
+          debug = TRUE
+        )
+      ),
+      # session 2
       last_page_redirect_session_design(
         redirect_heading = NULL,
         dict = dict,
