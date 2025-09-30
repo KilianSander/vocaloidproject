@@ -8,7 +8,7 @@ educational_degrees <-
     "EDU_CHOICE4", "Bachelor (Uni)", "学士",
     "EDU_CHOICE5", "Master", "修士",
     "EDU_CHOICE6", "Promotion/PhD", "博士",
-    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "EDU_PROMPT"
+    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "これまでに取得した最高学歴は何ですか" # clc
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace("Ihr", "Dein")
@@ -611,7 +611,7 @@ field <-
     "Was ist Ihr Studienfach bzw. Ihr berfuliches Fachgebiet?",
     "Was ist Dein Studienfach bzw. Dein berfuliches Fachgebiet?",
     "What is your field of study or your professional field?",
-    "専攻・専門分野は何ですか？",
+    "専攻・専門分野は何ですか？", # clc
     "PROFESSIONALFIELDSTUDY_CHOICE1", "Psychologie", "Psychologie", "Psychology", "心理学",
     "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽・音楽家",
     "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenschaft", "Musicology", "音楽学",
@@ -658,7 +658,7 @@ japanese_skills <-
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace_all("Haben Sie", "Hast Du"),
-    ja = c(
+    ja = c( # clc
       "日本語の知識はありますか／日本語できますか",
       "いいえ",
       "あまりない",

@@ -7,6 +7,7 @@
 \usage{
 last_page_redirect(
   redirect_heading = "thanks",
+  redirect_paragraph = NULL,
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
   back_link,
@@ -16,6 +17,7 @@ last_page_redirect(
 
 last_page_redirect_session_design(
   redirect_heading = "thanks",
+  redirect_paragraph = NULL,
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
   back_link,
@@ -27,8 +29,12 @@ last_page_redirect_session_design(
 }
 \arguments{
 \item{redirect_heading}{(scalar character or \code{NULL}) Key in \code{dict}.
-Its translation is shown as the heading of this page.
+Its translation is displayed as the heading of this page.
 \code{NULL} suppresses the heading.}
+
+\item{redirect_paragraph}{(scalar character or \code{NULL}) Key in \code{dict}.
+Its translation is displayed as a paragraph of text on the page.
+\code{NULL} suppresses a paragraph.}
 
 \item{dict}{internationalization dictionary.}
 
