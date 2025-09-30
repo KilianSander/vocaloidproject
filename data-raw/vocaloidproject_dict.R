@@ -485,25 +485,25 @@ info_redirect <-
       "technical_error"
     ),
     de = c(
-      "Informationstext", # include html tags
+      "Bevor es in dieser Sitzung mit dem Anhören von Musik losgeht, bitten wir Dich, einige Fragen zu beantworten. Es werden Fragen zu Deinen emotionalen und musikalischen Erfahrungen sein. Der Teil wird einige Minuten in Anspruch nehmen.", # include html tags
       "Zurück zu Prolific",
       "Vielen Dank für Deine Teilnahme!",
       "Etwas ist schief gelaufen"
     ),
     de_f = c(
-      "Informationstext", # include html tags
+      "Bevor es in dieser Sitzung mit dem Anhören von Musik losgeht, bitten wir Sie, einige Fragen zu beantworten. Es werden Fragen zu Ihren emotionalen und musikalischen Erfahrungen sein. Der Teil wird einige Minuten in Anspruch nehmen.", # include html tags
       "Zurück zu Prolific",
       "Vielen Dank für Ihre Teilnahme!",
       "Etwas ist schief gelaufen"
     ),
     en = c(
-      "Information on the study",
+      "Before you start listening to music in this session, we would like to ask you to answer a few questions. These will be questions about your emotional and musical experiences. This part will take a few minutes.",
       "Back to Prolific",
       "Thank you for participating!",
       "Something went wrong"
     ),
     ja = c(
-      "ja: Informationstext", # include html tags
+      "このセッションで音楽を聴き始める前に、いくつか質問にお答えください。あなたの感情や音楽に関する経験についての質問です。この部分は数分かかるでしょう。", # include html tags
       "Prolificに戻る", # deepl & clc
       "ご参加ありがとうございました！", # clc
       "何かがうまくいきませんでした。" # based on deepl
