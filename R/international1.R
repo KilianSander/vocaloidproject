@@ -71,6 +71,14 @@ international1 <- function(title = "",
           debug = debug
         )
       ),
+      psychTestR::new_timeline(
+        psychTestR::one_button_page(
+          body = psychTestR::i18n("info_text"),
+          button_text = psychTestR::i18n("CONTINUE")
+        ),
+        dict = dict,
+        default_lang = "de_f"
+      ),
       psychTestR::conditional(
         test = function(state, ...) {
           psychTestR::get_global(key = "uses", state = state) == 1
