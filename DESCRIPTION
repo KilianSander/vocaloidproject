@@ -15,6 +15,7 @@ Imports:
     DT,
     GAR,
     ggplot2,
+    HALT (>= 0.12.2),
     lifecycle,
     magrittr,
     methods,
@@ -27,10 +28,11 @@ Imports:
     tibble,
     tidyr,
     utils
-Remotes: 
+Remotes:  
     github::pmcharrison/psychTestR,
     github::klausfrieler/psyquest,
-    github::klausfrieler/GAR
+    github::klausfrieler/GAR,
+    github::kiliansander/HALT
 Suggests: 
     deeplr,
     dplyr,

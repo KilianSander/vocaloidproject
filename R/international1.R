@@ -105,6 +105,16 @@ international1 <- function(title = "",
         dict = dict
       ),
       # loudness HALT and HP/LS test (Milne et al.?) go here
+      HALT::HALT(
+        config = HALT::make_config(
+          volume_level = "-20.0 LUFS",
+          loop_exclude = 5L,
+          channel_check = FALSE,
+          screening_parts = FALSE,
+          frequency_check = FALSE
+        ),
+        dict = dict
+      ),
       psychTestR::elt_save_results_to_disk(complete = TRUE),
       # preliminary
       psychTestR::conditional(
