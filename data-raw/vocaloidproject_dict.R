@@ -441,9 +441,9 @@ general_dict_raw <-
       "SELECT_MONTH_AND_YEAR", "年・月を選択してください", # clc
       "ENTER_ID", "IDを入力してください", # deepl & clc
       "ENTER_ID_FORMAL", "IDを入力してください", # deepl & clc
-      "PROBLEMS_INFO_1", "問題？", # deepl
-      "PROBLEMS_INFO_2", "このページへのリンクを添えて", # deepl based on en
-      "PROBLEMS_INFO_3", "までご連絡ください。", # deepl based on en
+      "PROBLEMS_INFO_1", "", # clc
+      "PROBLEMS_INFO_2", "問題がある場合は、", # clc
+      "PROBLEMS_INFO_3", "に、このページへのリンクを記載したメールをお送りください。", # clc
     )
   )
 
