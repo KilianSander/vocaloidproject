@@ -741,7 +741,7 @@ HALT_dict <-
   # )
   dplyr::mutate(
     ja = paste0(
-      "ja: ", en
+      "ja ", en
     )
   )
 
