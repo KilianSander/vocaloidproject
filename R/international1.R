@@ -71,6 +71,12 @@ international1 <- function(title = "",
           debug = debug
         )
       ),
+      # consent page
+      consent_page_international1(
+        dict = dict,
+        no_consent_back_link = technical_error_back_link,
+        debug = debug
+      ),
       psychTestR::new_timeline(
         psychTestR::one_button_page(
           body = psychTestR::i18n("info_text"),
