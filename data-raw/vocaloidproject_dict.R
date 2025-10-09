@@ -508,6 +508,43 @@ info_redirect <-
       "ご参加ありがとうございました！", # clc
       "何かがうまくいきませんでした。" # based on deepl
     )
+  ) |>
+  tibble::add_row(
+    data.frame(
+      key = "info_example_rating",
+      de_f = "<p>Es folgt nun der musikalische Teil.</p><p>
+        Sie werden 45 kurze Ausschnitte hören und sie beurteilen.
+        Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden,
+        z.B. Wut, Freude, Verliebtsein usw.
+        Bitte beachten Sie, dass es dabei keine richtige oder falsche Antwort gibt.
+        Uns interessiert Ihre Meinung.
+        Bitte beachten Sie, dass es einen Unterschied gibt zwischen den Emotionen,
+        die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen.
+        So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen.
+        Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.
+        </p><p>Zuerst ein Beispiel.</p>",
+      de = "<p>Es folgt nun der musikalische Teil.</p><p>
+        Du wirst 45 kurze Ausschnitte hören und sie beurteilen.
+        Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden,
+        z.B. Wut, Freude, Verliebtsein usw.
+        Bitte beachte, dass es dabei keine richtige oder falsche Antwort gibt.
+        Uns interessiert Deine Meinung.
+        Bitte beachte, dass es einen Unterschied gibt zwischen den Emotionen,
+        die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen.
+        So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen.
+        Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.
+        </p><p>Zuerst ein Beispiel.</p>",
+      ja = "<p>次は音楽の部分です。</p><p>
+        45 の抜粋された短編楽節を聴取し、評価してください。
+        特に興味があるのは、楽節で表現されている感情、例えば怒り、喜び、恋などです。
+        正解や不正解はないので、ご安心ください。
+        知りたいのは、あなたの意見です。
+        音楽によって表現されている感情と、ご自身の感情には違いがあることにご留意ください。
+        例えば、ある曲は大変悲しい曲であるにもかかわらず、それを聴いて気分が良く、満足感を感じる場合もあります。
+        評価していただきたいのは、音楽そのものであり、ご自身の感情ではありません。
+        </p><p>まず、例を挙げましょう。</p>",
+      en = "info example rating"
+    )
   )
 languages <-
   tibble::tribble(

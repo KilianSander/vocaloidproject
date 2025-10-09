@@ -137,10 +137,9 @@ international1 <- function(title = "",
         )
       ),
       # session 2
-      last_page_redirect_session_design(
-        redirect_heading = NULL,
+      international1_session2_handshake_page(
         dict = dict,
-        back_link = follow_up_link,
+        follow_up_link = follow_up_link,
         back_link_key = "CONTINUE",
         debug = TRUE
       )
@@ -188,5 +187,19 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
     japanese_skills_page(
       dict = dict
     )
+  )
+}
+
+international1_session2_handshake_page <- function(dict = vocaloidproject::vocaloidproject_dict,
+                                                   follow_up_link = "",
+                                                   back_link_key = "CONTINUE",
+                                                   debug = FALSE) {
+  last_page_redirect_session_design(
+    redirect_heading = NULL,
+    redirect_paragraph = "info_example_rating",
+    dict = dict,
+    back_link = follow_up_link,
+    back_link_key = back_link_key,
+    debug = debug
   )
 }
