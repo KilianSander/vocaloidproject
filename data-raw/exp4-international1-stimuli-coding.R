@@ -9,10 +9,11 @@
 #   FULL_VC = full arrangement with vocaloid
 #
 require(magrittr)
-condition_key = c( # CHECK CONDITION NUMBERS !!!
+condition_key = c(
+  # matches condition numbers in `data-raw/createDesign.py` by Elke
   "INST" = 1,
-  "FULL_HS_a" = 2,
-  "FULL_HS_h" = 3,
+  "FULL_HS_h" = 2,
+  "FULL_HS_a" = 3,
   "FULL_VC" = 4
 )
 #
