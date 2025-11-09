@@ -1,0 +1,54 @@
+---
+title: "SoSci Survey Play Counter"
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: '#>'
+---
+
+The following `HTML` code is used to count the number of times the
+play button is pressed on a page and add this number to the data set.
+
+The first `HTML` code element defines the function:
+```{.html filename="HTML"}
+<script type="text/javascript">
+<!--
+ 
+function playCount(inputID) {
+  var input = document.getElementById(inputID);
+  if (!input) {
+    alert("Error: Internal variable " + inputID + " is not available on this page!");
+    return;
+  }
+ 
+  // Initialisation (value: 0)
+  if (isNaN(parseInt(input.value))) {
+    input.value = 0;
+  }
+  
+  // Function to count events
+  function countEvent(evt) {
+    var val = parseInt(input.value);
+    input.value = val + 1;
+  }
+ 
+  // Count each time "Play" is pressed
+  document.getElementById("player").addEventListener("play", countEvent);
+}
+// -->
+</script>
+```
+
+To use the function on the current page, the internal variable for the
+play counter has to be placed on the page.
+To activate the function, a second `HTML` code element has to be on the page,
+where `PLAYCOUNTER_VAR` is the name of the internal variable to put the counted
+number.
+```{.html filename="HTML"}
+<script type="text/javascript">
+<!--
+playCount("PLAYCOUNTER_VAR");
+// -->
+</script>
+```
+
