@@ -60,7 +60,7 @@ in Session 2 and the second half in Session 1.
 // designs
 $a1 = array('101', '201', '301', '401');
 $a2 = array('102', '202', '302', '402');
-// create design B by reversing the serial order of stimuli
+// create design B by reversing the serial order of stimulus excerpts
 $b1 = array();
 $b2 = array();
 for ($i = 3; $i >= 0; $i--) { // set $i to half of the number of stimuli
