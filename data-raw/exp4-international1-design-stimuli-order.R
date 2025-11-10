@@ -66,7 +66,10 @@ for (l in letters[1:4]) {
 # Generate a php array from the vectors
 output_for_sosci <-
   "data-raw/exp4-international1-design-stimuli-order-php-arrays.txt"
+db_for_sosci <-
+  "data-raw/exp4-international1-design-stimuli-order-db.csv"
 file.create(output_for_sosci)
+file.create(db_for_sosci)
 for (l in letters[1:4]) {
   for (s in 1:2) {
     paste0(
@@ -78,5 +81,18 @@ for (l in letters[1:4]) {
         file = output_for_sosci,
         append = TRUE
       )
+    for (lang in c("ger", "jpn")) {
+      cat(
+        paste0(
+          l, s, ",", lang, ",",
+          paste0(get(paste0(l, s)), collapse = ","),
+          "\n"
+        ),
+        file = db_for_sosci,
+        append = TRUE
+      )
+    }
   }
 }
+# Import data-raw/exp4-international1-design-stimuli-order-db.csv to the
+# SoSci Survey data base for content
