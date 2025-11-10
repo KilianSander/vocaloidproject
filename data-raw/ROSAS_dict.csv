@@ -1,0 +1,26 @@
+key,en,de,de_f,ja
+ROSAS_TESTNAME,Robotic Social Attributes Scale,Robotic Social Attributes Scale,Robotic Social Attributes Scale,Robotic Social Attributes Scale
+ROSAS_PROMPT,How closely are the words below associated with the robot?,Wie stark assoziierst Du mit dem Roboter die folgenden Wörter?,Wie stark assoziieren Sie mit dem Roboter die folgenden Wörter?,この下の単語は、ロボットとどのくらい関連していますか？
+ROSAS_ITEM_0001,happy,freundlich,freundlich,明るい・幸せ
+ROSAS_ITEM_0002,sensitive,empfindsam,empfindsam,感受性の高い
+ROSAS_ITEM_0003,social,sozial,sozial,社会的な
+ROSAS_ITEM_0004,organic,organisch,organisch,自然由来
+ROSAS_ITEM_0005,compassionate,einfühlsam,einfühlsam,思いやりのある
+ROSAS_ITEM_0006,emotional,emotional,emotional,感情豊かな
+ROSAS_ITEM_0007,capable,fähig,fähig,能力のある
+ROSAS_ITEM_0008,responsive,reaktionsschnell,reaktionsschnell,反応が早い
+ROSAS_ITEM_0009,interactive,interaktive,interaktive,インタラクティブな
+ROSAS_ITEM_0010,reliable,zuverlässig,zuverlässig,信頼できる
+ROSAS_ITEM_0011,competent,kompetent,kompetent,有能な
+ROSAS_ITEM_0012,knowledgable,sachkundig,sachkundig,知識豊富な
+ROSAS_ITEM_0013,scary,beängstigend,beängstigend,怖い
+ROSAS_ITEM_0014,strange,seltsam,seltsam,不思議な
+ROSAS_ITEM_0015,awkward,ungeschickt,ungeschickt,ぎこちない
+ROSAS_ITEM_0016,dangerous,gefährlich,gefährlich,危ない
+ROSAS_ITEM_0017,awful,schrecklich,schrecklich,ひどい
+ROSAS_ITEM_0018,aggressive,aggressiv,aggressiv,挑戦的な
+ROSAS_CHOICE1,1,1 gar nicht assoziiert,1 gar nicht assoziiert,1 まったく関連していない
+ROSAS_CHOICE2,2,2,2,2
+ROSAS_CHOICE3,3,3,3,3
+ROSAS_CHOICE4,4,4,4,4
+ROSAS_CHOICE5,5,5 sehr stark assoziiert,5 sehr stark assoziiert,5 とても関連している
