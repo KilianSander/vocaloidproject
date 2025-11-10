@@ -802,6 +802,11 @@ HALT_dict <-
     )
   )
 
+rosas <-
+  read.csv(
+    file = "data-raw/ROSAS_dict.csv", header = TRUE
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
@@ -817,6 +822,7 @@ vocaloidproject_dict_raw <-
     japanese_skills,
     volume_calibration,
     HALT_dict,
+    rosas,
     info_redirect
   )
 
