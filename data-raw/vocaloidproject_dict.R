@@ -807,6 +807,16 @@ rosas <-
     file = "data-raw/ROSAS_dict.csv", header = TRUE
   )
 
+landscape <-
+  tibble::tribble(
+    ~key, ~de_f, ~de, ~en, ~ja,
+    "LANDSCAPE_PROMPT",
+    "Wenn Sie mit einem Mobilgerät teilnehmen, benutzen Sie dieses bitte im Querformat.",
+    "Wenn Du mit einem Mobilgerät teilnimmst, benutze dieses bitte im Querformat.",
+    "If you are participating with a mobile device, please use it in landscape mode.",
+    "モバイル端末でご参加の場合は、横向きモードでご利用ください。" # Meta Llama 3.1 8B Instruct compared deepl and google translate
+  )
+
 vocaloidproject_dict_raw <-
   general_dict_raw |>
   dplyr::bind_rows(
