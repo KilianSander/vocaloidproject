@@ -110,7 +110,7 @@ international1 <- function(title = "",
       emotional_baseline_single_pages(
         dict = dict
       ),
-      # loudness HALT and HP/LS test (Milne et al.?) go here
+      # loudness HALT, no HP/LS check
       HALT::HALT(
         config = HALT::make_config(
           volume_level = "-20.0 LUFS",
@@ -184,8 +184,13 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
     field_page(
       dict = dict
     ),
-    japanese_skills_page(
-      dict = dict
+    psychTestR::conditional(
+      test = function(state, ...) {
+        psychTestR::get_session_info(state, complete = FALSE)$language != "ja"
+      },
+      logic = japanese_skills_page(
+        dict = dict
+      )
     )
   )
 }
