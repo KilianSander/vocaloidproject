@@ -38,11 +38,26 @@ design_d <- read_design("data-raw/designD.txt")
 ## create vectors for each session and design ----------------------------------
 for (l in letters[1:4]) {
   for (s in 1:2) {
+    value <-
+      get(paste0("design_", l)) %>%
+      filter(session == s) %>%
+      pull("stimulus_id") %>%
+    # repeat each stimulus_id to prepare the check page (see next step)
+      rep(each = 2)
+    # append 'check' to every second stimulus_id for the SoSci check page
+    value[(1:(length(value)/2))*2] <-
+      paste0(
+        value[(1:(length(value)/2))*2],
+        "check"
+      )
+    # add the break pages
+    value <- c(
+      "block1", value[1:20], "block2", value[21:40], "block3", value[41:60],
+      "block4", value[61:80], "block5", value[81:100], "block6", value[101:120]
+    )
     assign(
       x = paste0(l, s),
-      value = get(paste0("design_", l)) %>%
-        filter(session == s) %>%
-        pull("stimulus_id"),
+      value = value,
       envir = .GlobalEnv
     )
   }
@@ -51,7 +66,10 @@ for (l in letters[1:4]) {
 # Generate a php array from the vectors
 output_for_sosci <-
   "data-raw/exp4-international1-design-stimuli-order-php-arrays.txt"
+db_for_sosci <-
+  "data-raw/exp4-international1-design-stimuli-order-db.csv"
 file.create(output_for_sosci)
+file.create(db_for_sosci)
 for (l in letters[1:4]) {
   for (s in 1:2) {
     paste0(
@@ -63,5 +81,18 @@ for (l in letters[1:4]) {
         file = output_for_sosci,
         append = TRUE
       )
+    for (lang in c("ger", "jpn")) {
+      cat(
+        paste0(
+          l, s, ",", lang, ",",
+          paste0(get(paste0(l, s)), collapse = ","),
+          "\n"
+        ),
+        file = db_for_sosci,
+        append = TRUE
+      )
+    }
   }
 }
+# Import data-raw/exp4-international1-design-stimuli-order-db.csv to the
+# SoSci Survey data base for content

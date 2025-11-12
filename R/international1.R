@@ -33,7 +33,7 @@ international1 <- function(title = "",
                            allow_any_p_id_url = TRUE,
                            force_p_id_from_url = FALSE,
                            languages = c("de_f", "ja"),
-                           year_range = c(1925, 2007),
+                           year_range = c(1955, 2007),
                            gms_subscales = c("General"),
                            logo = NULL,
                            technical_error_back_link = "",
@@ -107,10 +107,14 @@ international1 <- function(title = "",
       #   dict = dict,
       #   vertical = FALSE # DOES NOT LOOK PRETTY ON MOBILE DEVICES!!
       # ),
+      use_landscape_page(
+        img_src = "https://s3.eu-west-1.amazonaws.com/media.dots.org/img/mobile-device-landscape-small.png",
+        img_width = 350,
+      ),
       emotional_baseline_single_pages(
         dict = dict
       ),
-      # loudness HALT and HP/LS test (Milne et al.?) go here
+      # loudness HALT, no HP/LS check
       HALT::HALT(
         config = HALT::make_config(
           volume_level = "-20.0 LUFS",
@@ -184,8 +188,13 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
     field_page(
       dict = dict
     ),
-    japanese_skills_page(
-      dict = dict
+    psychTestR::conditional(
+      test = function(state, ...) {
+        psychTestR::get_session_info(state, complete = FALSE)$language != "ja"
+      },
+      logic = japanese_skills_page(
+        dict = dict
+      )
     )
   )
 }

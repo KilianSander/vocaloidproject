@@ -833,6 +833,7 @@ vocaloidproject_dict_raw <-
     volume_calibration,
     HALT_dict,
     rosas,
+    landscape,
     info_redirect
   )
 
