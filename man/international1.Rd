@@ -13,7 +13,7 @@ international1(
   allow_any_p_id_url = TRUE,
   force_p_id_from_url = FALSE,
   languages = c("de_f", "ja"),
-  year_range = c(1925, 2007),
+  year_range = c(1955, 2007),
   gms_subscales = c("General"),
   logo = NULL,
   technical_error_back_link = "",
