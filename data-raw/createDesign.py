@@ -14,7 +14,7 @@ import random
 # 2 blocknr (1..10) [1-5 session 1, 6-10 session 2] --> (1..12) [1-6 sess 1, 7-12 sess 2]
 # 3 withinblock trialnr (1..9) * 10 repetitions, one for each block --> (1..10 ) * 12 repetitions (6 per sess)
 # 4 stimulus excerpt nr (1..30) #serial order randomized first, then balanced and arranged in blocks of 15 for first and second session
-# 5 condition (1=Instrumental only, 2=FULL_HS_h, 3=FULL_HS_a, FULL_VC) #serial order systematically balanced, based on #6 coding 4 serial orders
+# 5 condition (1=Instrumental only, 2=FULL_HS_h, 3=FULL_HS_a, 4=FULL_VC) #serial order systematically balanced, based on #6 coding 4 serial orders
 # 6 coding type of serial order of conditions: first 15 trials condition serpos: 1-2-4-3; second: 2-3-1-4; third: 3-4-2-1, fourth: 4-1-3-2, same in second session
 # 7 counter for stimuli: 1..15 in first session, 16-30 in second session
 
@@ -95,21 +95,22 @@ for i in range(len(design)): #120 mal
     design[i, 6] = seq_c[i] #1=con serial order 1-2-4-3; 2= 2-3-1-4; 3= 3-4-2-1, 4=4-1-3-2
     design[i, 7] = seq_s[i] #1=stimuli serial order 1..15; 1..15, 1..15, 1..15, 16..30, 16..30, 16..30, 16..30
     #conditions in fixed serial order 1=I, 2=FULL_HS_h, 3=FULL_HS_a, 4=FULL_VC trialnr 
-    #(1,2,4,3) for the first 15, (2,3,1,4) for the second 15, (3,4,2,1) for the third, (4,1,3,2) for the forth 
+    #(1,2,4,3) for the third (!) 15, (2,3,1,4) for the fourth 15, (3,4,2,1) for the first, (4,1,3,2) for the second
+    #in comparison to A, the serial order of conditions is backwards as well.
     #BUT: we dont have 16 stimuli, but 15, that is, for the last repeat, the series is incomplete
     #second session the same.
-    if design[i,6] == 1:
-        con = numpy.array([1, 2, 4, 3])
-        design[i, 5] = con[((i)%4)]
-    elif design[i,6] == 2:
-        con = numpy.array([2, 3, 1, 4])
-        design[i, 5] = con[((i+1)%4)]
-    elif design[i,6] == 3: 
-        con = numpy.array([3, 4, 2, 1])
+    if design[i,6] == 3:
+        con = numpy.array([1, 2, 4, 3]) #3142
         design[i, 5] = con[((i+2)%4)]
-    elif design[i,6] == 4: 
-        con = numpy.array([4, 1, 3, 2])
+    elif design[i,6] == 4:
+        con = numpy.array([2, 3, 1, 4]) #2431
         design[i, 5] = con[((i+3)%4)]
+    elif design[i,6] == 1: 
+        con = numpy.array([3, 4, 2, 1]) #1324
+        design[i, 5] = con[((i)%4)]
+    elif design[i,6] == 2: 
+        con = numpy.array([4, 1, 3, 2]) #4213
+        design[i, 5] = con[((i+1)%4)]
     #serial order of stimuli in packages of 15 based on seq_s
     design[i,4] = stimB[int(design[i,7]-1)] #!!DIFFERENT FROM BEFORE
 
