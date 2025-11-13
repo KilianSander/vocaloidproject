@@ -47,11 +47,32 @@ stimuli_international1 <-
           ) %>%
           condition_key[[.]]
         sprintf(
-          "%s%02i",
+          "%s%02i.mp3",
           condition, excerpt
         )
       }
+    ),
+    coded_stimulus_path = file.path(
+      stim_dir, coded_stimulus_name
     )
   )
-#
-file.rename()
+# rename stimuli files
+file.rename(
+  from = stimuli_international1$original_stimulus_path,
+  to = stimuli_international1$coded_stimulus_path
+)
+# save/export
+exp4_international1_stimuli <-
+  stimuli_international1 %>%
+  dplyr::select(dplyr::contains("name"))
+write.csv(
+  x = exp4_international1_stimuli,
+  file = "data-raw/exp4-international1-stimuli.csv",
+  fileEncoding = "UTF-8",
+  row.names = FALSE
+)
+usethis::use_data(
+  exp4_international1_stimuli,
+  overwrite = TRUE,
+  internal = FALSE
+)
