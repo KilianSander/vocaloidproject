@@ -50,3 +50,19 @@
 #' @name vocaloidproject_dict_df
 #'
 "vocaloidproject_dict_df"
+
+#' Stimulus coding for International Experiment 1
+#'
+#' Stimuli for International Experiment 1 (also referred to as Experiment 4)
+#' are 30 excerpts in 4 conditions.
+#' The original file names followed the naming scheme `EXCERPT_CONDITION.mp3`,
+#' where `EXCERPT` is a number from 1 to 30 denoting the excerpt and
+#' `CONDITION` is a string denoting the condition.
+#' For use in the experiment file names were re-coded to `CEE.mp3`, where
+#' `C` denotes the condition and `EE` is a width-two integer denoting the
+#' excerpt (i.e., Excerpt 2 is represented by `02`).
+#'
+#' @docType data
+#' @name exp4_international1_stimuli
+#'
+"exp4_international1_stimuli"
