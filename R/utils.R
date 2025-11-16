@@ -225,3 +225,19 @@ p_id_to_seed <- function(p_id) {
     as.integer() %>%
     sum()
 }
+
+sosci_api_import <- function(sosci_data_url) {
+  stopifnot(is.scalar.character(sosci_data_url))
+  ds <-
+    read.delim(
+      file = sosci_data_url,
+      encoding = "UTF-8",
+      fileEncoding = "UTF-8",
+      sep = "\t",
+      quote = "\"",
+      dec = ".",
+      as.is = TRUE,
+      na.strings = ""
+    )
+  return(ds)
+}

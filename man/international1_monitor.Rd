@@ -6,7 +6,9 @@
 \usage{
 international1_monitor(
   battery_folder_name = "international1-1",
-  battery_folder_name2 = NULL
+  battery_folder_name2 = NULL,
+  external_data = NULL,
+  external_data_type = "sosci"
 )
 }
 \arguments{
@@ -18,6 +20,14 @@ lives.}
 instances of the \code{international1} battery (e.g., one for each of the two
 sessions), specify the second instance here.
 If there is only one, set \code{battery_folder_name2} to \code{NULL}.}
+
+\item{external_data}{(\code{NULL} or character scalar) if non-\code{NULL}, a URL to
+load extra data from.}
+
+\item{external_data_type}{(character scalar) specifies the import script for
+data to load from \code{external_data}.
+Currently, the only option is \code{sosci} for the SoSci Survey API for data
+retrieval as a csv for R.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
