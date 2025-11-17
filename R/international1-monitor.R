@@ -41,17 +41,20 @@ international1_monitor <- function(battery_folder_name = "international1-1",
     is.null(external_data) | is.scalar.character(external_data)
   )
 
+  sec_folder <- !is.null(battery_folder_name2)
+  extra_d <- !is.null(external_data)
+
   results_dir <- file.path(
     "..", battery_folder_name, "output", "results"
   )
 
-  if (!is.null(battery_folder_name2)) {
+  if (sec_folder) {
     results_dir2 <- file.path(
       "..", battery_folder_name2, "output", "results"
     )
   }
 
-  if (!is.null(external_data)) {
+  if (extra_d) {
     external_data_type <- match.arg(external_data_type)
   }
 
@@ -62,6 +65,7 @@ international1_monitor <- function(battery_folder_name = "international1-1",
         preset = "shiny"
       ),
       shiny::titlePanel(title = title),
+      ## password and button -----
       bslib::layout_columns(
         shiny::passwordInput(
           inputId = "password",
@@ -74,6 +78,7 @@ international1_monitor <- function(battery_folder_name = "international1-1",
       ),
       shiny::tabsetPanel(
         shiny::tabPanel(
+          ## Tab sample summary -----
           title = "Sample summary",
           bslib::layout_columns(
             bslib::card(
@@ -106,9 +111,14 @@ international1_monitor <- function(battery_folder_name = "international1-1",
             )
           )
         ),
+        ## Tab data -----
         shiny::tabPanel(
           title = "Data",
           DT::DTOutput("table")
+        ),
+        shiny::tabPanel(
+          title = "Suspicious Cases",
+          shiny::verbatimTextOutput("sus")
         )
       )
 
@@ -116,23 +126,87 @@ international1_monitor <- function(battery_folder_name = "international1-1",
 
   server <- function(input, output, session) {
     # get data -----
-    data_raw <- shiny::eventReactive(
+    data_list <- shiny::eventReactive(
       input$get_data, {
         if (input$password == data_pw) {
           ## first results dir -----
-          #
+          data_raw <-
+            read_international1_data(results_dir = results_dir)
+          message("First directory read")
           ## second results dir -----
-          if (!is.null(battery_folder_name2)) {
-            #
+          if (sec_folder) {
+            data_raw2 <-
+              read_international1_data(results_dir = results_dir2)
+            message("Second directory read")
+            # message("Attempt to merge")
+            for (i in base::setdiff(names(data_raw), names(data_raw2))) {
+              data_raw2[i] <- NA
+            }
+            for (i in base::setdiff(names(data_raw2), names(data_raw))) {
+              data_raw[i] <- NA
+            }
+            data_raw <-
+              # purrr:list_rbind(
+              #   list(
+              #     data_raw,
+              #     data_raw2
+              #   )
+              # )
+              rbind(
+                data_raw, data_raw2
+              )
           }
+
+          session1_p_ids <-
+            data_raw %>%
+            dplyr::filter(exp_session == 1) %>%
+            dplyr::pull("p_id")
+
+          suspicious_cases <-
+            data_raw %>%
+            dplyr::filter(exp_session == 2) %>%
+            dplyr::pull("p_id") %>%
+            base::setdiff(y = session1_p_ids)
+
+          data_pre <-
+            data_raw %>%
+            dplyr::filter(!(p_id %in% suspicious_cases))
+
           ## extra data -----
-          if (!is.null(external_data)) {
+          if (extra_d) {
             if (external_data_type == "sosci") {
+              # get data from sosci
               extra_data <-
-                sosci_api_import(external_data)
+                sosci_api_import(external_data) %>%
+                dplyr::filter(!is.na(completed))
+              suspicious_cases <- c(
+                suspicious_cases,
+                dplyr::pull(
+                  dplyr::filter(extra_data, !(REF %in% session1_p_ids)),
+                  var = "REF"
+                )
+              )
+              # join with data from psychTestR
+              data_pre <-
+                dplyr::left_join(
+                  data_pre,
+                  extra_data,
+                  by = dplyr::join_by(
+                    p_id == REF,
+                    exp_session == session
+                  )
+                )
             }
           }
-          test_data <- tibble::tibble(p_id = NA_character_)
+          ret <- list(
+            "data_raw" = data_raw,
+            "data_pre" = data_pre,
+            "suspicious_cases" = suspicious_cases
+          )
+          if (extra_d) {
+            ret[["extra_data"]] <- extra_data
+          }
+          return(ret)
         }
       }
     )
@@ -153,8 +227,13 @@ international1_monitor <- function(battery_folder_name = "international1-1",
 
     # display data -----
     output$table <- DT::renderDT({
-      req(data_raw())
-      data_raw()
+      req(data_list())
+      data_list()$data_pre
+    })
+
+    output$sus <- shiny::renderPrint({
+      req(data_list())
+      data_list()$suspicious_cases
     })
 
     # end of server code -----
