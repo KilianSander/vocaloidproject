@@ -25,7 +25,9 @@
 international1_monitor <- function(battery_folder_name = "international1-1",
                                    battery_folder_name2 = NULL,
                                    external_data = NULL,
-                                   external_data_type = "sosci") {
+                                   external_data_type = "sosci",
+                                   title = "Vocaloid Project Experiment 4 (International 1) Monitor",
+                                   data_pw = "supersecretpassword") {
 
   stopifnot(
     is.scalar.character(battery_folder_name),
@@ -35,12 +37,104 @@ international1_monitor <- function(battery_folder_name = "international1-1",
   if (!is.null(external_data)) {
     external_data_type <- match.arg(external_data_type)
   }
-  #
-  if (!is.null(external_data)) {
-    if (external_data_type == "sosci") {
-      extra_data <-
-        sosci_api_import(external_data)
-    }
+
+  ui <-
+    shiny::fluidPage(
+      theme = bslib::bs_theme(
+        version = 5,
+        preset = "shiny"
+      ),
+      shiny::titlePanel(title = title),
+      bslib::layout_columns(
+        shiny::passwordInput(
+          inputId = "password",
+          label = "Password:"
+        ),
+        shiny::actionButton(
+          "get_data",
+          "Get Data!"
+        )
+      ),
+      shiny::tabsetPanel(
+        shiny::tabPanel(
+          title = "Sample summary",
+          bslib::layout_columns(
+            bslib::card(
+              bslib::card_header("Session 1 Total Sample"),
+              bslib::card_body()
+            ),
+            bslib::card(
+              bslib::card_header("Session 2 Total Sample"),
+              bslib::card_body()
+            )
+          ),
+          bslib::layout_columns(
+            bslib::card(
+              bslib::card_header("Session 1 German Sample"),
+              bslib::card_body()
+            ),
+            bslib::card(
+              bslib::card_header("Session 2 German Sample"),
+              bslib::card_body()
+            )
+          ),
+          bslib::layout_columns(
+            bslib::card(
+              bslib::card_header("Session 1 Japanese Sample"),
+              bslib::card_body()
+            ),
+            bslib::card(
+              bslib::card_header("Session 2 Japanese Sample"),
+              bslib::card_body()
+            )
+          )
+        ),
+        shiny::tabPanel(
+          title = "Data",
+          DT::DTOutput("table")
+        )
+      )
+
+    )
+
+  server <- function(input, output, session) {
+    # get data -----
+    data_raw <- shiny::eventReactive(
+      input$get_data, {
+        if (input$password == data_pw) {
+          if (!is.null(external_data)) {
+            if (external_data_type == "sosci") {
+              extra_data <-
+                sosci_api_import(external_data)
+            }
+          }
+          test_data <- tibble::tibble(p_id = NA_character_)
+        }
+      }
+    )
+
+    # wrong password -----
+    shiny::observeEvent(
+      input$get_data, {
+        message("button pressed\n")
+        if (input$password != data_pw) {
+          shiny::showNotification(
+            ui = "Wrong password!",
+            duration = NULL,
+            closeButton = TRUE
+          )
+        }
+      }
+    )
+
+    # display data -----
+    output$table <- DT::renderDT({
+      req(data_raw())
+      data_raw()
+    })
+
+    # end of server code -----
   }
-  # shiny::shinyApp(ui = ui, server = server)
+
+  shiny::shinyApp(ui = ui, server = server)
 }
