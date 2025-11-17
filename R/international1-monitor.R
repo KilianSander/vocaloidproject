@@ -162,3 +162,112 @@ international1_monitor <- function(battery_folder_name = "international1-1",
 
   shiny::shinyApp(ui = ui, server = server)
 }
+
+
+read_international1_data <- function(results_dir) {
+  results <- purrr::map(
+    list.files(path = results_dir, pattern = "*.rds$", full.names = TRUE),
+    function(x) {
+      readRDS(x) %>% as.list()
+    }
+  )
+  if (length(results) > 0) {
+    ret <-
+      results %>%
+      purrr::map(
+        function(x) {
+          x <- as.list(x)
+          if (!is.null(x$session)) {
+            session_data <-
+              x$session %>%
+              as.data.frame() %>%
+              dplyr::select(
+                dplyr::all_of(
+                  c("p_id", "language", "time_started", "complete")
+                )
+              )
+          }
+          if (is.null(x$session) || nrow(session_data) == 0) {
+            session_data <- data.frame(p_id = NA)
+          }
+
+          exp_session <- x[["results"]][["uses"]]
+          exp_design <- x[["results"]][["udes"]]
+
+          session_data$exp_session <- exp_session
+          session_data$exp_design <- exp_design
+          session_data$consent <-
+            ifelse(
+              !is.null(x[["results"]][["consent"]]),
+              x[["results"]][["consent"]],
+              NA_character_
+            )
+
+          if (is.null(exp_session) | (!(exp_session %in% 1:2))) {
+            person_data <- session_data
+          } else {
+            emo_baseline <- parse_emotional_baseline(x[["emotional_baseline"]])
+            halt <- parse_HALT_selfreport_device(x[["HALT"]])
+            ## Session 1 data -----
+            if (exp_session == 1) {
+              if (!is.null(x[["DEG"]])) {
+                deg <-
+                  parse_deg(x[["DEG"]])
+              } else {
+                deg <-
+                  data.frame(
+                    Gender = NA_character_,
+                    Age_months = NA_real_,
+                    Age_years = NA_real_
+                  )
+              }
+              if (!is.null(x[["demographics"]])) {
+                demographics <-
+                  x[["demographics"]] %>%
+                  as.data.frame()
+              } else {
+                demographics <-
+                  data.frame(first_language = NA_character_)
+              }
+
+              person_data <-
+                dplyr::bind_cols(
+                  session_data, deg, demographics,
+                  emo_baseline, halt
+                )
+            }
+            ## Session 2 data -----
+            if (exp_session == 2) {
+              if (!is.null(x[["GMS"]])) {
+                gms <-
+                  x[["GMS"]] %>%
+                  as.data.frame() %>%
+                  dplyr::rename_with(
+                    function(col) {
+                      paste0("GMS_", col)
+                    }
+                  )
+              } else {
+                gms <-
+                  data.frame(GMS_General = NA_real_)
+              }
+
+              person_data <-
+                dplyr::bind_cols(
+                  session_data, gms, emo_baseline, halt
+                )
+            }
+          }
+
+          return(person_data)
+        }
+      ) %>%
+      purrr::list_rbind() %>%
+      dplyr::arrange(time_started)
+  } else {
+    ret <- data.frame(
+      p_id = character(0L)
+    )
+  }
+  return(ret)
+}

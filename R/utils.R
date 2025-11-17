@@ -244,42 +244,32 @@ sosci_api_import <- function(sosci_data_url) {
   return(ds)
 }
 
-read_international1_data <- function(results_dir) {
-  results <- purrr::map(
-    list.files(path = results_dir, pattern = "*.rds$", full.names = TRUE),
-    function(x) {
-      readRDS(x) %>% as.list()
-    }
-  )
-  if (length(results) > 0) {
-    ret <-
-      results %>%
-      purrr::map(
-        function(x) {
-          x <- as.list(x)
-          if (!is.null(x$session)) {
-            session_data <-
-              x$session %>%
-              as.data.frame() %>%
-              dplyr::select(
-                dplyr::all_of(c("p_id", "time_started", "complete"))
-              )
-          }
-          if (is.null(x$session) || nrow(session_data) == 0) {
-            session_data <- data.frame(p_id = NA)
-          }
-        }
-      )
+parse_HALT_selfreport_device <- function(halt_result) {
+  if (!is.null(halt_result)) {
+    data.frame(
+      playback_device = halt_result[["device_selfreport"]][["answer"]][[1]]
+    )
   } else {
-    ret <- data.frame(
-      p_id = character(0L)
+    data.frame(
+      playback_device = NA_character_
     )
   }
-  return(ret)
+
 }
 
-parse_HALT_selfreport_device <- function(halt_result) {
-  data.frame(
-    playback_device = halt_result[["device_selfreport"]][["answer"]][[1]]
-  )
+parse_emotional_baseline <- function(emo_base_result) {
+  if (!is.null(emo_base_result)) {
+    emo_baseline <-
+      emo_base_result %>%
+      as.data.frame() %>%
+      dplyr::mutate(
+        dplyr::across(
+          dplyr::everything(),
+          as.numeric
+        )
+      )
+  } else {
+    emo_basline <-
+      data.frame(emotional_baseline.q1 = NA_real_)
+  }
 }
