@@ -25,6 +25,7 @@ Imports:
     psyquest (>= 1.4.10),
     shiny,
     shinyWidgets,
+    stats,
     stringr,
     tibble,
     tidyr,
