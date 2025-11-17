@@ -22,6 +22,12 @@
 #' Currently, the only option is `sosci` for the SoSci Survey API for data
 #' retrieval as a csv for R.
 #'
+#' @param title (character scalar) Title for the app.
+#'
+#' @param data_pw (character scalar) `r lifecycle::badge("experimental")`
+#' set a password for data access.
+#' Caution: This is a very simple implementation.
+#'
 international1_monitor <- function(battery_folder_name = "international1-1",
                                    battery_folder_name2 = NULL,
                                    external_data = NULL,

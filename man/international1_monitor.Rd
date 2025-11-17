@@ -8,7 +8,9 @@ international1_monitor(
   battery_folder_name = "international1-1",
   battery_folder_name2 = NULL,
   external_data = NULL,
-  external_data_type = "sosci"
+  external_data_type = "sosci",
+  title = "Vocaloid Project Experiment 4 (International 1) Monitor",
+  data_pw = "supersecretpassword"
 )
 }
 \arguments{
@@ -28,6 +30,12 @@ load extra data from.}
 data to load from \code{external_data}.
 Currently, the only option is \code{sosci} for the SoSci Survey API for data
 retrieval as a csv for R.}
+
+\item{title}{(character scalar) Title for the app.}
+
+\item{data_pw}{(character scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+set a password for data access.
+Caution: This is a very simple implementation.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
