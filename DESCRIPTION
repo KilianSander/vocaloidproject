@@ -23,6 +23,7 @@ Imports:
     plotly,
     psychTestR (>= 2.25.0),
     psyquest (>= 1.4.10),
+    purrr,
     shiny,
     shinyWidgets,
     stats,
@@ -38,7 +39,6 @@ Remotes:
 Suggests: 
     deeplr,
     dplyr,
-    purrr,
     quarto,
     readr
 Depends: 
