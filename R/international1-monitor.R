@@ -113,7 +113,11 @@ international1_monitor <- function(battery_folder_name = "international1-1",
         ),
         ## Tab data -----
         shiny::tabPanel(
-          title = "Data",
+          title = "Raw Data",
+          DT::DTOutput("data_raw")
+        ),
+        shiny::tabPanel(
+          title = "Complete Cases",
           DT::DTOutput("table")
         ),
         shiny::tabPanel(
@@ -168,17 +172,15 @@ international1_monitor <- function(battery_folder_name = "international1-1",
             dplyr::pull("p_id") %>%
             base::setdiff(y = session1_p_ids)
 
-          data_pre <-
-            data_raw %>%
-            dplyr::filter(!(p_id %in% suspicious_cases))
-
           ## extra data -----
           if (extra_d) {
             if (external_data_type == "sosci") {
               # get data from sosci
               extra_data <-
                 sosci_api_import(external_data) %>%
-                dplyr::filter(!is.na(completed))
+                dplyr::filter(!is.na(completed)) %>%
+                dplyr::select(!dplyr::starts_with("EMOBASE_ITEM"))
+              message("Extra data read")
               suspicious_cases <- c(
                 suspicious_cases,
                 dplyr::pull(
@@ -187,9 +189,9 @@ international1_monitor <- function(battery_folder_name = "international1-1",
                 )
               )
               # join with data from psychTestR
-              data_pre <-
-                dplyr::left_join(
-                  data_pre,
+              data_raw <-
+                dplyr::full_join(
+                  data_raw,
                   extra_data,
                   by = dplyr::join_by(
                     p_id == REF,
@@ -198,6 +200,11 @@ international1_monitor <- function(battery_folder_name = "international1-1",
                 )
             }
           }
+
+          data_pre <-
+            data_raw %>%
+            dplyr::filter(!(p_id %in% suspicious_cases))
+
           ret <- list(
             "data_raw" = data_raw,
             "data_pre" = data_pre,
@@ -225,6 +232,19 @@ international1_monitor <- function(battery_folder_name = "international1-1",
       }
     )
 
+    # sub-samples -----
+    data_de <- reactive({
+      req(data_list())
+      data_list()$data_pre %>%
+        dplyr::filter(language == "de_f")
+    })
+
+    data_ja <- reactive({
+      req(data_list())
+      dat_list()$data_pre %>%
+        dplyr::filter(language == "ja")
+    })
+
     # display data -----
     output$table <- DT::renderDT({
       req(data_list())
@@ -234,6 +254,11 @@ international1_monitor <- function(battery_folder_name = "international1-1",
     output$sus <- shiny::renderPrint({
       req(data_list())
       data_list()$suspicious_cases
+    })
+
+    output$data_raw <- DT::renderDT({
+      req(data_list())
+      data_list()$data_raw
     })
 
     # end of server code -----
