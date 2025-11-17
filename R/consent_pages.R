@@ -53,8 +53,8 @@ consent_page <- function(dict = vocaloidproject::vocaloidproject_dict,
         failed_validation_message = psychTestR::i18n("CHOOSE_ANSWER"),
         save_answer = TRUE,
         hide_response_ui = FALSE
-      ),
-      psychTestR::elt_save_results_to_disk(complete = FALSE)
+      )#,
+      # psychTestR::elt_save_results_to_disk(complete = FALSE)
     ),
     dict = dict,
     default_lang = default_lang
