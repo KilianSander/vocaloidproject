@@ -40,6 +40,17 @@ international1_monitor <- function(battery_folder_name = "international1-1",
     is.null(battery_folder_name2) | is.scalar.character(battery_folder_name2),
     is.null(external_data) | is.scalar.character(external_data)
   )
+
+  results_dir <- file.path(
+    "..", battery_folder_name, "output", "results"
+  )
+
+  if (!is.null(battery_folder_name2)) {
+    results_dir2 <- file.path(
+      "..", battery_folder_name2, "output", "results"
+    )
+  }
+
   if (!is.null(external_data)) {
     external_data_type <- match.arg(external_data_type)
   }
@@ -108,6 +119,13 @@ international1_monitor <- function(battery_folder_name = "international1-1",
     data_raw <- shiny::eventReactive(
       input$get_data, {
         if (input$password == data_pw) {
+          ## first results dir -----
+          #
+          ## second results dir -----
+          if (!is.null(battery_folder_name2)) {
+            #
+          }
+          ## extra data -----
           if (!is.null(external_data)) {
             if (external_data_type == "sosci") {
               extra_data <-

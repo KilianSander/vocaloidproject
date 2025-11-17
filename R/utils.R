@@ -106,7 +106,9 @@ read_voice_rating_data <- function(results_dir = results_dir) {
             session_data <-
               x$session %>%
               as.data.frame() %>%
-              dplyr::select(p_id, time_started, complete)
+              dplyr::select(
+                dplyr::all_of(c("p_id", "time_started", "complete"))
+              )
           }
           if (is.null(x$session) || nrow(session_data) == 0) {
             session_data <- data.frame(p_id = NA)
@@ -240,4 +242,44 @@ sosci_api_import <- function(sosci_data_url) {
       na.strings = ""
     )
   return(ds)
+}
+
+read_international1_data <- function(results_dir) {
+  results <- purrr::map(
+    list.files(path = results_dir, pattern = "*.rds$", full.names = TRUE),
+    function(x) {
+      readRDS(x) %>% as.list()
+    }
+  )
+  if (length(results) > 0) {
+    ret <-
+      results %>%
+      purrr::map(
+        function(x) {
+          x <- as.list(x)
+          if (!is.null(x$session)) {
+            session_data <-
+              x$session %>%
+              as.data.frame() %>%
+              dplyr::select(
+                dplyr::all_of(c("p_id", "time_started", "complete"))
+              )
+          }
+          if (is.null(x$session) || nrow(session_data) == 0) {
+            session_data <- data.frame(p_id = NA)
+          }
+        }
+      )
+  } else {
+    ret <- data.frame(
+      p_id = character(0L)
+    )
+  }
+  return(ret)
+}
+
+parse_HALT_selfreport_device <- function(halt_result) {
+  data.frame(
+    playback_device = halt_result[["device_selfreport"]][["answer"]][[1]]
+  )
 }
