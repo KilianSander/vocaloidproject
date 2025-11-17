@@ -191,6 +191,7 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
       year_range = year_range,
       dict = dict
     ),
+    psychTestR::begin_module(label = "demographics"),
     first_language_page(
       dict = dict
     ),
@@ -210,7 +211,8 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
       logic = japanese_skills_page(
         dict = dict
       )
-    )
+    ),
+    psychTestR::end_module()
   )
 }
 
