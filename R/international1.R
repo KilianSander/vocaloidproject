@@ -77,6 +77,21 @@ international1 <- function(title = "",
         no_consent_back_link = technical_error_back_link,
         debug = debug
       ),
+      psychTestR::code_block(
+        fun = function(state, ...) {
+          psychTestR::save_result(
+            place = state,
+            label = "udes",
+            value = psychTestR::get_global(key = "udes", state = state)
+          )
+          psychTestR::save_result(
+            place = state,
+            label = "uses",
+            value = session_number
+          )
+        },
+        next_elt = TRUE
+      ),
       psychTestR::new_timeline(
         psychTestR::one_button_page(
           body = psychTestR::i18n("info_text"),
