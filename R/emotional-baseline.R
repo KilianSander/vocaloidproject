@@ -173,27 +173,30 @@ emotional_baseline_single_pages <- function(label = "emotional_baseline",
   stopifnot(is.scalar.character(label),
             is.scalar.logical(vertical),
             is.character(default_lang))
-  psychTestR::new_timeline(
-    psychTestR::join(
-      purrr::map(
-        1:6,
-        function(x) {
-          psychTestR::NAFC_page(
-            label = sprintf("%s.q%d", label, x),
-            prompt = psychTestR::i18n(paste0("EMOBASE_ITEMPROMPT", x)),
-            choices = as.character(1:5),
-            labels = sapply(paste0("EMOBASE_CHOICE", 1:5), psychTestR::i18n, simplify = TRUE, USE.NAMES = FALSE),
-            save_answer = TRUE,
-            arrange_vertically = vertical,
-            hide_response_ui = FALSE,
-            on_complete = NULL,
-            admin_ui = NULL,
-            button_style = "min-width: 100px; min-height: 39 px;"
-          )
-        }
-      )
-    ),
-    dict = dict,
-    default_lang = default_lang
+  psychTestR::module(
+    label = label,
+    psychTestR::new_timeline(
+      psychTestR::join(
+        purrr::map(
+          1:6,
+          function(x) {
+            psychTestR::NAFC_page(
+              label = sprintf("%s.q%d", label, x),
+              prompt = psychTestR::i18n(paste0("EMOBASE_ITEMPROMPT", x)),
+              choices = as.character(1:5),
+              labels = sapply(paste0("EMOBASE_CHOICE", 1:5), psychTestR::i18n, simplify = TRUE, USE.NAMES = FALSE),
+              save_answer = TRUE,
+              arrange_vertically = vertical,
+              hide_response_ui = FALSE,
+              on_complete = NULL,
+              admin_ui = NULL,
+              button_style = "min-width: 100px; min-height: 39 px;"
+            )
+          }
+        )
+      ),
+      dict = dict,
+      default_lang = default_lang
+    )
   )
 }
