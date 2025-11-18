@@ -12,7 +12,7 @@ SoSci Survey.
 ## Sessions and 'designs'
 There are four presentation *designs* `a`, `b`, `c`, and `d` as well as
 two sessions `1` and `2`.
-When a participant enters the SoSci Survey the questionnaire will look for
+When a participant enters the SoSci Survey part the questionnaire will look for
 URL parameters `uses` and `udes` which are placed in the variables `session`
 and `design`, respectively, in the data set.
 The following `php` checks whether the php variables `$session` and `$design`
