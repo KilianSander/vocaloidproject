@@ -807,6 +807,11 @@ rosas <-
     file = "data-raw/ROSAS_dict.csv", header = TRUE
   )
 
+asa <-
+  read.csv(
+    file = "data-raw/ASA_dict.csv", header = TRUE
+  )
+
 landscape <-
   tibble::tribble(
     ~key, ~de_f, ~de, ~en, ~ja,
@@ -833,6 +838,7 @@ vocaloidproject_dict_raw <-
     volume_calibration,
     HALT_dict,
     rosas,
+    asa,
     landscape,
     info_redirect
   )
