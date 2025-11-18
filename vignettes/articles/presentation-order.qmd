@@ -1,5 +1,5 @@
 ---
-title: "Presentation Order"
+title: "Experiment 4 (International 1) Presentation Order"
 knitr:
   opts_chunk:
     collapse: true
@@ -47,62 +47,35 @@ denoting the musical excerpt
 (e.g., Excerpt 11 in Condition 2 is coded as `211`).
 As the experiment is divided into two sessions, half of the stimuli are
 to be presented in the first session and the other half in the second session.
-For a given order of the stimulus/page codes, the presentation designs are
-created in the following way:
-Design `a` is the same as the given order;
-design `b` is created by reversing the serial order of design `a`
+The designs are created with a python script (see `data-raw/createDesign.py`).
+First, design `a` is created.
+The remaining three designs are derived from `a`.
+Design `b` is created from design `a` by arranging the excerpts, conditions,
+and the pattern of conditions in a new way;
 design `c` is created by presenting the first half of the stimuli of design `a`
 in Session 2 and the second half in Session 1;
 design `d` is created by presenting the first half of the stimuli of design `b`
 in Session 2 and the second half in Session 1.
 
-```{.php filename="php"}
-// designs
-$a1 = array('101', '201', '301', '401');
-$a2 = array('102', '202', '302', '402');
-// create design B by reversing the serial order of stimulus excerpts
-$b1 = array();
-$b2 = array();
-for ($i = 3; $i >= 0; $i--) { // set $i to half of the number of stimuli
-    $b1[] = $a2[$i];
-    $b2[] = $a1[$i];
-}
-// design C = design A but changing the session order of stimuli
-$c1 = $a2;
-$c2 = $a1;
-// design D = design B but changing the session order of stimuli
-$d1 = $b2;
-$d2 = $b1;
-// look-up array
-$designs = array(
-    '1' => array('a' => $a1, 'b' => $b1, 'c' => $c1, 'd' => $d1),
-    '2' => array('a' => $a2, 'b' => $b2, 'c' => $c2, 'd' => $d2)
-);
-registerVariable($designs);
-```
+The python script prints out a `txt` file per design.
+These are converted to one `csv` file with
+`data-raw/exp4-international1-design-stimuli-order.R` also including the block
+announcement pages and a language code column.
+The output, `data-raw/exp4-international1-design-stimuli-order-db.csv`,
+serves as a data base in SoSci Survey.
 
 ### Set the presentation order
 After the presentation designs are created and the php variables
 `$session` and `$designs` are available in the SoSci Survey questionnaire
 session, the stimulus/page order is set.
 The `php` code checks whether a `$page_order` variable already exists.
-If not, it is created from the array `$designs` which contains arrays
-representing the two sessions of the presentation designs
-`a`, `b`, `c`, and `d`.
-`array_splice()` then inserts pages announcing a new stimulus block.
+If not, it is created by reading the data base key constructed from the
+`design` and `session` variables.
+
 ```{.php filename="php"}
-// adapt to the total number of stimuli !!!
 if (!isset($page_order)) {
-    $page_order= $designs[$session][$design];
+    $page_order = dbGet($design . $session);
     $page_order[] = 'backlink';
-    array_splice($page_order, 0, 0, "block1");
-// index 9 (instead of 2)
-    array_splice($page_order, 2, 0, "block2");
-// index 17 (instead of 4)
-    array_splice($page_order, 4, 0, "block3");
-//    array_splice($page_order, 26, 0, "block4");
-//    array_splice($page_order, 34, 0, "block5");
-//    array_splice($page_order, 43, 0, "block6");
 }
 $page_order_string = implode(';', $page_order);
 setPageOrder($page_order);
