@@ -12,7 +12,7 @@ ASA <- function(label = "ASA",
     psychTestR::begin_module(label = label),
     psychTestR::new_timeline(
       purrr::map(
-        1:6,
+        c(1,3,5,2,4,6),
         function(x) {
           psychTestR::NAFC_page(
             label = paste0(label, "_q", x),
