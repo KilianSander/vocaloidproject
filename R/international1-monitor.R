@@ -83,34 +83,40 @@ international1_monitor <- function(battery_folder_name = "international1-1",
           title = "Sample summary",
           bslib::layout_columns(
             bslib::card(
-              bslib::card_header("Session 1 Total Sample"),
-              bslib::card_body()
-            ),
-            bslib::card(
-              bslib::card_header("Session 2 Total Sample"),
-              bslib::card_body()
+              bslib::card_header("Total Sample"),
+              bslib::card_body(DT::DTOutput("summary_total"))
             )
           ),
-          bslib::layout_columns(
-            bslib::card(
-              bslib::card_header("Session 1 German Sample"),
-              bslib::card_body()
-            ),
-            bslib::card(
-              bslib::card_header("Session 2 German Sample"),
-              bslib::card_body()
-            )
-          ),
-          bslib::layout_columns(
-            bslib::card(
-              bslib::card_header("Session 1 Japanese Sample"),
-              bslib::card_body()
-            ),
-            bslib::card(
-              bslib::card_header("Session 2 Japanese Sample"),
-              bslib::card_body()
-            )
-          )
+          # bslib::layout_columns(
+          #   bslib::card(
+          #     bslib::card_header("Session 1 Total Sample"),
+          #     bslib::card_body()
+          #   ),
+          #   bslib::card(
+          #     bslib::card_header("Session 2 Total Sample"),
+          #     bslib::card_body()
+          #   )
+          # ),
+          # bslib::layout_columns(
+          #   bslib::card(
+          #     bslib::card_header("Session 1 German Sample"),
+          #     bslib::card_body(DT::DTOutput("sum_de_s1"))
+          #   ),
+          #   bslib::card(
+          #     bslib::card_header("Session 2 German Sample"),
+          #     bslib::card_body(DT::DTOutput("sum_de_s2"))
+          #   )
+          # ),
+          # bslib::layout_columns(
+          #   bslib::card(
+          #     bslib::card_header("Session 1 Japanese Sample"),
+          #     bslib::card_body(DT::DTOutput("sum_ja_s1"))
+          #   ),
+          #   bslib::card(
+          #     bslib::card_header("Session 2 Japanese Sample"),
+          #     bslib::card_body(DT::DTOutput("sum_ja_s2"))
+          #   )
+          # )
         ),
         ## Tab data -----
         shiny::tabPanel(
@@ -196,7 +202,8 @@ international1_monitor <- function(battery_folder_name = "international1-1",
                   extra_data,
                   by = dplyr::join_by(
                     p_id == REF,
-                    exp_session == session
+                    exp_session == session,
+                    exp_design == design
                   )
                 )
             }
@@ -234,31 +241,64 @@ international1_monitor <- function(battery_folder_name = "international1-1",
     )
 
     # sub-samples -----
-    data_de <- reactive({
-      req(data_list())
+    data_de <- shiny::reactive({
+      shiny::req(data_list())
       data_list()$data_pre %>%
         dplyr::filter(language == "de_f")
     })
 
-    data_ja <- reactive({
-      req(data_list())
+    data_ja <- shiny::reactive({
+      shiny::req(data_list())
       dat_list()$data_pre %>%
         dplyr::filter(language == "ja")
     })
 
+    # summaries -----
+    sum_total <- reactive({
+      req(data_list())
+      data_list()$data_pre %>%
+        dplyr::rename(
+          psychTestR_completed = complete
+        ) %>%
+        dplyr::mutate(
+          everything_complete = psychTestR_completed,
+          if (extra_d) {
+            if (external_data_type == "sosci") {
+              everything_complete = psychTestR_completed & completed
+            }
+          }
+        ) %>%
+        dplyr::filter(everything_complete) %>%
+        dplyr::group_by(language, exp_session) %>%
+        dplyr::summarise(
+          N = dplyr::n(),
+          design_a = sum(.data[["exp_design"]] == "a"),
+          design_b = sum(.data[["exp_design"]] == "b"),
+          design_c = sum(.data[["exp_design"]] == "c"),
+          design_d = sum(.data[["exp_design"]] == "d")
+        )
+    })
+    output$summary_total <- DT::renderDT({
+      req(sum_total())
+      sum_total()
+    },
+    rownames = FALSE,
+    options = list(dom = 't')
+    )
+
     # display data -----
     output$table <- DT::renderDT({
-      req(data_list())
+      shiny::req(data_list())
       data_list()$data_pre
     })
 
     output$sus <- shiny::renderPrint({
-      req(data_list())
+      shiny::req(data_list())
       data_list()$suspicious_cases
     })
 
     output$data_raw <- DT::renderDT({
-      req(data_list())
+      shiny::req(data_list())
       data_list()$data_raw
     })
 
@@ -375,4 +415,47 @@ read_international1_data <- function(results_dir) {
     )
   }
   return(ret)
+}
+
+language_session_summary <- function(data,
+                                     lang = c("de_f", "ja"),
+                                     exp_session = 1,
+                                     external_data = NULL,
+                                     external_data_type = "sosci") {
+  lang <- match.arg(lang)
+  stopifnot(is.scalar(exp_session),
+            is.null(external_data) | is.scalar.character(external_data_type))
+  if (!is.null(external_data)) {
+    external_data_type <-
+      match.arg(external_data_type, c("sosci"), several.ok = FALSE)
+  }
+  data %>%
+    dplyr::filter(
+      language == lang &
+      exp_session == exp_session
+    ) %>%
+    dplyr::mutate(
+      psychTestR_completed = complete,
+      everything_completed = psychTestR_completed,
+      if (!is.null(external_data)) {
+        if (external_data_type == "sosci") {
+          everything_completed = everything_completed & completed
+        }
+      }
+    ) %>%
+    dplyr::filter(everything_completed) %>%
+    dplyr::summarise(
+      N_total = dplyr::n(),
+      # if (exp_session == 1) {
+      #   dplyr::across(
+      #     dplyr::all_of("Age_years"),
+      #     list(mean, sd, min, max),
+      #     .names = "{.col}_{.fn}"
+      #   )
+      # },
+      design_a = sum(.data[["exp_design"]] == "a"),
+      design_b = sum(.data[["exp_design"]] == "b"),
+      design_c = sum(.data[["exp_design"]] == "c"),
+      design_d = sum(.data[["exp_design"]] == "d")
+    )
 }
