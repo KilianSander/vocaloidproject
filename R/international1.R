@@ -15,6 +15,9 @@
 #' The URL parameter for language, `language_url_param`, and its placeholder
 #' are appended automatically.
 #'
+#' @param unmet_requirements_back_link (character scalar) link for redirecting
+#' participants when they do not meet study requirements.
+#'
 #' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether
 #' or not to display debug information.
 #'
@@ -38,12 +41,14 @@ international1 <- function(title = "",
                            logo = NULL,
                            technical_error_back_link = "",
                            follow_up_link = "",
+                           unmet_requirements_back_link = "",
                            language_url_param = "l",
                            language_url_codes = c("de" = "ger", "de_f" = "ger", "en" = "eng", "ja" = "jpn"),
                            debug = FALSE){
   stopifnot(is.character(languages),
             is.scalar.character(technical_error_back_link),
             is.scalar.character(follow_up_link),
+            is.scalar.character(unmet_requirements_back_link),
             is.scalar.logical(debug))
   #
   elts <-
@@ -106,7 +111,9 @@ international1 <- function(title = "",
         },
         logic = international1_session_1(
           dict = dict,
-          year_range = year_range
+          unmet_requirements_back_link = unmet_requirements_back_link,
+          year_range = year_range,
+          debug = debug
         )
       ),
       psychTestR::conditional(
@@ -183,6 +190,8 @@ international1 <- function(title = "",
 }
 
 international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dict,
+                                     unmet_requirements_back_link = "",
+                                     debug = FALSE,
                                      year_range = c(1925, 2007)) {
   psychTestR::join(
     psyquest::DEG(
@@ -208,8 +217,29 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
       test = function(state, ...) {
         psychTestR::get_session_info(state, complete = FALSE)$language != "ja"
       },
-      logic = japanese_skills_page(
-        dict = dict
+      logic = psychTestR::join(
+        japanese_skills_page(
+          dict = dict
+        ),
+        psychTestR::conditional(
+          test = function(state, ...) {
+            ja_skills <-
+              psychTestR::get_results(
+                state = state,
+                complete = FALSE
+              )[["demographics"]][["japanese_skills"]] %>%
+              as.numeric()
+            ja_skills == 4
+          },
+          logic = last_page_redirect(
+            redirect_heading = NULL,
+            redirect_paragraph = "JAPANESE_SKILLS_NOT_MATCHING",
+            back_link = unmet_requirements_back_link,
+            back_link_key = "return_to_prolific",
+            back_link_with_p_id = FALSE,
+            debug = debug
+          )
+        )
       )
     ),
     psychTestR::end_module()
