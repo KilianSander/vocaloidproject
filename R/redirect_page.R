@@ -39,12 +39,24 @@ last_page_redirect <- function(redirect_heading = "thanks",
                                default_lang = "de_f",
                                back_link,
                                back_link_key = "return_to_prolific",
-                               debug = FALSE) {
+                               debug = FALSE,
+                               back_link_with_p_id = TRUE) {
   stopifnot(is.scalar.character(redirect_heading) | is.null(redirect_heading),
             is.scalar.character(redirect_paragraph) | is.null(redirect_paragraph),
             is.scalar.character(back_link_key),
-            stringr::str_count(back_link, pattern = "%s") == 1,
+            is.scalar.logical(back_link_with_p_id),
             is.scalar.logical(debug))
+
+  if (back_link_with_p_id) {
+    if (stringr::str_count(back_link, pattern = "%s") != 1) {
+      stop(
+        paste0(
+          "If `back_link_with_p_id` is set to `TRUE`, ",
+          "`back_link` must contain `%s` exactly once."
+        )
+      )
+    }
+  }
 
   psychTestR::new_timeline(
     psychTestR::reactive_page(
@@ -55,11 +67,13 @@ last_page_redirect <- function(redirect_heading = "thanks",
             complete = TRUE
           )$p_id
         if (debug) message(sprintf("p_id: %s", res))
-        back_link <-
-          sprintf(
-            back_link,
-            res
-          )
+        if (back_link_with_p_id) {
+          back_link <-
+            sprintf(
+              back_link,
+              res
+            )
+        }
         psychTestR::final_page(
           body =
             shiny::div(
