@@ -722,6 +722,12 @@ japanese_skills <-
       "いくつか",
       "心底"
     )
+  ) %>%
+  tibble::add_case(
+    key = "JAPANESE_SKILLS_NOT_MATCHING",
+    de = "Du hast Japanischkenntnise angegeben, die nicht zu den Voraussetzungen dieser Studie passen.",
+    de_f = "Sie haben Japanischkenntnise angegeben, die nicht zu den Voraussetzungen dieser Studie passen.",
+    ja = "ja japanese skills do not match study requirements"
   )
 
 volume_calibration <-
