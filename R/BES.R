@@ -12,7 +12,7 @@ BES <- function(label = "BES",
     psychTestR::begin_module(label = label),
     psychTestR::new_timeline(
       purrr::map(
-        1:12,
+        c(2, 3, 5, 8:12, 14, 16:18),
         function(x) {
           psychTestR::NAFC_page(
             label = paste0(label, "_q", x),

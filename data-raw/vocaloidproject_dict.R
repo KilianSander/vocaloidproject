@@ -722,7 +722,7 @@ japanese_skills <-
       "いくつか",
       "心底"
     )
-  ) %>%
+  ) |>
   tibble::add_case(
     key = "JAPANESE_SKILLS_NOT_MATCHING",
     de = "Du hast Japanischkenntnise angegeben, die nicht zu den Voraussetzungen dieser Studie passen.",
@@ -817,6 +817,10 @@ asa <-
   read.csv(
     file = "data-raw/ASA_dict.csv", header = TRUE
   )
+bes <-
+  read.csv(
+    file = "data-raw/BES_dict.csv", header = TRUE
+  )
 
 landscape <-
   tibble::tribble(
@@ -845,6 +849,7 @@ vocaloidproject_dict_raw <-
     HALT_dict,
     rosas,
     asa,
+    bes,
     landscape,
     info_redirect
   )
