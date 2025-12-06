@@ -18,6 +18,7 @@ international1(
   logo = NULL,
   technical_error_back_link = "",
   follow_up_link = "",
+  unmet_requirements_back_link = "",
   language_url_param = "l",
   language_url_codes = c(de = "ger", de_f = "ger", en = "eng", ja = "jpn"),
   debug = FALSE
@@ -68,6 +69,9 @@ to the next section of the experiment (on a different platform).
 It has to contain 3 placeholders, \verb{\%s}, for \code{p_id}, \code{uses}, and \code{udes}.
 The URL parameter for language, \code{language_url_param}, and its placeholder
 are appended automatically.}
+
+\item{unmet_requirements_back_link}{(character scalar) link for redirecting
+participants when they do not meet study requirements.}
 
 \item{language_url_param}{(character scalar or \code{NULL}) URL parameter to pass
 on the test language of a participant.

@@ -12,7 +12,8 @@ last_page_redirect(
   default_lang = "de_f",
   back_link,
   back_link_key = "return_to_prolific",
-  debug = FALSE
+  debug = FALSE,
+  back_link_with_p_id = TRUE
 )
 
 last_page_redirect_session_design(
@@ -40,8 +41,8 @@ Its translation is displayed as a paragraph of text on the page.
 
 \item{default_lang}{(scalar character) default language.}
 
-\item{back_link}{link containing the placeholder \verb{\%s} for \code{p_id} to redirect
-participants.
+\item{back_link}{link to redirect participants that depending on
+\code{back_link_with_p_id} contains the placeholder \verb{\%s} for \code{p_id}.
 In the case of \code{last_page_redirect_session_design} two additional
 placeholders for session and design have to be included.}
 
@@ -50,6 +51,9 @@ the text shown for \code{back_link}.}
 
 \item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} whether or
 not to \code{message()} the URL parameter(s).}
+
+\item{back_link_with_p_id}{(logical scalar) whether or not \code{back_link}
+contains a placeholder for the participant ID.}
 
 \item{language_url_param}{(character scalar or \code{NULL}) URL parameter to pass
 on the test language of a participant.

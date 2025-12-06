@@ -14,10 +14,13 @@
 #'
 #' @param default_lang (scalar character) default language.
 #'
-#' @param back_link link containing the placeholder `%s` for `p_id` to redirect
-#' participants.
+#' @param back_link link to redirect participants that depending on
+#' `back_link_with_p_id` contains the placeholder `%s` for `p_id`.
 #' In the case of `last_page_redirect_session_design` two additional
 #' placeholders for session and design have to be included.
+#'
+#' @param back_link_with_p_id (logical scalar) whether or not `back_link`
+#' contains a placeholder for the participant ID.
 #'
 #' @param back_link_key (scalar character) Key in `dict`. Its translation is
 #' the text shown for `back_link`.
