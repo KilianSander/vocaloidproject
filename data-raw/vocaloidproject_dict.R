@@ -702,6 +702,20 @@ consent <-
       "en consent text",
       "ja consent text"
     )
+  ) |>
+  tibble::add_case(
+      key = "consent_not_given_international1",
+      en = "As you have indicated that you do not consent to participate in this study please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
+      de_f = "Da Sie angegeben haben, der Teilnahme an dieser Studie nicht zuzustimmen, ziehen Sie bitte Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
+      de = "Da Du angegeben hast, der Teilnahme an dieser Studie nicht zuzustimmen, ziehe bitte Deine Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
+      ja = "ja <q>stop without completing</q>"
+  ) |>
+  tibble::add_case(
+    key = "prolific_return_submission",
+    en = "Please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
+    de = "Bitte ziehe Deine Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
+    de_f = "Bitte ziehen Sie Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
+    ja = "ja <q>stop without completing</q>"
   )
 
 japanese_skills <-
