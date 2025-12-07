@@ -187,3 +187,72 @@ last_page_redirect_session_design <- function(redirect_heading = "thanks",
     default_lang = default_lang
   )
 }
+
+multi_last_page_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
+                                     redirect_heading = NULL,
+                                     redirect_paragraph = "consent_not_given_international1",
+                                     back_link_key = "return_to_prolific",
+                                     redirect_link_vector = NULL,
+                                     back_link_with_p_id = FALSE,
+                                     debug = FALSE) {
+  stopifnot(is.null(redirect_link_vector) | is.character(redirect_link_vector))
+  if (is.character(redirect_link_vector)) {
+    if (is.null(names(redirect_link_vector))) {
+      stop(
+        paste0(
+          "`redirect_link_vector` must be `NULL` or a named character vector!"
+        )
+      )
+    }
+  }
+  lsds <- paste0(
+    rep(c("de", "ja"), each = 8),
+    rep(1:2, each = 4, times = 2),
+    rep(letters[1:4], times = 4)
+  )
+  if (is.null(redirect_link_vector)) {
+    redirect_link_vector <-
+      stats::setNames(
+        lsds,
+        lsds
+      )
+  }
+  elts <-
+    psychTestR::join(
+      lapply(
+        X = lsds,
+        FUN = function(x) {
+          psychTestR::conditional(
+            test = function(state, ...) {
+              lang <- psychTestR::get_session_info(
+                state = state,
+                complete = FALSE
+              )$language
+              if (lang == "de_f") {
+                lang <- "de"
+              }
+              uses <-
+                psychTestR::get_global(
+                  key = "uses", state = state
+                )
+              udes <-
+                psychTestR::get_global(
+                  key = "udes", state = state
+                )
+              lsd <- paste0(lang, uses, udes)
+              lsd == x
+            },
+            logic = last_page_redirect(
+              redirect_heading = redirect_heading,
+              redirect_paragraph = redirect_paragraph,
+              dict = dict,
+              back_link = redirect_link_vector[[x]],
+              back_link_key = back_link_key,
+              back_link_with_p_id = back_link_with_p_id,
+              debug = debug
+            )
+          )
+        }
+      )
+    )
+}

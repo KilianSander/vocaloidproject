@@ -61,6 +61,39 @@ consent_page <- function(dict = vocaloidproject::vocaloidproject_dict,
   )
 }
 
+consent_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
+                             redirect_heading = NULL,
+                             redirect_paragraph = NULL,
+                             no_consent_back_link = "%s",
+                             back_link_key = "return_to_prolific",
+                             back_link_with_p_id = FALSE,
+                             debug = FALSE) {
+  stopifnot(is.scalar.character(no_consent_back_link),
+            is.scalar.logical(debug))
+  psychTestR::conditional(
+    test = function(state, ...) {
+      results <-
+        psychTestR::get_results(
+          state = state,
+          complete = FALSE
+        )
+      # browser()
+      consent <-
+        as.list(results)$results$consent
+      consent == "no_consent"
+    },
+    logic = last_page_redirect(
+      redirect_heading = redirect_heading,
+      redirect_paragraph = redirect_paragraph,
+      dict = dict,
+      back_link = no_consent_back_link,
+      back_link_key = back_link_key,
+      back_link_with_p_id = back_link_with_p_id,
+      debug = debug
+    )
+  )
+}
+
 #' @rdname consent_pages
 #'
 #' @order 2
@@ -73,6 +106,7 @@ consent_page <- function(dict = vocaloidproject::vocaloidproject_dict,
 #' @export
 consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_dict,
                                         no_consent_back_link = "%s",
+                                        back_link_with_p_id = FALSE,
                                         debug = FALSE) {
 
   stopifnot(is.scalar.character(no_consent_back_link),
@@ -80,30 +114,20 @@ consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_
 
   elts <-
     psychTestR::join(
-      consent_page(dict = dict,
-                   consent_text_key = "consent_text_international1",
-                   consent_give_key = "consent_give",
-                   consent_no_key = "consent_no"),
-      psychTestR::conditional(
-        test = function(state, ...) {
-          results <-
-            psychTestR::get_results(
-              state = state,
-              complete = FALSE
-            )
-          # browser()
-          consent <-
-            as.list(results)$results$consent
-          consent == "no_consent"
-        },
-        logic = last_page_redirect(
-          redirect_heading = NULL,
-          redirect_paragraph = NULL,
-          dict = dict,
-          back_link = no_consent_back_link,
-          back_link_key = "return_to_prolific",
-          debug = debug
-        )
+      consent_page(
+        dict = dict,
+        consent_text_key = "consent_text_international1",
+        consent_give_key = "consent_give",
+        consent_no_key = "consent_no"
+      ),
+      consent_redirect(
+        dict = dict,
+        redirect_heading = NULL,
+        redirect_paragraph = psychTestR::i18n("consent_not_given_international1"),
+        no_consent_back_link = no_consent_back_link,
+        back_link_key = "return_to_prolific",
+        back_link_with_p_id = back_link_with_p_id,
+        debug = debug
       )
     )
   elts

@@ -16,6 +16,7 @@ consent_page(
 consent_page_international1(
   dict = vocaloidproject::vocaloidproject_dict,
   no_consent_back_link = "\%s",
+  back_link_with_p_id = FALSE,
   debug = FALSE
 )
 }
@@ -35,6 +36,9 @@ Label for the radio button indicating no consent.}
 
 \item{no_consent_back_link}{link containing the placeholder \verb{\%s} for \code{p_id}
 to redirect participants when they do not provide consent.}
+
+\item{back_link_with_p_id}{(logical scalar) whether or not \code{back_link}
+contains a placeholder for the participant ID.}
 
 \item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} whether or
 not to \code{message()} the URL parameter(s).}
