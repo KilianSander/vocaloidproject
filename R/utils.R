@@ -53,6 +53,40 @@ problems_info <- function(researcher_email) {
   problems_info_html
 }
 
+problems_info_language_mails <- function(named_researcher_emails = NULL) {
+  stopifnot(
+    is.null(named_researcher_emails) | is.character(named_researcher_emails)
+  )
+  if (is.null(named_researcher_emails)) {
+    ret <- "default"
+  } else {
+    if (is.null(names(named_researcher_emails))) {
+      stop(
+        paste0(
+          "`named_researcher_emails` has to be a named vector (or `NULL`). ",
+          "Names have to match the codes of the languages supported by the ",
+          "questionnaire."
+        )
+      )
+    }
+    ret <-
+      purrr::imap(
+        named_researcher_emails,
+        function(x, idx) {
+          shiny::tags$span(
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_1", idx),
+            shiny::tags$br(),
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_2", idx),
+            shiny::tags$a(href = paste0("mailto:", x), x),
+            vocaloidproject::vocaloidproject_dict$translate("PROBLEMS_INFO_3", idx),
+            shiny::tags$br()
+          )
+        }
+      )
+  }
+  ret
+}
+
 # helper functions for monitor app
 # https://github.com/klausfrieler/dislikes_monitor/blob/45fb47c0d0055179d757794dfae584316ab02736/analysis.R#L246C1-L270C2
 remove_doublets <- function(results){

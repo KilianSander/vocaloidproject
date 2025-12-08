@@ -8,6 +8,7 @@ international1(
   title = "",
   admin_password = "vocaloid",
   researcher_email = "kilian.vogt@hmtm-hannover.de",
+  researcher_email_language_list = NULL,
   dict = vocaloidproject::vocaloidproject_dict,
   session_number = 1,
   allow_any_p_id_url = TRUE,
@@ -34,6 +35,12 @@ corresponding to language codes.}
 \item{admin_password}{Password to access the admin panel.}
 
 \item{researcher_email}{Researcher's email; used in participant help message.}
+
+\item{researcher_email_language_list}{(named character vector or \code{NULL})
+provide language specific researcher emails as vector elements.
+Names have to match the language codes.
+If non-\code{NULL}, \code{researcher_email_language_list} takes precedence over
+\code{researcher_email}.}
 
 \item{dict}{internationalization dictionary.}
 

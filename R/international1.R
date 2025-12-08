@@ -21,6 +21,12 @@
 #' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether
 #' or not to display debug information.
 #'
+#' @param researcher_email_language_list (named character vector or `NULL`)
+#' provide language specific researcher emails as vector elements.
+#' Names have to match the language codes.
+#' If non-`NULL`, `researcher_email_language_list` takes precedence over
+#' `researcher_email`.
+#'
 #' @inheritParams emotional_baseline_page
 #' @inheritParams psyquest::DEG
 #' @inheritParams psychTestR::test_options
@@ -31,6 +37,7 @@
 international1 <- function(title = "",
                            admin_password = "vocaloid",
                            researcher_email = "kilian.vogt@hmtm-hannover.de",
+                           researcher_email_language_list = NULL,
                            dict = vocaloidproject::vocaloidproject_dict,
                            session_number = 1,
                            allow_any_p_id_url = TRUE,
@@ -179,7 +186,11 @@ international1 <- function(title = "",
       researcher_email = researcher_email,
       demo = FALSE,
       languages = languages,
-      problems_info = problems_info(researcher_email),
+      problems_info = if (is.null(researcher_email_language_list)) {
+        problems_info(researcher_email)
+      } else {
+        problems_info_language_mails(researcher_email_language_list)
+      },
       allow_any_p_id_url = allow_any_p_id_url,
       force_p_id_from_url = force_p_id_from_url,
       logo = logo,
