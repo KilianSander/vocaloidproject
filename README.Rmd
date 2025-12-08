@@ -24,7 +24,10 @@ Harrison et al., 2024) and on the `psyquest` package (Höger et al., 2025).
 In terms of questionnaires and measurement, the package uses the
 Goldsmiths Musical Sophistication Index (Gold-MSI; Müllensiefen et al., 2014)
 and its German (Schaal et al., 2014) and Japanese (Sadakata et al., 2022)
-translations.
+translations,
+an adapted version of the Animism Scale for Adults (ASA; 池内 [Ikeuchi], 2010),
+and
+the Basic Empathy Scale (BES) as validated by Heynen et al. (2016).
 
 ## References
 Harrison, P. (2020). psychTestR: An R package for designing and conducting
@@ -35,8 +38,21 @@ Harrison, P., Höger, F., Silas, S., Pausch, V., Frieler, K., & Vogt, K. (2024).
 *psychTestR* (Version v2.27.3) [R package].
 https://github.com/pmcharrison/psychTestR/
 
+Heynen, E. J. E., Van Der Helm, G. H. P., Stams, G. J. J. M., &
+Korebrits, A. M. (2016). Measuring empathy in a german youth prison:
+A validation of the German version of the Basic Empathy Scale (BES) in a
+sample of incarcerated juvenile offenders.
+*Journal of Forensic Psychology Practice*, *16*(5), 336--346.
+https://doi.org/10.1080/15228932.2016.1219217
+
 Höger, F., Frieler, K., Pausch, V., Sander, K., & Ruth, N. (2025).
 *psyquest* (Version 1.5.9) [R package]. https://github.com/klausfrieler/psyquest
+
+池内裕美. (2010). 成人のアニミズム的思考: 自発的喪失としてのモノ供養の心理.
+*社会心理学研究*, *25*(3), 167--177. https://doi.org/10.14966/jssp.KJ00006203282
+[Ikeuchi, H. (2010). Animistic thinking in adults: The memorial service for
+dolls as a voluntary loss. *The Japanese Journal of Social Psychology*, *25*(3),
+167--177.]
 
 Müllensiefen, D., Gingras, B., Musil, J., & Stewart, L. (2014).
 The musicality of non-musicians: An index for assessing musical sophistication
