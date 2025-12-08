@@ -66,3 +66,12 @@
 #' @name exp4_international1_stimuli
 #'
 "exp4_international1_stimuli"
+
+#' Scoring Maps
+#'
+#' This list contains scoring maps (i.e., data frames) for some questionnaires.
+#'
+#' @docType data
+#' @name scoring_maps
+#'
+"scoring_maps"
