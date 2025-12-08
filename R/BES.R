@@ -1,8 +1,19 @@
 #' Basic Empathy Scale (BES)
 #'
+#' This function defines a Basic Empathy Scale (BES) module for incorporation
+#' into a psychTestR timeline.
+#' The module uses the BES as validated by Heynen et al. (2016).
+#'
+#' @references Heynen, E. J. E., Van Der Helm, G. H. P., Stams, G. J. J. M., &
+#' Korebrits, A. M. (2016). Measuring empathy in a german youth prison:
+#' A validation of the german version of the Basic Empathy Scale (BES)
+#' in a sample of incarcerated juvenile offenders.
+#' *Journal of Forensic Psychology Practice*, *16*(5), 336--346.
+#' <https://doi.org/10.1080/15228932.2016.1219217>
+#'
 #' @inheritParams ASA
 #'
-#'
+#' @export
 BES <- function(label = "BES",
                 dict = vocaloidproject::vocaloidproject_dict,
                 default_lang = "de_f") {
@@ -12,7 +23,7 @@ BES <- function(label = "BES",
     psychTestR::begin_module(label = label),
     psychTestR::new_timeline(
       purrr::map(
-        c(2, 3, 5, 8:12, 14, 16:18),
+        vocaloidproject::scoring_maps$BES$item_no,
         function(x) {
           psychTestR::NAFC_page(
             label = paste0(label, "_q", x),

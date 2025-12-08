@@ -2,7 +2,7 @@
 % Please edit documentation in R/ASA.R
 \name{ASA}
 \alias{ASA}
-\title{ASA questionnaire}
+\title{Animism Scale for Adults (ASA)}
 \usage{
 ASA(
   label = "ASA",
@@ -18,5 +18,16 @@ ASA(
 \item{default_lang}{(scalar character) default language.}
 }
 \description{
-ASA questionnaire
+This function defines an Animism Scale for Adults (ASA) module for
+incorporation into a psychTestR timeline.
+The ASA module uses two of the three original factors of the ASA
+(池内 [Ikeuchi], 2010)
+}
+\references{
+池内裕美. (2010). 成人のアニミズム的思考: 自発的喪失としてのモノ供養の心理.
+\emph{社会心理学研究}, \emph{25}(3), 167--177.
+https://doi.org/10.14966/jssp.KJ00006203282
+[Ikeuchi, H. (2010). Animistic thinking in adults: The memorial service for
+dolls as a voluntary loss. \emph{The Japanese Journal of Social Psychology},
+\emph{25}(3), 167--177.]
 }

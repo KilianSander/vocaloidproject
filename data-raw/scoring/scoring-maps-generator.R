@@ -14,6 +14,7 @@ scoring_maps <-
         dplyr::mutate(
           questionnaire = quest,
           key = sprintf("%s_%04i_PROMPT", quest, item),
+          item_no = item,
           item = paste0("q", item)
         )
     }

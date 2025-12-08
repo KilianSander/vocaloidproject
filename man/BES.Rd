@@ -18,5 +18,15 @@ BES(
 \item{default_lang}{(scalar character) default language.}
 }
 \description{
-Basic Empathy Scale (BES)
+This function defines a Basic Empathy Scale (BES) module for incorporation
+into a psychTestR timeline.
+The module uses the BES as validated by Heynen et al. (2016).
+}
+\references{
+Heynen, E. J. E., Van Der Helm, G. H. P., Stams, G. J. J. M., &
+Korebrits, A. M. (2016). Measuring empathy in a german youth prison:
+A validation of the german version of the Basic Empathy Scale (BES)
+in a sample of incarcerated juvenile offenders.
+\emph{Journal of Forensic Psychology Practice}, \emph{16}(5), 336--346.
+\url{https://doi.org/10.1080/15228932.2016.1219217}
 }
