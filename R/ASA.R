@@ -3,7 +3,9 @@
 #' This function defines an Animism Scale for Adults (ASA) module for
 #' incorporation into a psychTestR timeline.
 #' The ASA module uses two of the three original factors of the ASA
-#' (池内 \[Ikeuchi\], 2010)
+#' (池内 \[Ikeuchi\], 2010),
+#' the 自然物の神格化 ("Deification of Natural Objects"), and the
+#' 所有者の分身化 ("Owner's Incarnation").
 #'
 #' @param label (character scalar) label given to the results section.
 #'
