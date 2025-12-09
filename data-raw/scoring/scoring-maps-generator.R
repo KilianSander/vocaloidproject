@@ -1,6 +1,6 @@
 # scoring maps
 questionnaires <- c(
-  # "ASA",
+  "ASA",
   "BES"
 )
 
