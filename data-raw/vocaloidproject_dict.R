@@ -504,7 +504,7 @@ info_redirect <-
     ),
     ja = c(
       "このセッションで音楽を聴き始める前に、いくつか質問にお答えください。あなたの感情や音楽に関する経験についての質問です。この部分は数分かかるでしょう。", # include html tags
-      "Prolificに戻る", # deepl & clc
+      "PROLIFIC(プロリッフィック）に戻る", # deepl & clc
       "ご参加ありがとうございました！", # clc
       "何か問題が発生しました。" # clc
     )
@@ -747,7 +747,7 @@ consent <-
         "<p>本研究では、日本のポップ音楽における感情表現を調査することを目的としています。そのため、<b>2つのセッション</b>にご参加いただきます。各セッションの所要時間は<b>30〜60分</b>程度です。",
         "各セッションは、参加者ご自身に関する質問と音楽経験についての質問から始まります。その後、60個の音楽サンプルを評価していただきます。これらには正解や不正解はありません。",
         "すべての音楽サンプルを注意深くお聞きいただくことが重要です。",
-        "規定に沿ってご対応いただけない場合、実験は中止となり、Prolific へ自動的に戻されます。</p>",
+        "規定に沿ってご対応いただけない場合、実験は中止となり、PROLIFIC(プロリッフィック）へ自動的に戻されます。</p>",
         "<p>セッション2は、少なくとも4時間の間隔を空けて実施してください（別の日でも問題ありません）。",
         "謝礼は、セッション2の完了後にお渡しいたします。</p>",
         "ご参加は任意です。参加条件は、<b>18歳以上で、母語が日本語であること</b>です。",
@@ -771,7 +771,7 @@ consent <-
     en = "Please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
     de = "Bitte ziehe Deine Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
     de_f = "Bitte ziehen Sie Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
-    ja = "ja <q>stop without completing</q>"
+    ja = "ja PROLIFIC(プロリッフィック）<q>stop without completing</q>"
   )
 
 japanese_skills <-
