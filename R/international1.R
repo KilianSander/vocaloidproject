@@ -128,9 +128,18 @@ international1 <- function(title = "",
           psychTestR::get_global(key = "uses", state = state) == 2
         },
         # add ASA and BES here ############################################
-        logic = psyquest::GMS(
-          dict = dict,
-          subscales = gms_subscales
+        # logic = psyquest::GMS(
+        #   dict = dict,
+        #   subscales = gms_subscales
+        # )
+        logic = psychTestR::join(
+          ASA(dict = dict),
+          BES(dict = dict),
+          psyquest::GMS(
+            dict = dict,
+            style_params = list(with_counter = FALSE),
+            subscales = gms_subscales
+          )
         )
       ),
       # emotional_baseline_page(
