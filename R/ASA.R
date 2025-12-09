@@ -47,7 +47,33 @@ ASA <- function(label = "ASA",
       dict = dict,
       default_lang = default_lang
     ),
-    # scoring?
+    # scoring
+    psychTestR::code_block(
+      fun = function(state, ...) {
+        asa_raw <-
+          get_scale_results(
+            label = label,
+            state = state
+          )
+        scoring_map <-
+          vocaloidproject::scoring_maps[["ASA"]]
+        deification <-
+          get_subscale_score(asa_raw, "ASA", "deification")
+        incarnation <-
+          get_subscale_score(asa_raw, "ASA", "incarnation")
+        psychTestR::save_result(
+          place = state,
+          label = "deification",
+          value = deification
+        )
+        psychTestR::save_result(
+          place = state,
+          label = "incarnation",
+          value = incarnation
+        )
+      },
+      next_elt = TRUE
+    ),
     psychTestR::end_module()
   )
 }
