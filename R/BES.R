@@ -43,35 +43,23 @@ BES <- function(label = "BES",
     # scoring
     psychTestR::code_block(
       fun = function(state, ...) {
-        raw_bes <- as.list(
-          psychTestR::get_results(state = state, complete = FALSE)
-        )[[label]] %>%
-          stringr::str_extract("([0-9]){4}$")
-        scoring_map <- vocaloidproject::scoring_maps[["BES"]]
+        raw_bes <-
+          get_scale_results(
+            label = label,
+            state = state
+          )
         affective <-
-          purrr::map_dbl(
-            scoring_map$item[scoring_map$factor == "affective"],
-            function(q) {
-              x <- raw_bes[[paste0("BES_", q)]] %>% as.numeric()
-              eval(
-                str2expression(
-                  scoring_map$reversed[scoring_map$item == q]
-                )
-              )
-            }
-          ) |> sum()
+          get_subscale_score(
+            raw_bes,
+            label = "BES",
+            subscale = "affective"
+          )
         cognitive <-
-          purrr::map_dbl(
-            scoring_map$item[scoring_map$factor == "cognitive"],
-            function(q) {
-              x <- raw_bes[[paste0("BES_", q)]] %>% as.numeric()
-              eval(
-                str2expression(
-                  scoring_map$reversed[scoring_map$item == q]
-                )
-              )
-            }
-          ) |> sum()
+          get_subscale_score(
+            raw_bes,
+            label = "BES",
+            subscale = "cognitive"
+          )
         psychTestR::save_result(
           place = state,
           label = "affective",
