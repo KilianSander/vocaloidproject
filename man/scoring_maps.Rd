@@ -5,7 +5,7 @@
 \alias{scoring_maps}
 \title{Scoring Maps}
 \format{
-An object of class \code{list} of length 1.
+An object of class \code{list} of length 2.
 }
 \usage{
 scoring_maps
