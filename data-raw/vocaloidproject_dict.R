@@ -699,7 +699,7 @@ consent <-
       "consent_text_international1",
       paste0(
         "<p>Vielen Dank, dass Du Dich bereit erklärt hast, an dieser Studie teilzunehmen.</p>",
-        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür wirst Du <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30-60 min</b> dauern sollten. ",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür wirst Du <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b> dauern sollten. ",
         "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 60 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
         "Es ist wichtig, dass Du alle Musikausschnitte aufmerksam anhörst. ",
         "Solltest Du das nicht machen, wird das Experiment abgebrochen und Du wirst zu Prolific zurückgeleitet.</p>",
@@ -714,7 +714,7 @@ consent <-
       ),
       paste0(
         "<p>Vielen Dank, dass Sie sich bereit erklärt haben, an dieser Studie teilzunehmen.</p>",
-        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30-60 min</b>  dauern sollten. ",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b>  dauern sollten. ",
         "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 60 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
         "Es ist wichtig, dass Sie alle Musikausschnitte aufmerksam anhören. ",
         "Sollten Sie das nicht machen, wird das Experiment abgebrochen und Sie werden zu Prolific zurückgeleitet.</p>",
