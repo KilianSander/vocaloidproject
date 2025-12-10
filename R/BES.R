@@ -70,12 +70,13 @@ BES <- function(label = "BES",
               stringr::str_detect(scoring_maps[[label]]$factor, subscale)
             ],
             function(q) {
-              x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()
-              eval(
-                str2expression(
-                  scoring_map$reversed[scoring_map$item == q]
-                )
-              )
+              # x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()
+              # eval(
+              #   str2expression(
+              #     scoring_map$reversed[scoring_map$item == q]
+              #   )
+              # )
+              q
             }
           ) %>% sum()
         # cognitive <-
