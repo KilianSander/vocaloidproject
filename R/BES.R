@@ -65,7 +65,7 @@ BES <- function(label = "BES",
         #     label = "BES",
         #     subscale = "affective"
         #   )
-          purrr::map_dbl(
+          purrr::map_vec(
             scoring_map$item[
               stringr::str_detect(scoring_maps[[label]]$factor, subscale)
             ],
