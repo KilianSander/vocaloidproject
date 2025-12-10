@@ -53,7 +53,7 @@ BES <- function(label = "BES",
         subscale <- "affective"
         raw_res <- raw_bes
         affective <-
-          raw_bes
+          raw_bes[["BES_q2"]]
         #   get_subscale_score(
         #     raw_bes,
         #     label = "BES",
