@@ -44,10 +44,17 @@ BES <- function(label = "BES",
     psychTestR::code_block(
       fun = function(state, ...) {
         raw_bes <-
-          get_scale_results(
-            label = label,
-            state = state
-          )
+          # get_scale_results(
+          #   label = label,
+          #   state = state
+          # )
+          as.list(
+            psychTestR::get_results(
+              state = state,
+              complete = FALSE
+            )
+          )[[label]] %>%
+          stringr::str_extract("([0-9]){4}$")
         affective <-
           get_subscale_score(
             raw_bes,
