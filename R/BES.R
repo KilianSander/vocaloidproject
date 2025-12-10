@@ -44,39 +44,54 @@ BES <- function(label = "BES",
     psychTestR::code_block(
       fun = function(state, ...) {
         raw_bes <-
-          # get_scale_results(
-          #   label = label,
-          #   state = state
-          # )
-          as.list(
-            psychTestR::get_results(
-              state = state,
-              complete = FALSE
-            )
-          )[[label]] %>%
-          stringr::str_extract("([0-9]){4}$")
+          get_scale_results(
+            label = label,
+            state = state
+          )
+          # as.list(
+          #   psychTestR::get_results(
+          #     state = state,
+          #     complete = FALSE
+          #   )
+          # )[[label]] %>%
+          # stringr::str_extract("([0-9]){4}$")
+        #
+        scoring_map <- vocaloidproject::scoring_maps[[label]]
         affective <-
-          get_subscale_score(
-            raw_bes,
-            label = "BES",
-            subscale = "affective"
-          )
-        cognitive <-
-          get_subscale_score(
-            raw_bes,
-            label = "BES",
-            subscale = "cognitive"
-          )
+        #   get_subscale_score(
+        #     raw_bes,
+        #     label = "BES",
+        #     subscale = "affective"
+        #   )
+          purrr::map_dbl(
+            scoring_map$item[
+              stringr::str_detect(scoring_maps[[label]]$factor, subscale)
+            ],
+            function(q) {
+              x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()
+              eval(
+                str2expression(
+                  scoring_map$reversed[scoring_map$item == q]
+                )
+              )
+            }
+          ) %>% sum()
+        # cognitive <-
+        #   get_subscale_score(
+        #     raw_bes,
+        #     label = "BES",
+        #     subscale = "cognitive"
+        #   )
         psychTestR::save_result(
           place = state,
           label = "affective",
           value = affective
         )
-        psychTestR::save_result(
-          place = state,
-          label = "cognitive",
-          value = cognitive
-        )
+        # psychTestR::save_result(
+        #   place = state,
+        #   label = "cognitive",
+        #   value = cognitive
+        # )
       },
       next_elt = TRUE
     ),
