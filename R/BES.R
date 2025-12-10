@@ -55,8 +55,10 @@ BES <- function(label = "BES",
           #   )
           # )[[label]] %>%
           # stringr::str_extract("([0-9]){4}$")
-        #
+        # looking for the error
         scoring_map <- vocaloidproject::scoring_maps[[label]]
+        subscale <- "affective"
+        raw_res <- raw_bes
         affective <-
         #   get_subscale_score(
         #     raw_bes,
