@@ -78,7 +78,7 @@ BES <- function(label = "BES",
               # )
               q
             }
-          ) %>% sum()
+          ) #%>% sum()
         # cognitive <-
         #   get_subscale_score(
         #     raw_bes,
