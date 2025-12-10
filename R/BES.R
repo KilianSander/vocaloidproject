@@ -48,37 +48,31 @@ BES <- function(label = "BES",
             label = label,
             state = state
           )
-          # as.list(
-          #   psychTestR::get_results(
-          #     state = state,
-          #     complete = FALSE
-          #   )
-          # )[[label]] %>%
-          # stringr::str_extract("([0-9]){4}$")
         # looking for the error
         scoring_map <- vocaloidproject::scoring_maps[[label]]
         subscale <- "affective"
         raw_res <- raw_bes
         affective <-
+          raw_bes
         #   get_subscale_score(
         #     raw_bes,
         #     label = "BES",
         #     subscale = "affective"
         #   )
-          purrr::map_vec(
-            scoring_map$item[
-              stringr::str_detect(scoring_maps[[label]]$factor, subscale)
-            ],
-            function(q) {
-              # x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()
-              # eval(
-              #   str2expression(
-              #     scoring_map$reversed[scoring_map$item == q]
-              #   )
-              # )
-              q
-            }
-          ) #%>% sum()
+          # purrr::map_vec(
+          #   scoring_map$item[
+          #     stringr::str_detect(scoring_map$factor, subscale)
+          #   ],
+          #   function(q) {
+          #     # x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()
+          #     # eval(
+          #     #   str2expression(
+          #     #     scoring_map$reversed[scoring_map$item == q]
+          #     #   )
+          #     # )
+          #     q
+          #   }
+          # ) #%>% sum()
         # cognitive <-
         #   get_subscale_score(
         #     raw_bes,
