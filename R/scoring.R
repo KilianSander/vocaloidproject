@@ -4,8 +4,8 @@ get_scale_results <- function(label, state) {
       psychTestR::get_results(
         state = state,
         complete = FALSE
-      )
-    )[[label]] %>%
+      )[[label]]
+    ) %>%
     stringr::str_extract("([0-9]){4}$")
   res
 }
