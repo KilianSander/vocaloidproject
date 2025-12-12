@@ -690,12 +690,12 @@ consent <-
       "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
       "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
       "I agree to the terms and conditions and would like to participate in the study.",
-      "ja give consent",
+      "参加条件に同意し、研究への参加を希望します。", #clc
       "consent_no",
       "Ich stimme nicht zu.",
       "Ich stimme nicht zu.",
       "I do not agree to the terms and conditions.",
-      "ja no consent",
+      "参加条件に同意しません。", #clc
       "consent_text_international1",
       paste0(
         "<p>Vielen Dank, dass Du Dich bereit erklärt hast, an dieser Studie teilzunehmen.</p>",
@@ -825,9 +825,9 @@ HALT_dict <-
   )
 HALT_dict <-
   HALT_dict |>
-  # dplyr::left_join(
-  #   tibble::tribble(
-  #     ~key, ~ja,
+  dplyr::left_join(
+    tibble::tribble(
+      ~key, ~ja,
   #     "AGAIN", "",
   #     "DEVICE_CHOICE1", "",
   #     "DEVICE_CHOICE2", "",
@@ -840,14 +840,14 @@ HALT_dict <-
   #     "PAGE_COUNTER", "",
   #     "SCC_PROMPT_HP", "",
   #     "SCC_PROMPT_LS", "",
-  #     "STOP_HEAD", "",
-  #     "STOP_TEXT", "",
+      "STOP_HEAD", "参加者 様",
+      "STOP_TEXT", "アンケートは終了しました。終了の理由は以下のいずれかです：<ol><li>同様の再生デバイスを持つ参加者の数はすでに十分であること。</li><li>ご利用の再生機器は、現在の調査対象に含まれていないこと。</li></ol>今後の調査では、より多くの被験者や他の対象グループを求められるようになる可能性があるため、次回の調査でもまたご参加いただければ幸いです。</p><p>ご協力とご参加、誠にありがとうございました。</p>",
   #     "TESTNAME", "",
   #     "TESTNAME_SHORT", "",
-  #     "THLT_0001_CHOICES", "",
+      "THLT_0001_CHOICES", "音量を調整しました", # clc
   #     "THLT_0001_PROMPT", "",
-  #     "THLT_0002_PROMPT", "",
-  #     "THLT_0003_PROMPT", "",
+      "THLT_0002_PROMPT", "<h4>音は何回聞こえますか？</h4><p>再生ボタンをクリックすると、短いオーディオサンプルが再生されます。このサンプルでは、音量が大小いくつの音が含まれています。<strong>音量に関わらず、すべての音を数え</strong>、その数値をテキストボックスに入力してください。</p>", # clc
+      # "THLT_0003_PROMPT", "",
   #     "THLT_0004_CHOICES1", "",
   #     "THLT_0004_CHOICES2", "",
   #     "THLT_0004_PROMPT", "",
@@ -871,14 +871,9 @@ HALT_dict <-
   #     "THLT_0013_CHOICES2", "",
   #     "THLT_0013_CHOICES3", "",
   #     "THLT_0013_PROMPT", "",
-  #     "WARNING_IMPRECISE", "",
-  #     "WARNING_INCORRECT", "",
-  #     "WARNING_TOO_QUIET", ""
-  #   )
-  # )
-  dplyr::mutate(
-    ja = paste0(
-      "ja ", en
+      "WARNING_IMPRECISE", "入力が間違っています。再度お試しください。その際は、より注意深くお聞きください。", # clc
+      "WARNING_INCORRECT", "入力が間違っています。再度お試しください。", # clc
+      "WARNING_TOO_QUIET", "残念ながら、入力が正しくないようです。再生音量が低すぎる可能性があります。音量をほんの少しだけ上げてから、もう一度お試しください。" # clc
     )
   )
 
@@ -903,7 +898,7 @@ landscape <-
     "Wenn Sie mit einem Mobilgerät teilnehmen, benutzen Sie dieses bitte im Querformat.",
     "Wenn Du mit einem Mobilgerät teilnimmst, benutze dieses bitte im Querformat.",
     "If you are participating with a mobile device, please use it in landscape mode.",
-    "モバイル端末でご参加の場合は、横向きモードでご利用ください。" # Meta Llama 3.1 8B Instruct compared deepl and google translate
+    "スマホやタブレットなどで参加する場合、画面を横向きに回転してください。" # clc
   )
 
 vocaloidproject_dict_raw <-
