@@ -4,8 +4,8 @@ get_scale_results <- function(label, state) {
       psychTestR::get_results(
         state = state,
         complete = FALSE
-      )[[label]]
-    ) %>%
+      )
+    )[[label]] %>%
     stringr::str_extract("([0-9]){4}$")
   res
 }
@@ -15,7 +15,7 @@ get_subscale_score <- function(raw_res, label, subscale) {
   ret <-
     purrr::map_dbl(
       scoring_map$item[
-        stringr::str_detect(scoring_maps[[label]]$factor, subscale)
+        stringr::str_detect(scoring_map$factor, subscale)
       ],
       function(q) {
         x <- raw_res[[paste0(label, "_", q)]] %>% as.numeric()

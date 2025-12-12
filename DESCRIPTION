@@ -27,7 +27,7 @@ Imports:
     shiny,
     shinyWidgets,
     stats,
-    stringr,
+    stringr (>= 1.6.0),
     tibble,
     tidyr,
     utils
