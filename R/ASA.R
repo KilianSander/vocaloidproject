@@ -34,11 +34,12 @@ ASA <- function(label = "ASA",
           psychTestR::NAFC_page(
             label = paste0(label, "_q", x),
             prompt = psychTestR::i18n(sprintf("ASA_%04i_PROMPT", x)),
-            choices = sprintf("ASA_CHOICE_%04i", 1:4),
+            choices = sprintf("ASA_CHOICE_%04i", 1:5),
             labels = sapply(
-              sprintf("ASA_CHOICE_%04i", 1:4), psychTestR::i18n,
+              sprintf("ASA_CHOICE_%04i", 1:5), psychTestR::i18n,
               simplify = TRUE, USE.NAMES = FALSE
             ),
+            button_style = "min-width: 229px",
             save_answer = TRUE
           )
         }

@@ -33,6 +33,7 @@ BES <- function(label = "BES",
               sprintf("BES_CHOICE_%04i", 1:5), psychTestR::i18n,
               simplify = TRUE, USE.NAMES = FALSE
             ),
+            button_style = "min-width: 229px",
             save_answer = TRUE
           )
         }
