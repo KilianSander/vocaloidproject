@@ -29,8 +29,7 @@ ASA <- function(label = "ASA",
     psychTestR::begin_module(label = label),
     psychTestR::new_timeline(
       purrr::map(
-        # replace by scoring_maps[["ASA"]]$item_no
-        c(1,3,5,2,4,6),
+        vocaloidproject::scoring_maps$ASA$item_no,
         function(x) {
           psychTestR::NAFC_page(
             label = paste0(label, "_q", x),
