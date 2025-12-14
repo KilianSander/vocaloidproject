@@ -48,12 +48,14 @@ international1 <- function(title = "",
                            logo = NULL,
                            technical_error_back_link = "",
                            follow_up_link = "",
+                           no_consent_back_link = "",
                            unmet_requirements_back_link = "",
                            language_url_param = "l",
                            language_url_codes = c("de" = "ger", "de_f" = "ger", "en" = "eng", "ja" = "jpn"),
                            debug = FALSE){
   stopifnot(is.character(languages),
             is.scalar.character(technical_error_back_link),
+            is.scalar.character(no_consent_back_link),
             is.scalar.character(follow_up_link),
             is.scalar.character(unmet_requirements_back_link),
             is.scalar.logical(debug))
@@ -86,7 +88,8 @@ international1 <- function(title = "",
       # consent page
       consent_page_international1(
         dict = dict,
-        no_consent_back_link = technical_error_back_link,
+        no_consent_back_link = no_consent_back_link,
+        back_link_with_p_id = FALSE,
         debug = debug
       ),
       psychTestR::code_block(
