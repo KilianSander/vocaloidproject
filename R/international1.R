@@ -131,11 +131,6 @@ international1 <- function(title = "",
         test = function(state, ...) {
           psychTestR::get_global(key = "uses", state = state) == 2
         },
-        # add ASA and BES here ############################################
-        # logic = psyquest::GMS(
-        #   dict = dict,
-        #   subscales = gms_subscales
-        # )
         logic = psychTestR::join(
           ASA(dict = dict),
           BES(dict = dict),
