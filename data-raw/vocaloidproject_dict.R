@@ -677,6 +677,9 @@ consent <-
     "I agree to the terms and conditions and would like to participate in the study.",
     "参加条件に同意し、本研究に参加を希望します。", # deepl
     "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", "当調査へようこそ！", # clc
+    "SESSION1OF3", "Dies ist Sitzung 1 von 3.", "This is Session 1 of 3.", "これは全3回中の第1回です。", # clc
+    "SESSION2OF3", "Dies ist Sitzung 2 von 3.", "This is Session 2 of 3.", "これは全3回中の第2回です。", # clc
+    "SESSION3OF3", "Dies ist Sitzung 3 von 3.", "This is Session 3 of 3.", "これは全3回中の第3回です。", # clc
     "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "これは全2回中の第1回です。", # clc
     "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "これは全2回中の第２回です。" # clc
   ) |>

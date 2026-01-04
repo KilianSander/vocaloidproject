@@ -19,6 +19,7 @@ international1(
   logo = NULL,
   technical_error_back_link = "",
   follow_up_link = "",
+  no_consent_back_link = "",
   unmet_requirements_back_link = "",
   language_url_param = "l",
   language_url_codes = c(de = "ger", de_f = "ger", en = "eng", ja = "jpn"),
