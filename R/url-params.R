@@ -61,8 +61,10 @@ session_design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproj
 design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict,
                                     default_lang = "de_f",
                                     session_number = 1,
+                                    session_number_max = 2,
                                     debug = FALSE) {
-  stopifnot(is.scalar.integerlike(session_number))
+  stopifnot(is.scalar.integerlike(session_number),
+            is.scalar.integerlike(session_number_max))
   psychTestR::new_timeline(
     psychTestR::reactive_page(
       function(state, ...) {
@@ -79,7 +81,7 @@ design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict
                 shiny::p(sprintf("Design %s", url_params$udes))
               },
               shiny::p(
-                psychTestR::i18n(paste0("SESSION", session_number, "OF2"))
+                psychTestR::i18n(paste0("SESSION", session_number, "OF", session_number_max))
               )
             )
           },
