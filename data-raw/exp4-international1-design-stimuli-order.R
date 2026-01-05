@@ -96,3 +96,50 @@ for (l in letters[1:4]) {
 }
 # Import data-raw/exp4-international1-design-stimuli-order-db.csv to the
 # SoSci Survey data base for content
+
+# Create SoSci Survey data base entries for the 3-session version of
+# `international1`, that is, `experiment4()`.
+design_a$session_of_3 <- rep(1:3, each = 40)
+design_b$session_of_3 <- rep(1:3, each = 40)
+design_c$session_of_3 <- rep(1:3, each = 40)
+design_d$session_of_3 <- rep(1:3, each = 40)
+for (l in letters[1:4]) {
+  for (s in 1:3) {
+    value <-
+      get(paste0("design_", l)) %>%
+      filter(session_of_3 == s) %>%
+      pull("stimulus_id") %>%
+      # repeat each stimulus_id to prepare the check page (see next step)
+      rep(each = 2)
+    # append 'check' to every second stimulus_id for the SoSci check page
+    value[(1:(length(value)/2))*2] <-
+      paste0(
+        value[(1:(length(value)/2))*2],
+        "check"
+      )
+    # add the break pages
+    value <- c(
+      "block1", value[1:20],
+      "block2", value[21:40],
+      "block3", value[41:60],
+      "block4", value[61:80]
+    )
+    # assign to global environment
+    assign(
+      x = paste0(l, s, 3),
+      value = value,
+      envir = .GlobalEnv
+    )
+    for (lang in c("ger", "jpn")) {
+      cat(
+        paste0(
+          l, s, "3,", lang, ",",
+          paste0(get(paste0(l, s, 3)), collapse = ","),
+          "\n"
+        ),
+        file = "data-raw/exp4-international1-design-stimuli-order-db.csv",
+        append = TRUE
+      )
+    }
+  }
+}
