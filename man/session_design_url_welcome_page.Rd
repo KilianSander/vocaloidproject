@@ -9,6 +9,7 @@ design_url_welcome_page(
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
   session_number = 1,
+  session_number_max = 2,
   debug = FALSE
 )
 

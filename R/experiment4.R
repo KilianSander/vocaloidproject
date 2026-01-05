@@ -1,3 +1,43 @@
+#' Experiment 4 (international1)
+#'
+#' psychTestR battery for Experiment 4 (International Experiment 1) in
+#' 3 sessions (see [international1()] for a 2-session variant).
+#' It is designed to redirect to SoSci Survey for the stimulus ratings and
+#' some questionnaires that look much prettier there.
+#'
+#' @param technical_error_back_link (character scalar) link for returning to
+#' Prolific when URL parameter `uses` or `udes` is missing.
+#' It has to contain the placeholder `%s` for `p_id` to redirect
+#' participants correctly.
+#'
+#' @param follow_up_link (character scalar) link for redirecting participants
+#' to the next section of the experiment (on a different platform).
+#' It has to contain 3 placeholders, `%s`, for `p_id`, `uses`, and `udes`.
+#' The URL parameter for language, `language_url_param`, and its placeholder
+#' are appended automatically.
+#'
+#' @param unmet_requirements_back_link (character scalar) link for redirecting
+#' participants when they do not meet study requirements.
+#'
+#' @param debug (logical scalar) `r lifecycle::badge("experimental")` whether
+#' or not to display debug information.
+#'
+#' @param researcher_email_language_list (named character vector or `NULL`)
+#' provide language specific researcher emails as vector elements.
+#' Names have to match the language codes.
+#' If non-`NULL`, `researcher_email_language_list` takes precedence over
+#' `researcher_email`.
+#'
+#' @param gms_subscales (character vector) passed to the `subscales` argument of
+#' [psyquest::GMS()].
+#'
+#' @inheritParams emotional_baseline_page
+#' @inheritParams psyquest::DEG
+#' @inheritParams psychTestR::test_options
+#' @inheritParams last_page_redirect_session_design
+#' @inheritParams session_design_url_welcome_page
+#'
+#'
 experiment4 <- function(title = "",
                         dict = vocaloidproject::vocaloidproject_dict,
                         session_number = 1,
