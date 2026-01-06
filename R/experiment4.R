@@ -10,6 +10,9 @@
 #' It has to contain the placeholder `%s` for `p_id` to redirect
 #' participants correctly.
 #'
+#' @param no_consent_back_link (character scalar) link for redirecting
+#' participants who do not give consent.
+#'
 #' @param follow_up_link (character scalar) link for redirecting participants
 #' to the next section of the experiment (on a different platform).
 #' It has to contain 3 placeholders, `%s`, for `p_id`, `uses`, and `udes`.

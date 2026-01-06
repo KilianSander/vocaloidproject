@@ -26,6 +26,11 @@ session_design_url_welcome_page(
 
 \item{session_number}{(integer-like scalar) sets the session number.}
 
+\item{session_number_max}{(integer-like scalar) maximum number of session
+to display "Session X of Y" where X is given by \code{session_number} and
+Y is given by \code{session_number_max}.
+The default dictionary provides translations for 2 or 3 sessions.}
+
 \item{debug}{(logical scalar) whether or not to display the URL parameter
 \code{udes} (i.e., the design) on the page.}
 }

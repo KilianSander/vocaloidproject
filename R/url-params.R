@@ -57,6 +57,10 @@ session_design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproj
 #' @order 1
 #'
 #' @param session_number (integer-like scalar) sets the session number.
+#' @param session_number_max (integer-like scalar) maximum number of session
+#' to display "Session X of Y" where X is given by `session_number` and
+#' Y is given by `session_number_max`.
+#' The default dictionary provides translations for 2 or 3 sessions.
 #' @export
 design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict,
                                     default_lang = "de_f",

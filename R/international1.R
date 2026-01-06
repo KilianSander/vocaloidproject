@@ -27,6 +27,9 @@
 #' If non-`NULL`, `researcher_email_language_list` takes precedence over
 #' `researcher_email`.
 #'
+#' @param no_consent_back_link (character scalar) link for redirecting
+#' participants who do not give consent.
+#'
 #' @inheritParams emotional_baseline_page
 #' @inheritParams psyquest::DEG
 #' @inheritParams psychTestR::test_options

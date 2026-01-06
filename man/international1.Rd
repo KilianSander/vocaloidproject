@@ -78,6 +78,9 @@ It has to contain 3 placeholders, \verb{\%s}, for \code{p_id}, \code{uses}, and 
 The URL parameter for language, \code{language_url_param}, and its placeholder
 are appended automatically.}
 
+\item{no_consent_back_link}{(character scalar) link for redirecting
+participants who do not give consent.}
+
 \item{unmet_requirements_back_link}{(character scalar) link for redirecting
 participants when they do not meet study requirements.}
 

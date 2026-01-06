@@ -43,6 +43,9 @@ Prolific when URL parameter \code{uses} or \code{udes} is missing.
 It has to contain the placeholder \verb{\%s} for \code{p_id} to redirect
 participants correctly.}
 
+\item{no_consent_back_link}{(character scalar) link for redirecting
+participants who do not give consent.}
+
 \item{unmet_requirements_back_link}{(character scalar) link for redirecting
 participants when they do not meet study requirements.}
 
