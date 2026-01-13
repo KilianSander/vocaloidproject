@@ -2,6 +2,7 @@
 % Please edit documentation in R/consent_pages.R
 \name{consent_page}
 \alias{consent_page}
+\alias{consent_module}
 \alias{consent_page_international1}
 \title{Consent pages}
 \usage{
@@ -11,6 +12,19 @@ consent_page(
   consent_give_key = "consent_give",
   consent_no_key = "consent_no",
   default_lang = "de_f"
+)
+
+consent_module(
+  dict = vocaloidproject::vocaloidproject_dict,
+  consent_text_key = "",
+  consent_give_key = "consent_give",
+  consent_no_key = "consent_no",
+  redirect_heading = NULL,
+  redirect_paragraph = NULL,
+  no_consent_back_link = "\%s",
+  back_link_key = "return_to_prolific",
+  back_link_with_p_id = FALSE,
+  debug = FALSE
 )
 
 consent_page_international1(
@@ -34,8 +48,18 @@ Label for the radio button indicating no consent.}
 
 \item{default_lang}{Default language for the page.}
 
+\item{redirect_heading}{(character scalar or \code{NULL}) If \code{NULL}, there will
+no heading on the redirect page.
+To display a heading, set \code{redirect_heading} to a key in \code{dict}.}
+
+\item{redirect_paragraph}{(character scalar or \code{NULL}) To display a
+paragraph on the redirect page, set \code{redirect_paragraph} to a key in \code{dict}.}
+
 \item{no_consent_back_link}{link containing the placeholder \verb{\%s} for \code{p_id}
 to redirect participants when they do not provide consent.}
+
+\item{back_link_key}{(scalar character) Key in \code{dict}. Its translation is
+the text shown for \code{back_link}.}
 
 \item{back_link_with_p_id}{(logical scalar) whether or not \code{back_link}
 contains a placeholder for the participant ID.}
@@ -49,6 +73,8 @@ These functions generate pages for participants to provide informed consent.
 \details{
 \code{consent_page()} provides a basic interface for generating consent forms
 with radio buttons.
+\code{consent_module()} adds a redirect page for participants who do not consent
+after the consent form.
 \code{consent_page_international1()} uses \code{consent_page()}, sets the correct
 defaults for use in \code{\link[=international1]{international1()}} and adds a redirect to Prolific for
 participants who do not consent.

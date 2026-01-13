@@ -6,6 +6,8 @@
 #' @details
 #' `consent_page()` provides a basic interface for generating consent forms
 #' with radio buttons.
+#' `consent_module()` adds a redirect page for participants who do not consent
+#' after the consent form.
 #' `consent_page_international1()` uses `consent_page()`, sets the correct
 #' defaults for use in [international1()] and adds a redirect to Prolific for
 #' participants who do not consent.
@@ -96,12 +98,9 @@ consent_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
 
 #' @rdname consent_pages
 #'
-#' @order 2
+#' @order 3
 #'
-#' @inheritParams last_page_redirect
-#'
-#' @param no_consent_back_link link containing the placeholder `%s` for `p_id`
-#' to redirect participants when they do not provide consent.
+#' @inheritParams consent_module
 #'
 #' @export
 consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_dict,
@@ -133,4 +132,50 @@ consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_
   elts
 }
 
-
+#' @rdname consent_pages
+#'
+#' @order 2
+#'
+#' @inheritParams last_page_redirect
+#'
+#' @param no_consent_back_link link containing the placeholder `%s` for `p_id`
+#' to redirect participants when they do not provide consent.
+#'
+#' @param redirect_heading (character scalar or `NULL`) If `NULL`, there will
+#' no heading on the redirect page.
+#' To display a heading, set `redirect_heading` to a key in `dict`.
+#'
+#' @param redirect_paragraph (character scalar or `NULL`) To display a
+#' paragraph on the redirect page, set `redirect_paragraph` to a key in `dict`.
+#'
+#' @export
+consent_module <- function(dict = vocaloidproject::vocaloidproject_dict,
+                           consent_text_key = "",
+                           consent_give_key = "consent_give",
+                           consent_no_key = "consent_no",
+                           redirect_heading = NULL,
+                           redirect_paragraph = NULL,
+                           no_consent_back_link = "%s",
+                           back_link_key = "return_to_prolific",
+                           back_link_with_p_id = FALSE,
+                           debug = FALSE) {
+  elts <-
+    psychTestR::join(
+      consent_page(
+        dict = dict,
+        consent_text_key = consent_text_key,
+        consent_give_key = consent_give_key,
+        consent_no_key = consent_no_key
+      ),
+      consent_redirect(
+        dict = dict,
+        redirect_heading = redirect_heading,
+        redirect_paragraph = redirect_paragraph,
+        no_consent_back_link = no_consent_back_link,
+        back_link_key = back_link_key,
+        back_link_with_p_id = back_link_with_p_id,
+        debug = debug
+      )
+    )
+  elts
+}
