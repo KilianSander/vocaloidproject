@@ -767,6 +767,75 @@ consent <-
     )
   ) |>
   tibble::add_case(
+    tibble::tibble(
+      key = "consent_text_experiment4",
+      de = paste0(
+        "<p>Vielen Dank, dass Du Dich bereit erklärt hast, an dieser Studie teilzunehmen.</p>",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür wirst Du <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b> dauern sollten. ",
+        "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 60 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
+        "Es ist wichtig, dass Du alle Musikausschnitte aufmerksam anhörst. ",
+        "Solltest Du das nicht machen, wird das Experiment abgebrochen und Du wirst zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
+        "<p>Bitte stelle sicher, dass zwischen Sitzung 2 und der vorherigen Sitzung mindestens vier Stunden liegen (sie kann an einem anderen Tag stattfinden). ",
+        "Die Bezahlung erfolgt, nachdem Du beide Sitzungen erfolgreich abgeschlossen hast.",
+        "Wir rechnen jeweils mit einer Bearbeitungszeit von ca. einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
+        "<p>Deine Teilnahme ist freiwillig. Voraussetzung zur Teilnahme ist, dass Du <b>18 Jahre oder älter bist, Deutsch Deine Muttersprache ist und Du KEINE Kenntnisse der Japanischen Sprache hast</b>. ",
+        "Du kannst Deine Teilnahme jederzeit beenden ohne Angabe von Gründen oder negative Konsequenzen. Bei vorzeitigem Abbruch werden Deine Daten gelöscht.</p>",
+        "<p>Alle Informationen, die wir durch die Befragung von Dir erhalten, werden vertraulich behandelt und sind anonymisiert, d.h. können in keiner Weise zu Deiner Person zurückverfolgt werden. ",
+        "Die Erhebung und Verarbeitung Deiner Daten erfolgt ohne Angabe Deines Namens. ",
+        "Die anonymisierten Daten dienen der Grundlagenforschung und werden sowohl in Fachzeitschriften oder Konferenzpräsentationen veröffentlicht als auch in öffentlich zugänglichen Datenbanken, um <q>open science</q>, d.h. die Nachvollziehbarkeit wissenschaftlicher Forschung zu unterstützen.</p>",
+        "<p><p>Bei Fragen oder Anregungen kontaktiere bitte die Leiterin der Studie Dr. Elke Lange, <a href='mailto:elke.lange@ae.mpg.de'>elke.lange@ae.mpg.de</a>, Senior Researcher, Max-Planck-Institut für Empirische Ästhetik, Frankfurt am Main.</p>"
+      ),
+      de_f = paste0(
+        "<p>Vielen Dank, dass Sie sich bereit erklärt haben, an dieser Studie teilzunehmen.</p>",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>zwei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b>  dauern sollten. ",
+        "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 60 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
+        "Es ist wichtig, dass Sie alle Musikausschnitte aufmerksam anhören. ",
+        "Sollten Sie das nicht machen, wird das Experiment abgebrochen und Sie werden zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
+        "<p>Bitte stellen Sie sicher, dass zwischen Sitzung 2 und der vorherigen Sitzung mindestens vier Stunden liegen (sie kann an einem anderen Tag stattfinden). ",
+        "Die Bezahlung erfolgt, nachdem Sie beide Sitzungen erfolgreich abgeschlossen haben.</p>",
+        "Wir rechnen jeweils mit einer Bearbeitungszeit von ca. einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
+        "<p>Ihre Teilnahme ist freiwillig. Voraussetzung zur Teilnahme ist, dass Sie <b>18 Jahre oder älter sind, Deutsch Ihre Muttersprache ist und Sie KEINE Kenntnisse der Japanischen Sprache haben</b>. ",
+        "Sie können Ihre Teilnahme jederzeit beenden ohne Angabe von Gründen oder negative Konsequenzen. Bei vorzeitigem Abbruch werden Ihre Daten gelöscht.</p>",
+        "<p>Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.h. können in keiner Weise zu Ihrer Person zurückverfolgt werden. ",
+        "Die Erhebung und Verarbeitung Ihrer Daten erfolgt ohne Angabe Ihres Namens. ",
+        "Die anonymisierten Daten dienen der Grundlagenforschung und werden sowohl in Fachzeitschriften oder Konferenzpräsentationen veröffentlicht als auch in öffentlich zugänglichen Datenbanken, um <q>open science</q>, d.h. die Nachvollziehbarkeit wissenschaftlicher Forschung zu unterstützen.</p>",
+        "<p><p>Bei Fragen oder Anregungen kontaktieren Sie bitte die Leiterin der Studie Dr. Elke Lange, <a href='mailto:elke.lange@ae.mpg.de'>elke.lange@ae.mpg.de</a>, Senior Researcher, Max-Planck-Institut für Empirische Ästhetik, Frankfurt am Main.</p>"
+      ),
+      en = paste0(
+        "<p>Thank you very much for agreeing to participate in this study.</p>",
+        "<p>The aim of this study is to examine the emotional expression of Japanese pop music. You will complete <b>two sessions</b>, each of which should take <b>no longer than 30&ndash;60 minutes<b>. ",
+        "Each session will begin with questions about yourself and your musical experiences. This will be followed by the evaluation of 60 music excerpts. There are no right or wrong answers.",
+        "It is important that you listen carefully to all music excerpts. ",
+        "If you do not do so, the experiment will be terminated and you will be redirected back to Prolific and you will be redirected back to Prolific and excluded form the study (<q>rejection</q>).</p>",
+        "<p>Please make sure that at least four hours have passed between Session 2 and the previous session (it can take place on another day).",
+        "Payment will be made after you have successfully completed both sessions.",
+        "We expect a processing time of approximately one week in order to be able to evaluate all results fairly.</p>",
+        "<p>Your participation is voluntary. To participate, you must be <b>18 years of age or older, and have Japanese as your native language</b>. ",
+        "You may end your participation at any time without giving any reasons and without any negative consequences. If you withdraw early, your data will be deleted.</p>",
+        "<p>All information we obtain from the survey will be treated confidentially and is anonymized, meaning it cannot be traced back to you in any way. ",
+        "Your data will be collected and processed without your name or any identifying details. ",
+        "The anonymized data will be used for basic research and may be published in academic journals or presented at scientific conferences. It will also be made available in open-access databases to support <q>open science</q>, i.e., the transparency and reproducibility of scientific research.</p>",
+        "<p>If you have any questions or comments, please contact the study director, Dr. Cathy Cox, <a href='mailto:cox.cathy@kunitachi.ac.jp'>cox.cathy@kunitachi.ac.jp</a>.</p>"
+      ),
+      ja = paste0(
+        "<p>本研究への参加をご承諾いただき、誠にありがとうございます。</p>",
+        "<p>本研究では、日本のポップ音楽における感情表現を調査することを目的としています。そのため、<b>2つのセッション</b>にご参加いただきます。各セッションの所要時間は<b>30〜60分</b>程度です。",
+        "各セッションは、参加者ご自身に関する質問と音楽経験についての質問から始まります。その後、60個の音楽サンプルを評価していただきます。これらには正解や不正解はありません。",
+        "すべての音楽サンプルを注意深くお聞きいただくことが重要です。",
+        "規定に沿ってご対応いただけない場合、実験は中止となり、PROLIFIC(プロリッフィック）へ自動的に戻されます。</p>", # update!
+        "<p>セッション2は、少なくとも4時間の間隔を空けて実施してください（別の日でも問題ありません）。",
+        "謝礼は、セッション2の完了後にお渡しいたします。", # update!
+        "</p>", # update!
+        "ご参加は任意です。参加条件は、<b>18歳以上で、母語が日本語であること</b>です。",
+        "ご参加はいつでも理由を問わず中止することができ、何ら不利益はありません。途中で中止された場合、提供いただいたデータは削除されます。</p>",
+        "<p>アンケートで取得したすべての情報は機密として扱われ、匿名化されます。つまり、個人が特定されることは一切ありません。",
+        "データの収集および処理は、名前や個人を特定できる情報なしで行われます。",
+        "匿名化されたデータは基礎研究に利用され、学術誌への掲載や学会での発表に使用されるほか、<q>オープンサイエンス</q>、すなわち科学研究の透明性と再現性を支援するために、公開データベースでも利用可能とされます。</p>",
+        "<p>質問やご意見がある場合は、研究責任者 コックス氏, <a href='mailto:cox.cathy@kunitachi.ac.jp'>cox.cathy@kunitachi.ac.jp</a> までご連絡ください。</p>"
+      )
+    )
+  )
+  tibble::add_case(
       key = "consent_not_given_international1",
       en = "As you have indicated that you do not consent to participate in this study please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
       de_f = "Da Sie angegeben haben, der Teilnahme an dieser Studie nicht zuzustimmen, ziehen Sie bitte Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
