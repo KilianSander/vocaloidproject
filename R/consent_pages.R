@@ -123,7 +123,7 @@ consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_
       consent_redirect(
         dict = dict,
         redirect_heading = NULL,
-        redirect_paragraph = psychTestR::i18n("consent_not_given_international1"),
+        redirect_paragraph = "consent_not_given_international1",
         no_consent_back_link = no_consent_back_link,
         back_link_key = "return_to_prolific",
         back_link_with_p_id = back_link_with_p_id,
@@ -132,3 +132,5 @@ consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_
     )
   elts
 }
+
+
