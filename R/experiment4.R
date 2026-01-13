@@ -64,7 +64,7 @@ experiment4 <- function(title = "",
         dict = dict,
         session_number = session_number,
         debug = debug,
-        technical_error_back_link = technichal_error_back_link,
+        technical_error_back_link = technical_error_back_link,
         no_consent_back_link = no_consent_back_link
       ),
       ## Session 1 ----
