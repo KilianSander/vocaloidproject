@@ -99,15 +99,15 @@ for (l in letters[1:4]) {
 
 # Create SoSci Survey data base entries for the 3-session version of
 # `international1`, that is, `experiment4()`.
-design_a$session_of_3 <- rep(1:3, each = 40)
-design_b$session_of_3 <- rep(1:3, each = 40)
-design_c$session_of_3 <- rep(1:3, each = 40)
-design_d$session_of_3 <- rep(1:3, each = 40)
+design_a <- read_design("data-raw/designA_three_sessions.txt")
+design_b <- read_design("data-raw/designB_three_sessions.txt")
+design_c <- read_design("data-raw/designC_three_sessions.txt")
+design_d <- read_design("data-raw/designD_three_sessions.txt")
 for (l in letters[1:4]) {
   for (s in 1:3) {
     value <-
       get(paste0("design_", l)) %>%
-      filter(session_of_3 == s) %>%
+      filter(session == s) %>%
       pull("stimulus_id") %>%
       # repeat each stimulus_id to prepare the check page (see next step)
       rep(each = 2)
