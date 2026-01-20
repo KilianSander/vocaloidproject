@@ -233,7 +233,6 @@ experiment4_session_start <- function(dict = vocaloidproject::vocaloidproject_di
           debug = debug
         )
       ),
-      # UPDATE consent page !!!
       consent_module(
         dict = dict,
         consent_text_key = "consent_text_experiment4",
