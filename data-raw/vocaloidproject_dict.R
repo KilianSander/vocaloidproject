@@ -776,8 +776,8 @@ consent <-
         "Es ist wichtig, dass Du alle Musikausschnitte aufmerksam anhörst. ",
         "Solltest Du das nicht machen, wird das Experiment abgebrochen und Du wirst zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
         "<p>",
-        "Die Bezahlung erfolgt, nachdem Du alle drei Sitzungen erfolgreich abgeschlossen hast.",
-        "Wir rechnen jeweils mit einer Bearbeitungszeit von ca. einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
+        "Wenn Du alle drei Sitzungen erfolgreich abgeschlossen hast, erhälst Du zusätzlich eine Bonuszahlung.",
+        "Wir rechnen pro Sitzung mit einer Bearbeitungszeit von bis zu einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
         "<p>Deine Teilnahme ist freiwillig. Voraussetzung zur Teilnahme ist, dass Du <b>18 Jahre oder älter bist, Deutsch Deine Muttersprache ist und Du KEINE Kenntnisse der Japanischen Sprache hast</b>. ",
         "Du kannst Deine Teilnahme jederzeit beenden ohne Angabe von Gründen oder negative Konsequenzen. Bei vorzeitigem Abbruch werden Deine Daten gelöscht.</p>",
         "<p>Alle Informationen, die wir durch die Befragung von Dir erhalten, werden vertraulich behandelt und sind anonymisiert, d.h. können in keiner Weise zu Deiner Person zurückverfolgt werden. ",
@@ -792,8 +792,8 @@ consent <-
         "Es ist wichtig, dass Sie alle Musikausschnitte aufmerksam anhören. ",
         "Sollten Sie das nicht machen, wird das Experiment abgebrochen und Sie werden zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
         "<p> ",
-        "Die Bezahlung erfolgt, nachdem Sie alle drei Sitzungen erfolgreich abgeschlossen haben.</p>",
-        "Wir rechnen jeweils mit einer Bearbeitungszeit von ca. einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
+        "Wenn Sie alle drei Sitzungen erfolgreich abgeschlossen haben, erhalten Sie zusätzlich eine Bonuszahlung.</p>",
+        "Wir rechnen pro Sitzung mit einer Bearbeitungszeit von bis zu einer Woche, um alle Ergebnisse fair auswerten zu können.</p>",
         "<p>Ihre Teilnahme ist freiwillig. Voraussetzung zur Teilnahme ist, dass Sie <b>18 Jahre oder älter sind, Deutsch Ihre Muttersprache ist und Sie KEINE Kenntnisse der Japanischen Sprache haben</b>. ",
         "Sie können Ihre Teilnahme jederzeit beenden ohne Angabe von Gründen oder negative Konsequenzen. Bei vorzeitigem Abbruch werden Ihre Daten gelöscht.</p>",
         "<p>Alle Informationen, die wir durch die Befragung von Ihnen erhalten, werden vertraulich behandelt und sind anonymisiert, d.h. können in keiner Weise zu Ihrer Person zurückverfolgt werden. ",
@@ -808,8 +808,8 @@ consent <-
         "It is important that you listen carefully to all music excerpts. ",
         "If you do not do so, the experiment will be terminated and you will be redirected back to Prolific and you will be redirected back to Prolific and excluded form the study (<q>rejection</q>).</p>",
         "<p>",
-        "Payment will be made after you have successfully completed all three sessions.",
-        "We expect a processing time of approximately one week in order to be able to evaluate all results fairly.</p>",
+        "If you successfully complete all three sessions, you will receive an additional bonus payment.",
+        "We expect a processing time of up to one week per session in order to evaluate all results fairly.</p>",
         "<p>Your participation is voluntary. To participate, you must be <b>18 years of age or older, and have Japanese as your native language</b>. ",
         "You may end your participation at any time without giving any reasons and without any negative consequences. If you withdraw early, your data will be deleted.</p>",
         "<p>All information we obtain from the survey will be treated confidentially and is anonymized, meaning it cannot be traced back to you in any way. ",
@@ -822,10 +822,10 @@ consent <-
         "<p>本研究では、日本のポップ音楽における感情表現を調査することを目的としています。そのため、<b>3つのセッション</b>にご参加いただきます。各セッションの所要時間は<b>30〜60分</b>程度です。",
         "各セッションは、参加者ご自身に関する質問と音楽経験についての質問から始まります。その後、40個の音楽サンプルを評価していただきます。これらには正解や不正解はありません。",
         "すべての音楽サンプルを注意深くお聞きいただくことが重要です。",
-        "規定に沿ってご対応いただけない場合、実験は中止となり、PROLIFIC(プロリッフィック）へ自動的に戻されます。</p>", # update!
+        "そうしない場合、実験は終了し、PROLIFIC（プロリッフィック）に戻され、研究から除外されます（<q>拒否</q>）。</p>",
         "<p>",
-        "謝礼は、セッション3の完了後にお渡しいたします。", # update!
-        "</p>", # update!
+        "両方のセッションを無事に完了した後、報酬が支払われます。", # adapt to 3 sessions
+        "すべての結果を公平に評価するため、処理期間におよそ一週間が必要となります。</p>", # "approximately one week". Adapt to "up to one week"?
         "ご参加は任意です。参加条件は、<b>18歳以上で、母語が日本語であること</b>です。",
         "ご参加はいつでも理由を問わず中止することができ、何ら不利益はありません。途中で中止された場合、提供いただいたデータは削除されます。</p>",
         "<p>アンケートで取得したすべての情報は機密として扱われ、匿名化されます。つまり、個人が特定されることは一切ありません。",
