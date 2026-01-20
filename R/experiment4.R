@@ -234,9 +234,15 @@ experiment4_session_start <- function(dict = vocaloidproject::vocaloidproject_di
         )
       ),
       # UPDATE consent page !!!
-      consent_page_international1(
+      consent_module(
         dict = dict,
+        consent_text_key = "consent_text_experiment4",
+        consent_give_key = "consent_give",
+        consent_no_key = "consent_no",
+        redirect_heading = NULL,
+        redirect_paragraph = "consent_not_given_international1",
         no_consent_back_link = no_consent_back_link,
+        back_link_key = "return_to_prolific",
         back_link_with_p_id = FALSE,
         debug = debug
       ),
