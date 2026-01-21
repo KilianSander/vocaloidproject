@@ -221,6 +221,7 @@ experiment4_session_start <- function(dict = vocaloidproject::vocaloidproject_di
               c("uses", "udes"),
               function(x) {
                 is.null(psychTestR::get_global(key = x, state = state))
+                # check for `udes %in% letters[1:4]`
               }
             )
           )
