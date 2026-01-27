@@ -73,6 +73,33 @@ experiment4 <- function(title = "",
           psychTestR::get_global(key = "uses", state = state) == 1
         },
         logic = psychTestR::join(
+          consent_module(
+            dict = dict,
+            consent_text_key = "consent_text_experiment4",
+            consent_give_key = "consent_give",
+            consent_no_key = "consent_no",
+            redirect_heading = NULL,
+            redirect_paragraph = "consent_not_given_international1",
+            no_consent_back_link = no_consent_back_link,
+            back_link_key = "return_to_prolific",
+            back_link_with_p_id = FALSE,
+            debug = debug
+          ),
+          psychTestR::code_block(
+            fun = function(state, ...) {
+              psychTestR::save_result(
+                place = state,
+                label = "udes",
+                value = psychTestR::get_global(key = "udes", state = state)
+              )
+              psychTestR::save_result(
+                place = state,
+                label = "uses",
+                value = session_number
+              )
+            },
+            next_elt = TRUE
+          ),
           international1_session_1(
             dict = dict,
             unmet_requirements_back_link = unmet_requirements_back_link,
@@ -94,6 +121,21 @@ experiment4 <- function(title = "",
           ASA(
             dict = dict
           ),
+          psychTestR::code_block(
+            fun = function(state, ...) {
+              psychTestR::save_result(
+                place = state,
+                label = "udes",
+                value = psychTestR::get_global(key = "udes", state = state)
+              )
+              psychTestR::save_result(
+                place = state,
+                label = "uses",
+                value = session_number
+              )
+            },
+            next_elt = TRUE
+          ),
           psyquest::GMS(
             dict = dict,
             subscales = gms_subscales
@@ -112,6 +154,21 @@ experiment4 <- function(title = "",
         logic = psychTestR::join(
           BES(
             dict = dict
+          ),
+          psychTestR::code_block(
+            fun = function(state, ...) {
+              psychTestR::save_result(
+                place = state,
+                label = "udes",
+                value = psychTestR::get_global(key = "udes", state = state)
+              )
+              psychTestR::save_result(
+                place = state,
+                label = "uses",
+                value = session_number
+              )
+            },
+            next_elt = TRUE
           )
         )
       ),
@@ -243,33 +300,6 @@ experiment4_session_start <- function(dict = vocaloidproject::vocaloidproject_di
           back_link_with_p_id = FALSE,
           debug = debug
         )
-      ),
-      consent_module(
-        dict = dict,
-        consent_text_key = "consent_text_experiment4",
-        consent_give_key = "consent_give",
-        consent_no_key = "consent_no",
-        redirect_heading = NULL,
-        redirect_paragraph = "consent_not_given_international1",
-        no_consent_back_link = no_consent_back_link,
-        back_link_key = "return_to_prolific",
-        back_link_with_p_id = FALSE,
-        debug = debug
-      ),
-      psychTestR::code_block(
-        fun = function(state, ...) {
-          psychTestR::save_result(
-            place = state,
-            label = "udes",
-            value = psychTestR::get_global(key = "udes", state = state)
-          )
-          psychTestR::save_result(
-            place = state,
-            label = "uses",
-            value = session_number
-          )
-        },
-        next_elt = TRUE
       )
     )
   elts
