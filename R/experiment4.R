@@ -78,6 +78,10 @@ experiment4 <- function(title = "",
             unmet_requirements_back_link = unmet_requirements_back_link,
             year_range = year_range,
             debug = debug
+          ),
+          use_landscape_page(
+            img_src = "https://s3.eu-west-1.amazonaws.com/media.dots.org/img/mobile-device-landscape-small.png",
+            img_width = 350,
           )
         )
       ),
@@ -93,6 +97,10 @@ experiment4 <- function(title = "",
           psyquest::GMS(
             dict = dict,
             subscales = gms_subscales
+          ),
+          use_landscape_page(
+            img_src = "https://s3.eu-west-1.amazonaws.com/media.dots.org/img/mobile-device-landscape-small.png",
+            img_width = 350,
           )
         )
       ),
@@ -169,7 +177,9 @@ experiment4 <- function(title = "",
         },
         logic = last_page_redirect_session_design(
           redirect_heading = NULL,
-          redirect_paragraph = NULL, # insert dict key !!!
+          redirect_paragraph = "LANDSCAPE_PROMPT",
+          redirect_img = "https://s3.eu-west-1.amazonaws.com/media.dots.org/img/mobile-device-landscape-small.png",
+          redirect_img_width = 350,
           dict = dict,
           back_link = follow_up_link,
           language_url_param = language_url_param,
@@ -269,10 +279,6 @@ experiment4_every_session <- function(dict = vocaloidproject::vocaloidproject_di
                                       debug = FALSE) {
   elts <-
     psychTestR::join(
-      use_landscape_page(
-        img_src = "https://s3.eu-west-1.amazonaws.com/media.dots.org/img/mobile-device-landscape-small.png",
-        img_width = 350,
-      ),
       emotional_baseline_single_pages(
         dict = dict
       ),
