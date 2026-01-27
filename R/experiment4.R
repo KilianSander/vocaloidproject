@@ -40,7 +40,7 @@
 #' @inheritParams last_page_redirect_session_design
 #' @inheritParams session_design_url_welcome_page
 #'
-#'
+#' @export
 experiment4 <- function(title = "",
                         dict = vocaloidproject::vocaloidproject_dict,
                         session_number = 1,
