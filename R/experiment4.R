@@ -64,8 +64,7 @@ experiment4 <- function(title = "",
         dict = dict,
         session_number = session_number,
         debug = debug,
-        technical_error_back_link = technical_error_back_link,
-        no_consent_back_link = no_consent_back_link
+        technical_error_back_link = technical_error_back_link
       ),
       ## Session 1 ----
       psychTestR::conditional(
@@ -271,8 +270,7 @@ experiment4 <- function(title = "",
 experiment4_session_start <- function(dict = vocaloidproject::vocaloidproject_dict,
                                       session_number = 1,
                                       debug = FALSE,
-                                      technical_error_back_link = "",
-                                      no_consent_back_link = "") {
+                                      technical_error_back_link = "") {
   elts <-
     psychTestR::join(
       design_url_welcome_page(
