@@ -19,6 +19,9 @@ last_page_redirect(
 last_page_redirect_session_design(
   redirect_heading = "thanks",
   redirect_paragraph = NULL,
+  redirect_img = NULL,
+  redirect_img_width = "100\%",
+  redirect_img_align = "center",
   dict = vocaloidproject::vocaloidproject_dict,
   default_lang = "de_f",
   back_link,
@@ -54,6 +57,15 @@ not to \code{message()} the URL parameter(s).}
 
 \item{back_link_with_p_id}{(logical scalar) whether or not \code{back_link}
 contains a placeholder for the participant ID.}
+
+\item{redirect_img}{(\code{NULL} or character scalar) File path to an image to
+display it. Defaults to \code{NULL} (i.e., no image displayed).}
+
+\item{redirect_img_width}{CSS unit (see \code{\link[shiny:reexports]{shiny::validateCssUnit()}}) for
+the width of the image (if one is passed with \code{redirect_img}).}
+
+\item{redirect_img_align}{(character scalar) sets the alignment of the image
+(if one is passed with \code{redirect_img}).}
 
 \item{language_url_param}{(character scalar or \code{NULL}) URL parameter to pass
 on the test language of a participant.

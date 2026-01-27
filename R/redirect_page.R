@@ -117,9 +117,21 @@ last_page_redirect <- function(redirect_heading = "thanks",
 #' If `NULL`, the character scalar retrieved by
 #' [psychTestR::get_session_info()]`$language` is used.
 #'
+#' @param redirect_img (`NULL` or character scalar) File path to an image to
+#' display it. Defaults to `NULL` (i.e., no image displayed).
+#'
+#' @param redirect_img_width CSS unit (see [shiny::validateCssUnit()]) for
+#' the width of the image (if one is passed with `redirect_img`).
+#'
+#' @param redirect_img_align (character scalar) sets the alignment of the image
+#' (if one is passed with `redirect_img`).
+#'
 #' @export
 last_page_redirect_session_design <- function(redirect_heading = "thanks",
                                               redirect_paragraph = NULL,
+                                              redirect_img = NULL,
+                                              redirect_img_width = "100%",
+                                              redirect_img_align = "center",
                                               dict = vocaloidproject::vocaloidproject_dict,
                                               default_lang = "de_f",
                                               back_link,
@@ -130,12 +142,17 @@ last_page_redirect_session_design <- function(redirect_heading = "thanks",
   stopifnot(
     is.scalar.character(redirect_heading) | is.null(redirect_heading),
     is.scalar.character(redirect_paragraph) | is.null(redirect_paragraph),
+    is.scalar.character(redirect_img) | is.null(redirect_img),
     is.scalar.character(back_link_key),
     stringr::str_count(back_link, pattern = "%s") == 3,
     is.scalar.character(language_url_param) | is.null(language_url_param),
     is.character(language_url_codes) | is.null(language_url_codes),
     is.scalar.logical(debug)
   )
+
+  if (!is.null(redirect_img)) {
+    redirect_img_width <- shiny::validateCssUnit(redirect_img_width)
+  }
 
   psychTestR::new_timeline(
     psychTestR::reactive_page(
@@ -173,6 +190,16 @@ last_page_redirect_session_design <- function(redirect_heading = "thanks",
               },
               if (!is.null(redirect_paragraph)) {
                 shiny::p(psychTestR::i18n(redirect_paragraph))
+              },
+              if (!is.null(redirect_img)) {
+                shiny::div(
+                  shiny::img(
+                    src = redirect_img,
+                    alt = psychTestR::i18n(redirect_paragraph),
+                    width = redirect_img_width,
+                    align = redirect_img_align
+                  )
+                )
               },
               shiny::a(
                 psychTestR::i18n(back_link_key),

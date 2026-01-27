@@ -37,7 +37,6 @@ use_landscape_page <- function(img_src = NULL,
             align = img_align
           )
         }
-
       ),
       button_text = psychTestR::i18n("CONTINUE")
     ),
