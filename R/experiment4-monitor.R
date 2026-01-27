@@ -50,7 +50,52 @@ experiment4_monitor <- function(battery_folder_1 = "",
         "Get Data From Server!"
       )
     ),
-    bslib::layout_columns(),
+    shiny::h5("Filters"),
+    bslib::layout_columns(
+      bslib::card(
+        shiny::selectInput(
+          inputId = "selected_sessions",
+          label = "Include Sessions",
+          choices = stats::setNames(1:3, paste0("Session ", 1:3)),
+          multiple = TRUE,
+          selected = 1:3
+        ),
+        max_height = 200,
+        min_height = 100
+      ),
+      bslib::card(
+        shiny::selectInput(
+          inputId = "selected_designs",
+          label = "Include Designs",
+          choices = letters[1:4] %>% stats::setNames(., paste0("Design ", .)),
+          multiple = TRUE,
+          selected = letters[1:4]
+        ),
+        max_height = 200,
+        min_height = 100
+      ),
+      bslib::card(
+        shiny::selectInput(
+          inputId = "selected_languages",
+          label = "Include Languages",
+          choices = c("German" = "de", "Japanese" = "ja"),
+          multiple = TRUE,
+          selected = c("de", "ja")
+        ),
+        max_height = 200,
+        min_height = 100
+      ),
+      max_height = 200,
+      min_height = 100
+    ),
+    bslib::layout_columns(
+      shiny::actionButton(
+        inputId = "apply_filters",
+        label = "Apply Filters"
+      ),
+      shiny::textOutput("filter_selection"),
+      shiny::verbatimTextOutput("test")
+    ),
     theme = bslib::bs_theme(
       version = 5,
       preset = "shiny"
@@ -77,6 +122,33 @@ experiment4_monitor <- function(battery_folder_1 = "",
 
     # dat <- shiny::eventReactive()
 
+    shiny::observeEvent(
+      input$apply_filters, {
+        shiny::validate(
+          shiny::need(!is.null(input$selected_sessions), "Select at least one session"),
+          shiny::need(!is.null(input$selected_designs), "Select at least one design"),
+          shiny::need(!is.null(input$selected_languages), "Select at least one language")
+        )
+
+        output$filter_selection <- shiny::renderText({
+          c(
+            paste0(
+              "Selected sessions: ",
+              stringr::str_flatten_comma(input$selected_sessions, last = ", and ")
+            ),
+            paste0(
+              "Selected designs: ",
+              stringr::str_flatten_comma(input$selected_designs, last = ", and ")
+            ),
+            paste0(
+              "\nSelected languages: ",
+              stringr::str_flatten(input$selected_languages, collapse = " and ")
+            )
+          )
+        }, sep = ";\n")
+        output$test <- shiny::renderPrint(input$selected_sessions)
+      }
+    )
   }
   shiny::shinyApp(ui = ui, server = server)
 }
