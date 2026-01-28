@@ -313,7 +313,7 @@ parse_asa <- function(asa_result) {
   if(is.null(asa_result)) {
     data.frame(
       ASA.deification = NA_real_,
-      SA.incarnation = NA_real_
+      ASA.incarnation = NA_real_
     )
   } else {
     asa_result %>%
