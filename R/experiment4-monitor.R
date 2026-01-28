@@ -31,7 +31,7 @@
 experiment4_monitor <- function(battery_folder_1 = "",
                                 battery_folder_2 = "",
                                 battery_folder_3 = "",
-                                sosci_data = NULL,
+                                sosci_data_url = NULL,
                                 data_pw = "supersecretpassword") {
   # argument checks -----
   stopifnot(is.scalar.character(battery_folder_1),
@@ -144,12 +144,14 @@ experiment4_monitor <- function(battery_folder_1 = "",
       }
     )
 
+    ## data -----
     dat_list <- shiny::eventReactive(
       input$get_data, {
         if (input$password == data_pw) {
           psychtestr_session1 <- read_experiment4_data(path1)
-        # psychtestr_session2 <- read_experiment4_data(path2)
-        # psychtestr_session3 <- read_experiment4_data(path3)
+          # psychtestr_session2 <- read_experiment4_data(path2)
+          # psychtestr_session3 <- read_experiment4_data(path3)
+          # sosci_data <- sosci_api_import(sosci_data_url)
         }
       }
     )
