@@ -303,7 +303,32 @@ parse_emotional_baseline <- function(emo_base_result) {
         )
       )
   } else {
-    emo_basline <-
+    emo_baseline <-
       data.frame(emotional_baseline.q1 = NA_real_)
+  }
+  return(emo_baseline)
+}
+
+parse_asa <- function(asa_result) {
+  if(is.null(asa_result)) {
+    data.frame(
+      ASA.deification = NA_real_,
+      SA.incarnation = NA_real_
+    )
+  } else {
+    asa_result %>%
+      as.data.frame()
+  }
+}
+
+parse_bes <- function(bes_result) {
+  if(is.null(bes_result)) {
+    data.frame(
+      BES.affective = NA_real_,
+      BES.cognitive = NA_real_
+    )
+  } else {
+    bes_result %>%
+      as.data.frame()
   }
 }
