@@ -33,11 +33,17 @@ experiment4_monitor <- function(battery_folder_1 = "",
                                 battery_folder_3 = "",
                                 sosci_data = NULL,
                                 data_pw = "supersecretpassword") {
+  # argument checks -----
   stopifnot(is.scalar.character(battery_folder_1),
             is.scalar.character(battery_folder_2),
             is.scalar.character(battery_folder_3),
             is.scalar.character(sosci_data) | is.null(sosci_data),
             is.scalar.character(data_pw))
+  # pre processing -----
+  path1 <- file.path("..", battery_folder_1, "output", "results")
+  path2 <- file.path("..", battery_folder_2, "output", "results")
+  path3 <- file.path("..", battery_folder_3, "output", "results")
+  # ui ---------------------
   ui <- bslib::page_sidebar(
     title = "Vocaloid Project Experiment 4 Data Monitor",
     sidebar = bslib::sidebar(
@@ -92,9 +98,25 @@ experiment4_monitor <- function(battery_folder_1 = "",
       shiny::actionButton(
         inputId = "apply_filters",
         label = "Apply Filters"
+      )
+    ),
+    bslib::layout_columns(
+      bslib::card(
+        bslib::card_header("Selected Sessions"),
+        shiny::verbatimTextOutput("sel_sessions")
       ),
-      shiny::textOutput("filter_selection"),
-      shiny::verbatimTextOutput("test")
+      bslib::card(
+        bslib::card_header("Selected Designs"),
+        shiny::verbatimTextOutput("sel_designs")
+      ),
+      bslib::card(
+        bslib::card_header("Selected Languages"),
+        shiny::verbatimTextOutput("sel_languages")
+      ),
+      max_height = 100
+    ),
+    bslib::layout_columns(
+      shiny::verbatimTextOutput("testo")
     ),
     theme = bslib::bs_theme(
       version = 5,
@@ -102,8 +124,9 @@ experiment4_monitor <- function(battery_folder_1 = "",
     ),
     lang = "en"
   )
+  # server --------------
   server <- function(input, output, session) {
-    # wrong password -----
+    ## wrong password -----
     shiny::observeEvent(
       input$get_data, {
         message("button pressed")
@@ -116,12 +139,27 @@ experiment4_monitor <- function(battery_folder_1 = "",
           )
         } else {
           message("correct password\n")
+
         }
       }
     )
 
-    # dat <- shiny::eventReactive()
+    dat_list <- shiny::eventReactive(
+      input$get_data, {
+        if (input$password == data_pw) {
+          psychtestr_session1 <- read_experiment4_data(path1)
+        # psychtestr_session2 <- read_experiment4_data(path2)
+        # psychtestr_session3 <- read_experiment4_data(path3)
+        }
+      }
+    )
 
+    output$testo <- renderPrint({
+      req(dat_list())
+      str(dat_list())
+    })
+
+    ## filter selection -----------
     shiny::observeEvent(
       input$apply_filters, {
         shiny::validate(
@@ -129,26 +167,124 @@ experiment4_monitor <- function(battery_folder_1 = "",
           shiny::need(!is.null(input$selected_designs), "Select at least one design"),
           shiny::need(!is.null(input$selected_languages), "Select at least one language")
         )
-
-        output$filter_selection <- shiny::renderText({
-          c(
-            paste0(
-              "Selected sessions: ",
-              stringr::str_flatten_comma(input$selected_sessions, last = ", and ")
-            ),
-            paste0(
-              "Selected designs: ",
-              stringr::str_flatten_comma(input$selected_designs, last = ", and ")
-            ),
-            paste0(
-              "\nSelected languages: ",
-              stringr::str_flatten(input$selected_languages, collapse = " and ")
-            )
-          )
-        }, sep = ";\n")
-        output$test <- shiny::renderPrint(input$selected_sessions)
       }
     )
+    ### current filter text output -----
+    output$sel_sessions <- shiny::renderPrint({
+      input$apply_filters
+      shiny::isolate(print(input$selected_sessions))
+    })
+    output$sel_designs <- shiny::renderPrint({
+      input$apply_filters
+      shiny::isolate(print(input$selected_designs))
+    })
+    output$sel_languages <- shiny::renderPrint({
+      input$apply_filters
+      shiny::isolate(print(input$selected_languages))
+    })
   }
   shiny::shinyApp(ui = ui, server = server)
+}
+
+read_experiment4_data <- function(results_dir) {
+  results <- purrr::map(
+    list.files(path = results_dir, pattern = "*.rds$", full.names = TRUE),
+    function(x) {
+      readRDS(x) %>% as.list()
+    }
+  )
+  if (length(results) > 0) {
+    ret <-
+      results %>%
+      purrr::map(
+        function(x) {
+          browser()
+          x <- as.list(x)
+          if (!is.null(x$session)) {
+            session_data <-
+              x$session %>%
+              as.data.frame() %>%
+              dplyr::select(
+                dplyr::all_of(
+                  c("p_id", "language", "time_started", "complete")
+                )
+              )
+          }
+          if (is.null(x$session) || nrow(session_data) == 0) {
+            session_data <- data.frame(p_id = NA)
+          }
+
+          exp_session <- x[["results"]][["uses"]]
+          exp_design <- x[["results"]][["udes"]]
+
+          session_data$exp_session <- exp_session
+          session_data$exp_design <- exp_design
+          session_data$consent <-
+            ifelse(
+              !is.null(x[["results"]][["consent"]]),
+              x[["results"]][["consent"]],
+              NA_character_
+            )
+
+          if (is.null(exp_session) | (!(exp_session %in% 1:3))) {
+            person_data <- session_data
+          } else {
+            emo_baseline <- parse_emotional_baseline(x[["emotional_baseline"]])
+            halt <- parse_HALT_selfreport_device(x[["HALT"]])
+            ## Session 1 data -----
+            if (!is.null(x[["DEG"]])) {
+              deg <-
+                parse_deg(x[["DEG"]])
+            } else {
+              deg <-
+                data.frame(
+                  Gender = NA_character_,
+                  Age_months = NA_real_,
+                  Age_years = NA_real_
+                )
+            }
+            if (!is.null(x[["demographics"]])) {
+              demographics <-
+                x[["demographics"]] %>%
+                as.data.frame()
+            } else {
+              demographics <-
+                data.frame(first_language = NA_character_)
+            }
+            ## Session 2 data -----
+            asa <- parse_asa(x[["ASA"]])
+            if (!is.null(x[["GMS"]])) {
+              gms <-
+                x[["GMS"]] %>%
+                as.data.frame() %>%
+                dplyr::rename_with(
+                  function(col) {
+                    paste0("GMS_", col)
+                  }
+                )
+            } else {
+              gms <-
+                data.frame(GMS_General = NA_real_)
+            }
+            ## Session 3 data -----
+            bes <- parse_bes(x[["BES"]])
+
+            person_data <-
+              dplyr::bind_cols(
+                session_data, emo_baseline, halt,
+                deg, demographics, asa, gms, bes
+              )
+          }
+
+          return(person_data)
+        }
+      ) %>%
+      purrr::list_rbind() %>%
+      dplyr::arrange(time_started)
+  } else {
+    ret <- data.frame(
+      p_id = character(0L)
+    )
+  }
+  return(ret)
 }
