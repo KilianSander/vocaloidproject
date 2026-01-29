@@ -8,7 +8,8 @@ experiment4_monitor(
   battery_folder_1 = "",
   battery_folder_2 = "",
   battery_folder_3 = "",
-  sosci_data = NULL,
+  sosci_data_url = NULL,
+  starting_date = "2026-01-28",
   data_pw = "supersecretpassword"
 )
 }
@@ -28,12 +29,17 @@ on your shiny server where the \code{app.R} containing
 \code{experiment4(session_number = 3, ...)}
 lives (i.e. app for Session 3).}
 
-\item{sosci_data}{(\code{NULL} or character scalar) if non-\code{NULL}, a URL to
-load data from (provided by SoSci Survey).}
+\item{starting_date}{(\code{NULL} or character scalar) To get data from a
+specific point in time onwards, specify a date in the format \code{YYYY-MM-DD}
+(e.g., to exclude piloting data).
+Set to \code{NULL} to get all data.}
 
 \item{data_pw}{(character scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 set a password for data access.
 Caution: This is a very simple implementation.}
+
+\item{sosci_data}{(\code{NULL} or character scalar) if non-\code{NULL}, a URL to
+load data from (provided by SoSci Survey).}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

@@ -24,6 +24,11 @@
 #' @param sosci_data (`NULL` or character scalar) if non-`NULL`, a URL to
 #' load data from (provided by SoSci Survey).
 #'
+#' @param starting_date (`NULL` or character scalar) To get data from a
+#' specific point in time onwards, specify a date in the format `YYYY-MM-DD`
+#' (e.g., to exclude piloting data).
+#' Set to `NULL` to get all data.
+#'
 #' @param data_pw (character scalar) `r lifecycle::badge("experimental")`
 #' set a password for data access.
 #' Caution: This is a very simple implementation.
@@ -32,17 +37,22 @@ experiment4_monitor <- function(battery_folder_1 = "",
                                 battery_folder_2 = "",
                                 battery_folder_3 = "",
                                 sosci_data_url = NULL,
+                                starting_date = "2026-01-28",
                                 data_pw = "supersecretpassword") {
   # argument checks -----
   stopifnot(is.scalar.character(battery_folder_1),
             is.scalar.character(battery_folder_2),
             is.scalar.character(battery_folder_3),
             is.scalar.character(sosci_data_url) | is.null(sosci_data_url),
+            is.scalar.character(starting_date) | is.null(starting_date),
             is.scalar.character(data_pw))
   # pre processing -----
   path1 <- file.path("..", battery_folder_1, "output", "results")
   path2 <- file.path("..", battery_folder_2, "output", "results")
   path3 <- file.path("..", battery_folder_3, "output", "results")
+  if (!is.null(starting_date)) {
+    starting_date <- as.POSIXct(starting_date)
+  }
   # ui ---------------------
   ui <- bslib::page_navbar(
     title = "Vocaloid Project Experiment 4 Data Monitor",
@@ -58,7 +68,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
     ),
     bslib::nav_panel(
       title = "Summary",
-      verbatimTextOutput("testo")
+      shiny::verbatimTextOutput("testo")
     ),
     bslib::nav_panel(
       title = "psychTestR Session 1",
@@ -169,6 +179,9 @@ experiment4_monitor <- function(battery_folder_1 = "",
           # psychtestr_session2 <- read_experiment4_data(path2)
           # psychtestr_session3 <- read_experiment4_data(path3)
           # sosci_data <- sosci_api_import(sosci_data_url)
+          if (!is.null(starting_date)) {
+            # dplyr::filter
+          }
           list(
             "psychtestr_session1" = psychtestr_session1
           )
@@ -183,7 +196,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
 
     output$psychtestr_session1 <- DT::renderDataTable({
       req(dat_list())
-      dat_list()["psychtestr_session1"]
+      dat_list()[["psychtestr_session1"]]
     })
 
     ## filter selection -----------
@@ -225,7 +238,7 @@ read_experiment4_data <- function(results_dir) {
       results %>%
       purrr::map(
         function(x) {
-          browser()
+          # browser()
           x <- as.list(x)
           if (!is.null(x$session)) {
             session_data <-
