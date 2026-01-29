@@ -63,12 +63,12 @@ ASA <- function(label = "ASA",
           get_subscale_score(asa_raw, "ASA", "incarnation")
         psychTestR::save_result(
           place = state,
-          label = "deification",
+          label = "ASA_deification",
           value = deification
         )
         psychTestR::save_result(
           place = state,
-          label = "incarnation",
+          label = "ASA_incarnation",
           value = incarnation
         )
       },

@@ -63,12 +63,12 @@ BES <- function(label = "BES",
           )
         psychTestR::save_result(
           place = state,
-          label = "affective",
+          label = "BES_affective",
           value = affective
         )
         psychTestR::save_result(
           place = state,
-          label = "cognitive",
+          label = "BES_cognitive",
           value = cognitive
         )
       },

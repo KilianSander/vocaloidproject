@@ -312,8 +312,8 @@ parse_emotional_baseline <- function(emo_base_result) {
 parse_asa <- function(asa_result) {
   if(is.null(asa_result)) {
     data.frame(
-      ASA.deification = NA_real_,
-      ASA.incarnation = NA_real_
+      ASA_deification = NA_real_,
+      ASA_incarnation = NA_real_
     )
   } else {
     asa_result %>%
@@ -324,8 +324,8 @@ parse_asa <- function(asa_result) {
 parse_bes <- function(bes_result) {
   if(is.null(bes_result)) {
     data.frame(
-      BES.affective = NA_real_,
-      BES.cognitive = NA_real_
+      BES_affective = NA_real_,
+      BES_cognitive = NA_real_
     )
   } else {
     bes_result %>%
