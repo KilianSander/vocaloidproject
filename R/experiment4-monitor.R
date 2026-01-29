@@ -37,14 +37,14 @@ experiment4_monitor <- function(battery_folder_1 = "",
   stopifnot(is.scalar.character(battery_folder_1),
             is.scalar.character(battery_folder_2),
             is.scalar.character(battery_folder_3),
-            is.scalar.character(sosci_data) | is.null(sosci_data),
+            is.scalar.character(sosci_data_url) | is.null(sosci_data_url),
             is.scalar.character(data_pw))
   # pre processing -----
   path1 <- file.path("..", battery_folder_1, "output", "results")
   path2 <- file.path("..", battery_folder_2, "output", "results")
   path3 <- file.path("..", battery_folder_3, "output", "results")
   # ui ---------------------
-  ui <- bslib::page_sidebar(
+  ui <- bslib::page_navbar(
     title = "Vocaloid Project Experiment 4 Data Monitor",
     sidebar = bslib::sidebar(
       shiny::passwordInput(
@@ -56,68 +56,85 @@ experiment4_monitor <- function(battery_folder_1 = "",
         "Get Data From Server!"
       )
     ),
-    shiny::h5("Filters"),
-    bslib::layout_columns(
-      bslib::card(
-        shiny::selectInput(
-          inputId = "selected_sessions",
-          label = "Include Sessions",
-          choices = stats::setNames(1:3, paste0("Session ", 1:3)),
-          multiple = TRUE,
-          selected = 1:3
-        ),
-        max_height = 200,
-        min_height = 100
-      ),
-      bslib::card(
-        shiny::selectInput(
-          inputId = "selected_designs",
-          label = "Include Designs",
-          choices = letters[1:4] %>% stats::setNames(., paste0("Design ", .)),
-          multiple = TRUE,
-          selected = letters[1:4]
-        ),
-        max_height = 200,
-        min_height = 100
-      ),
-      bslib::card(
-        shiny::selectInput(
-          inputId = "selected_languages",
-          label = "Include Languages",
-          choices = c("German" = "de", "Japanese" = "ja"),
-          multiple = TRUE,
-          selected = c("de", "ja")
-        ),
-        max_height = 200,
-        min_height = 100
-      ),
-      max_height = 200,
-      min_height = 100
+    bslib::nav_panel(
+      title = "Summary",
+      verbatimTextOutput("testo")
     ),
-    bslib::layout_columns(
-      shiny::actionButton(
-        inputId = "apply_filters",
-        label = "Apply Filters"
-      )
+    bslib::nav_panel(
+      title = "psychTestR Session 1",
+      DT::dataTableOutput("psychtestr_session1")
     ),
-    bslib::layout_columns(
-      bslib::card(
-        bslib::card_header("Selected Sessions"),
-        shiny::verbatimTextOutput("sel_sessions")
-      ),
-      bslib::card(
-        bslib::card_header("Selected Designs"),
-        shiny::verbatimTextOutput("sel_designs")
-      ),
-      bslib::card(
-        bslib::card_header("Selected Languages"),
-        shiny::verbatimTextOutput("sel_languages")
-      ),
-      max_height = 100
+    bslib::nav_panel(
+      title = "psychTestR Session 2",
     ),
-    bslib::layout_columns(
-      shiny::verbatimTextOutput("testo")
+    bslib::nav_panel(
+      title = "psychTestR Session 3",
     ),
+    bslib::nav_panel(
+      title = "SoSci Survey All Sessions",
+    ),
+    # shiny::h5("Filters"),
+    # bslib::layout_columns(
+    #   bslib::card(
+    #     shiny::selectInput(
+    #       inputId = "selected_sessions",
+    #       label = "Include Sessions",
+    #       choices = stats::setNames(1:3, paste0("Session ", 1:3)),
+    #       multiple = TRUE,
+    #       selected = 1:3
+    #     ),
+    #     max_height = 200,
+    #     min_height = 100
+    #   ),
+    #   bslib::card(
+    #     shiny::selectInput(
+    #       inputId = "selected_designs",
+    #       label = "Include Designs",
+    #       choices = letters[1:4] %>% stats::setNames(., paste0("Design ", .)),
+    #       multiple = TRUE,
+    #       selected = letters[1:4]
+    #     ),
+    #     max_height = 200,
+    #     min_height = 100
+    #   ),
+    #   bslib::card(
+    #     shiny::selectInput(
+    #       inputId = "selected_languages",
+    #       label = "Include Languages",
+    #       choices = c("German" = "de", "Japanese" = "ja"),
+    #       multiple = TRUE,
+    #       selected = c("de", "ja")
+    #     ),
+    #     max_height = 200,
+    #     min_height = 100
+    #   ),
+    #   max_height = 200,
+    #   min_height = 100
+    # ),
+    # bslib::layout_columns(
+    #   shiny::actionButton(
+    #     inputId = "apply_filters",
+    #     label = "Apply Filters"
+    #   )
+    # ),
+    # bslib::layout_columns(
+    #   bslib::card(
+    #     bslib::card_header("Selected Sessions"),
+    #     shiny::verbatimTextOutput("sel_sessions")
+    #   ),
+    #   bslib::card(
+    #     bslib::card_header("Selected Designs"),
+    #     shiny::verbatimTextOutput("sel_designs")
+    #   ),
+    #   bslib::card(
+    #     bslib::card_header("Selected Languages"),
+    #     shiny::verbatimTextOutput("sel_languages")
+    #   ),
+    #   max_height = 100
+    # ),
+    # bslib::layout_columns(
+    #   shiny::verbatimTextOutput("testo")
+    # ),
     theme = bslib::bs_theme(
       version = 5,
       preset = "shiny"
@@ -152,38 +169,46 @@ experiment4_monitor <- function(battery_folder_1 = "",
           # psychtestr_session2 <- read_experiment4_data(path2)
           # psychtestr_session3 <- read_experiment4_data(path3)
           # sosci_data <- sosci_api_import(sosci_data_url)
+          list(
+            "psychtestr_session1" = psychtestr_session1
+          )
         }
       }
     )
 
-    output$testo <- renderPrint({
+    output$testo <- shiny::renderPrint({
       req(dat_list())
       str(dat_list())
     })
 
+    output$psychtestr_session1 <- DT::renderDataTable({
+      req(dat_list())
+      dat_list()["psychtestr_session1"]
+    })
+
     ## filter selection -----------
-    shiny::observeEvent(
-      input$apply_filters, {
-        shiny::validate(
-          shiny::need(!is.null(input$selected_sessions), "Select at least one session"),
-          shiny::need(!is.null(input$selected_designs), "Select at least one design"),
-          shiny::need(!is.null(input$selected_languages), "Select at least one language")
-        )
-      }
-    )
+    # shiny::observeEvent(
+    #   input$apply_filters, {
+    #     shiny::validate(
+    #       shiny::need(!is.null(input$selected_sessions), "Select at least one session"),
+    #       shiny::need(!is.null(input$selected_designs), "Select at least one design"),
+    #       shiny::need(!is.null(input$selected_languages), "Select at least one language")
+    #     )
+    #   }
+    # )
     ### current filter text output -----
-    output$sel_sessions <- shiny::renderPrint({
-      input$apply_filters
-      shiny::isolate(print(input$selected_sessions))
-    })
-    output$sel_designs <- shiny::renderPrint({
-      input$apply_filters
-      shiny::isolate(print(input$selected_designs))
-    })
-    output$sel_languages <- shiny::renderPrint({
-      input$apply_filters
-      shiny::isolate(print(input$selected_languages))
-    })
+    # output$sel_sessions <- shiny::renderPrint({
+    #   input$apply_filters
+    #   shiny::isolate(print(input$selected_sessions))
+    # })
+    # output$sel_designs <- shiny::renderPrint({
+    #   input$apply_filters
+    #   shiny::isolate(print(input$selected_designs))
+    # })
+    # output$sel_languages <- shiny::renderPrint({
+    #   input$apply_filters
+    #   shiny::isolate(print(input$selected_languages))
+    # })
   }
   shiny::shinyApp(ui = ui, server = server)
 }
