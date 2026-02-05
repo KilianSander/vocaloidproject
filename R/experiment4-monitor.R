@@ -64,6 +64,10 @@ experiment4_monitor <- function(battery_folder_1 = "",
       shiny::actionButton(
         "get_data",
         "Get Data From Server!"
+      ),
+      shiny::downloadButton(
+        "downloadData",
+        "Download data to local machine"
       )
     ),
     bslib::nav_panel(
@@ -234,6 +238,23 @@ experiment4_monitor <- function(battery_folder_1 = "",
         shiny::HTML("No external data.")
       }
     })
+    ## download -----
+    output$downloadData <- shiny::downloadHandler(
+      filename = function() {
+        paste0(
+          "vocaloid-exp4-data-",
+          stringr::str_replace_all(
+            as.character(Sys.time()),
+            c(":" = "-", " " = "_")
+          ),
+          ".csv"
+        )
+      },
+      content = function(file) {
+        req(dat_list())
+        write.csv(dat_list()[[1]], file = file, row.names = F)
+      }
+    )
 
     ## filter selection -----------
     # shiny::observeEvent(
