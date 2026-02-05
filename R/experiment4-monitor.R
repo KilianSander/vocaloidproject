@@ -21,7 +21,7 @@
 #' `experiment4(session_number = 3, ...)`
 #' lives (i.e. app for Session 3).
 #'
-#' @param sosci_data (`NULL` or character scalar) if non-`NULL`, a URL to
+#' @param sosci_data_url (`NULL` or character scalar) if non-`NULL`, a URL to
 #' load data from (provided by SoSci Survey).
 #'
 #' @param starting_date (`NULL` or character scalar) To get data from a
