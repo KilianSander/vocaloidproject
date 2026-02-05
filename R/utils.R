@@ -274,6 +274,9 @@ sosci_api_import <- function(sosci_data_url) {
       dec = ".",
       as.is = TRUE,
       na.strings = ""
+    ) %>%
+    dplyr::rename(
+      time_started = STARTED
     )
   return(ds)
 }
