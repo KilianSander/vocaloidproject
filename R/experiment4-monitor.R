@@ -76,12 +76,15 @@ experiment4_monitor <- function(battery_folder_1 = "",
     ),
     bslib::nav_panel(
       title = "psychTestR Session 2",
+      DT::dataTableOutput("psychtestr_session2")
     ),
     bslib::nav_panel(
       title = "psychTestR Session 3",
+      DT::dataTableOutput("psychtestr_session3")
     ),
     bslib::nav_panel(
       title = "SoSci Survey All Sessions",
+      shiny::uiOutput("sosci_all_data")
     ),
     # shiny::h5("Filters"),
     # bslib::layout_columns(
@@ -176,15 +179,30 @@ experiment4_monitor <- function(battery_folder_1 = "",
       input$get_data, {
         if (input$password == data_pw) {
           psychtestr_session1 <- read_experiment4_data(path1)
-          # psychtestr_session2 <- read_experiment4_data(path2)
-          # psychtestr_session3 <- read_experiment4_data(path3)
-          # sosci_data <- sosci_api_import(sosci_data_url)
-          if (!is.null(starting_date)) {
-            # dplyr::filter
+          psychtestr_session2 <- read_experiment4_data(path2)
+          psychtestr_session3 <- read_experiment4_data(path3)
+          if (!is.null(sosci_data_url)) {
+            sosci_data <- sosci_api_import(sosci_data_url)
           }
-          list(
-            "psychtestr_session1" = psychtestr_session1
+          ret <- list(
+            "psychtestr_session1" = psychtestr_session1,
+            "psychtestr_session2" = psychtestr_session2,
+            "psychtestr_session3" = psychtestr_session3
           )
+          if (!is.null(sosci_data_url)) {
+            ret[["sosci_data"]] <- sosci_data
+          }
+          # if (!is.null(starting_date)) {
+          #   ret <-
+          #     purrr::map(
+          #       ret,
+          #       function(x) {
+          #         x %>%
+          #           dplyr::filter(time_started >= starting_date)
+          #       },
+          #     )
+          # }
+          ret
         }
       }
     )
@@ -197,6 +215,24 @@ experiment4_monitor <- function(battery_folder_1 = "",
     output$psychtestr_session1 <- DT::renderDataTable({
       req(dat_list())
       dat_list()[["psychtestr_session1"]]
+    })
+    output$psychtestr_session2 <- DT::renderDataTable({
+      req(dat_list())
+      dat_list()[["psychtestr_session2"]]
+    })
+    output$psychtestr_session3 <- DT::renderDataTable({
+      req(dat_list())
+      dat_list()[["psychtestr_session3"]]
+    })
+    output$sosci_all_data <- shiny::renderUI({
+      if (!is.null(sosci_data_url)) {
+        DT::renderDataTable({
+          req(dat_list())
+          dat_list()[["sosci_data"]]
+        })
+      } else {
+        shiny::HTML("No external data.")
+      }
     })
 
     ## filter selection -----------

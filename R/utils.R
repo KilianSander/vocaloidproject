@@ -282,6 +282,7 @@ sosci_api_import <- function(sosci_data_url) {
     dplyr::mutate(
       time_started = time_started %>% as.POSIXct(),
       language = dplyr::case_match(
+        language,
         "ger" ~ "de_f",
         "jpn" ~ "ja"
       )
