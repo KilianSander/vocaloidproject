@@ -186,7 +186,24 @@ experiment4_monitor <- function(battery_folder_1 = "",
           psychtestr_session2 <- read_experiment4_data(path2)
           psychtestr_session3 <- read_experiment4_data(path3)
           if (!is.null(sosci_data_url)) {
-            sosci_data <- sosci_api_import(sosci_data_url)
+            sosci_data <-
+              sosci_api_import(sosci_data_url) %>%
+              dplyr::filter(session %in% c(13, 23, 33)) %>%
+              dplyr::mutate(session = session %>% stringr::str_sub(1, 1)) %>%
+              dplyr::select(!dplyr::matches(remove_times)) %>%
+              dplyr::rename_with(
+                .fn = function(x) {
+                  stim_times[x]
+                },
+                .cols = dplyr::all_of(names(stim_times))
+              ) %>%
+              dplyr::rename_with(
+                .fn = function(x) {
+                  question_times[x]
+                },
+                .cols = dplyr::all_of(names(question_times))
+              )
+
           }
           ret <- list(
             "psychtestr_session1" = psychtestr_session1,
@@ -385,3 +402,70 @@ read_experiment4_data <- function(results_dir) {
   }
   return(ret)
 }
+
+stim_times <-
+  stats::setNames(
+    nm = paste0(
+      "TIME",
+      sprintf(
+        "%03i",
+        (12:131) * 2
+      )
+    ),
+    object = paste0(
+      "time_stimulus",
+      rep(1:4, times = 30),
+      sprintf(
+        "%02i",
+        rep(1:30, each = 4)
+      )
+    )
+  )
+
+question_times <-
+  stats::setNames(
+    object = paste0(
+      "time_",
+      c(
+        paste0(
+          "IAPS", c(5836, 5626, 1720, 7039, 9530, 1441)
+        ),
+        paste0(
+          "emotion_rating_",
+          c("info", "melancholy", "peacefulness", "despair", "joy")
+        ),
+        "roSAS", "genre_info", "genre_rating",
+        paste0(
+          "example_",
+          c("pre_info", "rating", "post_info")
+        ),
+        "stimulus_info",
+        paste0(
+          "block", 1:4, "page"
+        )
+      )
+    ),
+    nm = c(
+      paste0(
+        "TIME",
+        sprintf(
+          "%03i", c(
+            3:8, 9:13, 15, 17:18, 19:21, 22, 264:267
+          )
+        )
+      )
+    )
+  )
+
+remove_times <-
+  paste0(
+    "TIME",
+    sprintf(
+      "%03i",
+      c(
+        seq(from = 25, to = 263, by = 2), # stimuli check time pages
+        268:274, # Block 5 & 6 (old implementation, see `international1()`),
+        276      # redirects for happy clickers, screen outs, and completes
+      )
+    )
+  )
