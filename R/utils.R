@@ -277,6 +277,7 @@ sosci_api_import <- function(sosci_data_url) {
     ) %>%
     dplyr::rename(
       time_started = STARTED,
+      time_last_data = LASTDATA,
       language = LANGUAGE
     ) %>%
     dplyr::mutate(
