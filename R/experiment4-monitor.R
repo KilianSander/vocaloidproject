@@ -222,6 +222,9 @@ experiment4_monitor <- function(battery_folder_1 = "",
             duration = NULL,
             closeButton = TRUE
           )
+          shiny::updateTabsetPanel(
+            inputId = "download_panel", selected = "NoDownload"
+          )
         } else {
           message("correct password\n")
           shiny::updateTabsetPanel(
@@ -232,6 +235,13 @@ experiment4_monitor <- function(battery_folder_1 = "",
     )
 
     ## data -----
+    date_time <- shiny::eventReactive(
+      input$get_data, {
+        stringr::str_replace_all(
+          as.character(Sys.time()), c(":" = "-", " " = "_")
+        )
+      }
+    )
     dat_list <- shiny::eventReactive(
       input$get_data, {
         if (input$password == data_pw) {
@@ -416,10 +426,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
       filename = function() {
         paste0(
           "vocaloid-exp4-data-",
-          stringr::str_replace_all(
-            as.character(Sys.time()),
-            c(":" = "-", " " = "_")
-          ),
+          date_time(),
           ".csv"
         )
       },
@@ -432,10 +439,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
       filename = function() {
         paste0(
           "vocaloid-exp4-data-",
-          stringr::str_replace_all(
-            as.character(Sys.time()),
-            c(":" = "-", " " = "_")
-          ),
+          date_time(),
           "-FILTERED.csv"
         )
       },
