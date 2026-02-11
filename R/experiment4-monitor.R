@@ -28,6 +28,7 @@
 #' set a password for data access.
 #' Caution: This is a very simple implementation.
 #'
+#' @export
 experiment4_monitor <- function(battery_folder_1 = "",
                                 battery_folder_2 = "",
                                 battery_folder_3 = "",
@@ -117,13 +118,11 @@ experiment4_monitor <- function(battery_folder_1 = "",
           bslib::card_title("Summary filtered data"),
           DT::DTOutput("data_filtered_summary")
         )
-      ),
-      bslib::layout_columns(
-        bslib::card(
-          bslib::card_title("Filtered Data"),
-          DT::DTOutput("data_filtered")
-        )
       )
+    ),
+    bslib::nav_panel(
+      title = "Filtered Data",
+      DT::DTOutput("data_filtered")
     ),
     bslib::nav_panel(
       title = "Raw data psychTestR Session 1",
@@ -141,68 +140,6 @@ experiment4_monitor <- function(battery_folder_1 = "",
       title = "Raw data SoSci Survey All Sessions",
       shiny::uiOutput("sosci_all_data")
     ),
-    # shiny::h5("Filters"),
-    # bslib::layout_columns(
-    #   bslib::card(
-    #     shiny::selectInput(
-    #       inputId = "selected_sessions",
-    #       label = "Include Sessions",
-    #       choices = stats::setNames(1:3, paste0("Session ", 1:3)),
-    #       multiple = TRUE,
-    #       selected = 1:3
-    #     ),
-    #     max_height = 200,
-    #     min_height = 100
-    #   ),
-    #   bslib::card(
-    #     shiny::selectInput(
-    #       inputId = "selected_designs",
-    #       label = "Include Designs",
-    #       choices = letters[1:4] %>% stats::setNames(., paste0("Design ", .)),
-    #       multiple = TRUE,
-    #       selected = letters[1:4]
-    #     ),
-    #     max_height = 200,
-    #     min_height = 100
-    #   ),
-    #   bslib::card(
-    #     shiny::selectInput(
-    #       inputId = "selected_languages",
-    #       label = "Include Languages",
-    #       choices = c("German" = "de", "Japanese" = "ja"),
-    #       multiple = TRUE,
-    #       selected = c("de", "ja")
-    #     ),
-    #     max_height = 200,
-    #     min_height = 100
-    #   ),
-    #   max_height = 200,
-    #   min_height = 100
-    # ),
-    # bslib::layout_columns(
-    #   shiny::actionButton(
-    #     inputId = "apply_filters",
-    #     label = "Apply Filters"
-    #   )
-    # ),
-    # bslib::layout_columns(
-    #   bslib::card(
-    #     bslib::card_header("Selected Sessions"),
-    #     shiny::verbatimTextOutput("sel_sessions")
-    #   ),
-    #   bslib::card(
-    #     bslib::card_header("Selected Designs"),
-    #     shiny::verbatimTextOutput("sel_designs")
-    #   ),
-    #   bslib::card(
-    #     bslib::card_header("Selected Languages"),
-    #     shiny::verbatimTextOutput("sel_languages")
-    #   ),
-    #   max_height = 100
-    # ),
-    # bslib::layout_columns(
-    #   shiny::verbatimTextOutput("testo")
-    # ),
     theme = bslib::bs_theme(
       version = 5,
       preset = "shiny"
@@ -332,16 +269,6 @@ experiment4_monitor <- function(battery_folder_1 = "",
           if (!is.null(sosci_data_url)) {
             ret[["sosci_data"]] <- sosci_data
           }
-          # if (!is.null(starting_date)) {
-          #   ret <-
-          #     purrr::map(
-          #       ret,
-          #       function(x) {
-          #         x %>%
-          #           dplyr::filter(time_started >= starting_date)
-          #       },
-          #     )
-          # }
           ret
         }
       }
@@ -375,7 +302,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
     output$data_all_summary <- DT::renderDT({
       req(data_all_sessions())
       data_all_sessions() %>% summarise_data()
-    })
+    }, options = list(pageLength = 24))
 
     # Filtered data ----------------
     data_filtered <- shiny::reactive({
@@ -388,16 +315,11 @@ experiment4_monitor <- function(battery_folder_1 = "",
     })
     output$data_filtered <- DT::renderDT({
       data_filtered()
-    })
+    }, options = list(pageLength = 50))
     output$data_filtered_summary <- DT::renderDT({
       req(data_filtered())
       data_filtered() %>% summarise_data()
-    })
-
-    # output$testo <- shiny::renderPrint({
-    #   req(dat_list())
-    #   str(dat_list())
-    # })
+    }, options = list(pageLength = 24))
 
     output$psychtestr_session1 <- DT::renderDataTable({
       req(dat_list())
@@ -449,29 +371,6 @@ experiment4_monitor <- function(battery_folder_1 = "",
       }
     )
 
-    ## filter selection -----------
-    # shiny::observeEvent(
-    #   input$apply_filters, {
-    #     shiny::validate(
-    #       shiny::need(!is.null(input$selected_sessions), "Select at least one session"),
-    #       shiny::need(!is.null(input$selected_designs), "Select at least one design"),
-    #       shiny::need(!is.null(input$selected_languages), "Select at least one language")
-    #     )
-    #   }
-    # )
-    ### current filter text output -----
-    # output$sel_sessions <- shiny::renderPrint({
-    #   input$apply_filters
-    #   shiny::isolate(print(input$selected_sessions))
-    # })
-    # output$sel_designs <- shiny::renderPrint({
-    #   input$apply_filters
-    #   shiny::isolate(print(input$selected_designs))
-    # })
-    # output$sel_languages <- shiny::renderPrint({
-    #   input$apply_filters
-    #   shiny::isolate(print(input$selected_languages))
-    # })
   }
   shiny::shinyApp(ui = ui, server = server)
 }
@@ -676,6 +575,6 @@ summarise_data <- function(data) {
     dplyr::summarise(
       .by = c(language, exp_design, exp_session),
       N = dplyr::n(),
-      `probably complete and valid` = sum(completed)
+      `probably complete and valid` = sum(completed, na.rm = TRUE)
     )
 }
