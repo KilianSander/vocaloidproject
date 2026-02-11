@@ -3,7 +3,7 @@
 #' `r lifecycle::badge("experimental")`
 #' This function calls a simple monitor app for Experiment 4 as defined by
 #' [experiment4()].
-#' The function assumed that it is running on the same shiny server as
+#' The function assumes that it is running on the same shiny server as
 #' [experiment4()].
 #'
 #' @param battery_folder_1 (character scalar) This is the name of the folder
