@@ -1,6 +1,6 @@
 Package: vocaloidproject
 Title: Package for a research project on vocaloid music
-Version: 0.1.0.9000
+Version: 0.2.0
 Authors@R: 
     person("Kilian", "Sander", , "kilian.sander@hmtm-hannover.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3770-7483"))
