@@ -24,11 +24,6 @@
 #' @param sosci_data_url (`NULL` or character scalar) if non-`NULL`, a URL to
 #' load data from (provided by SoSci Survey).
 #'
-#' @param starting_date (`NULL` or character scalar) To get data from a
-#' specific point in time onwards, specify a date in the format `YYYY-MM-DD`
-#' (e.g., to exclude piloting data).
-#' Set to `NULL` to get all data.
-#'
 #' @param data_pw (character scalar) `r lifecycle::badge("experimental")`
 #' set a password for data access.
 #' Caution: This is a very simple implementation.
@@ -37,22 +32,21 @@ experiment4_monitor <- function(battery_folder_1 = "",
                                 battery_folder_2 = "",
                                 battery_folder_3 = "",
                                 sosci_data_url = NULL,
-                                starting_date = "2026-01-28",
                                 data_pw = "supersecretpassword") {
   # argument checks -----
   stopifnot(is.scalar.character(battery_folder_1),
             is.scalar.character(battery_folder_2),
             is.scalar.character(battery_folder_3),
             is.scalar.character(sosci_data_url) | is.null(sosci_data_url),
-            is.scalar.character(starting_date) | is.null(starting_date),
+            # is.scalar.character(starting_date) | is.null(starting_date),
             is.scalar.character(data_pw))
   # pre processing -----
   path1 <- file.path("..", battery_folder_1, "output", "results")
   path2 <- file.path("..", battery_folder_2, "output", "results")
   path3 <- file.path("..", battery_folder_3, "output", "results")
-  if (!is.null(starting_date)) {
-    starting_date <- as.POSIXct(starting_date)
-  }
+  # if (!is.null(starting_date)) {
+  #   starting_date <- as.POSIXct(starting_date)
+  # }
   # ui ---------------------
   ui <- bslib::page_navbar(
     title = "Vocaloid Project Experiment 4 Data Monitor",
@@ -65,14 +59,38 @@ experiment4_monitor <- function(battery_folder_1 = "",
         "get_data",
         "Get Data From Server!"
       ),
-      shiny::downloadButton(
-        "downloadData",
-        "Download data to local machine"
+      shiny::selectInput(
+        inputId = "selected_sessions",
+        label = "Include Sessions",
+        choices = stats::setNames(1:3, paste0("Session ", 1:3)),
+        multiple = TRUE,
+        selected = 1:3
+      ),
+      shiny::selectInput(
+        inputId = "selected_designs",
+        label = "Include Designs",
+        choices = letters[1:4] %>% stats::setNames(., paste0("Design ", .)),
+        multiple = TRUE,
+        selected = letters[1:4]
+      ),
+      shiny::dateInput(
+        inputId = "starting_date",
+        label = "Use data starting from",
+        value = "2026-02-01",
+        min = "2026-01-01"
       )
+      # shiny::downloadButton(
+      #   "downloadData",
+      #   "Download data to local machine"
+      # )
     ),
     bslib::nav_panel(
       title = "Summary",
-      shiny::verbatimTextOutput("testo")
+      bslib::layout_columns(
+        shiny::verbatimTextOutput("testo"),
+        ### summary goes here ---------------------------
+        DT::DTOutput("data_session1")
+      )
     ),
     bslib::nav_panel(
       title = "psychTestR Session 1",
@@ -189,8 +207,11 @@ experiment4_monitor <- function(battery_folder_1 = "",
             sosci_data <-
               sosci_api_import(sosci_data_url) %>%
               dplyr::filter(session %in% c(13, 23, 33)) %>%
-              dplyr::mutate(session = session %>% stringr::str_sub(1, 1)) %>%
+              dplyr::mutate(
+                session = as.numeric(stringr::str_sub(session, 1, 1))
+              ) %>%
               dplyr::select(!dplyr::matches(remove_times)) %>%
+              dplyr::select(!dplyr::matches(c("SL0[1-9]_[0-9]{2}"))) %>%
               dplyr::rename_with(
                 .fn = function(x) {
                   stim_times[x]
@@ -202,6 +223,39 @@ experiment4_monitor <- function(battery_folder_1 = "",
                   question_times[x]
                 },
                 .cols = dplyr::all_of(names(question_times))
+              ) %>%
+              dplyr::rename_with(
+                .cols = dplyr::matches("[AV][0-9]{3}"),
+                .fn = function(x) {
+                  paste0(
+                    c(A = "arousal", V = "valence")[stringr::str_sub(x, 1, 1)],
+                    "_", stringr::str_sub(x, 2, 4)
+                  )
+                }
+              ) %>%
+              dplyr::rename_with(
+                .cols = dplyr::matches("[EL][0-9]{3}_[0-9]{2}"),
+                .fn = function(x) {
+                  el <- stringr::str_sub(x, 1, 1)
+                  stim <- stringr::str_sub(x, 2, 4)
+                  item <- stringr::str_sub(x, 7, 7) %>% as.numeric()
+                  paste0(
+                    purrr::map2_chr(
+                      el, item,
+                      function(EL, ITEM) {
+                        list(
+                          E = c(
+                            "anger", "melancholy", "rebelliousness",
+                            "peacefulness", "inlove", "joy",
+                            "despair", "playfulness", "emptiness"
+                          ),
+                          L = c("intensity", "liking", "familiarity")
+                        )[[EL]][[ITEM]]
+                      }
+                    ),
+                    "_", stim
+                  )
+                }
               )
 
           }
@@ -227,6 +281,32 @@ experiment4_monitor <- function(battery_folder_1 = "",
         }
       }
     )
+
+    data_session1 <- shiny::reactive({
+      req(dat_list())
+      tmp <-
+        dat_list()[["psychtestr_session1"]] %>%
+        filter_date(date = input[["starting_date"]])
+      if (!is.null(sosci_data_url)) {
+        tmp <-
+          tmp %>%
+          dplyr::left_join(
+            y = dat_list()[["sosci_data"]],
+            by = dplyr::join_by(
+              p_id == REF,
+              exp_session == session,
+              exp_design == design,
+              language == language
+            )
+          )
+      }
+      tmp %>%
+        filter_designs(designs = input[["selected_designs"]]) %>%
+        filter_sessions(sessions = input[["selected_sessions"]])
+    })
+    output$data_session1 <- DT::renderDT({
+      data_session1()
+    })
 
     output$testo <- shiny::renderPrint({
       req(dat_list())
@@ -469,3 +549,23 @@ remove_times <-
       )
     )
   )
+
+filter_date <- function(data,
+                        date = "2026-01-01",
+                        date_column = "time_started") {
+  date <- as.POSIXct(date)
+  data %>%
+    dplyr::filter(.data[[date_column]] >= date)
+}
+filter_sessions <- function(data,
+                            sessions = 1:3,
+                            session_column = "exp_session") {
+  data %>%
+    dplyr::filter(.data[[session_column]] %in% sessions)
+}
+filter_designs <- function(data,
+                           designs = letters[1:4],
+                           design_column = "exp_design") {
+  data %>%
+    dplyr::filter(.data[[design_column]] %in% designs)
+}
