@@ -60,11 +60,11 @@ experiment4_monitor <- function(battery_folder_1 = "",
         "Get Data From Server!"
       ),
       shiny::selectInput(
-        inputId = "selected_sessions",
-        label = "Include Sessions",
-        choices = stats::setNames(1:3, paste0("Session ", 1:3)),
+        inputId = "selected_languages",
+        label = "Include Languages",
+        choices = c("German" = "de_f", "Japanese" = "ja"),
         multiple = TRUE,
-        selected = 1:3
+        selected = c("de_f", "ja")
       ),
       shiny::selectInput(
         inputId = "selected_designs",
@@ -73,39 +73,72 @@ experiment4_monitor <- function(battery_folder_1 = "",
         multiple = TRUE,
         selected = letters[1:4]
       ),
+      shiny::selectInput(
+        inputId = "selected_sessions",
+        label = "Include Sessions",
+        choices = stats::setNames(1:3, paste0("Session ", 1:3)),
+        multiple = TRUE,
+        selected = 1:3
+      ),
       shiny::dateInput(
         inputId = "starting_date",
         label = "Use data starting from",
         value = "2026-02-01",
         min = "2026-01-01"
+      ),
+      shiny::tabsetPanel(
+        id = "download_panel",
+        type = "hidden",
+        selected = "NoDownload",
+        shiny::tabPanel(
+          "Downloads",
+          shiny::downloadButton(
+            "downloadData",
+            "Download complete data set"
+          ),
+          shiny::downloadButton(
+            "downloadDataFiltered",
+            "Download filtered data set"
+          )
+        ),
+        shiny::tabPanel("NoDownload")
       )
-      # shiny::downloadButton(
-      #   "downloadData",
-      #   "Download data to local machine"
-      # )
     ),
     bslib::nav_panel(
       title = "Summary",
       bslib::layout_columns(
-        shiny::verbatimTextOutput("testo"),
+        # shiny::verbatimTextOutput("testo"),
         ### summary goes here ---------------------------
-        DT::DTOutput("data_session1")
+        bslib::card(
+          bslib::card_title("Summary data set in total"),
+          DT::DTOutput("data_all_summary")
+        ),
+        bslib::card(
+          bslib::card_title("Summary filtered data"),
+          DT::DTOutput("data_filtered_summary")
+        )
+      ),
+      bslib::layout_columns(
+        bslib::card(
+          bslib::card_title("Filtered Data"),
+          DT::DTOutput("data_filtered")
+        )
       )
     ),
     bslib::nav_panel(
-      title = "psychTestR Session 1",
+      title = "Raw data psychTestR Session 1",
       DT::dataTableOutput("psychtestr_session1")
     ),
     bslib::nav_panel(
-      title = "psychTestR Session 2",
+      title = "Raw data psychTestR Session 2",
       DT::dataTableOutput("psychtestr_session2")
     ),
     bslib::nav_panel(
-      title = "psychTestR Session 3",
+      title = "Raw data psychTestR Session 3",
       DT::dataTableOutput("psychtestr_session3")
     ),
     bslib::nav_panel(
-      title = "SoSci Survey All Sessions",
+      title = "Raw data SoSci Survey All Sessions",
       shiny::uiOutput("sosci_all_data")
     ),
     # shiny::h5("Filters"),
@@ -191,7 +224,9 @@ experiment4_monitor <- function(battery_folder_1 = "",
           )
         } else {
           message("correct password\n")
-
+          shiny::updateTabsetPanel(
+            inputId = "download_panel", selected = "Downloads"
+          )
         }
       }
     )
@@ -212,6 +247,11 @@ experiment4_monitor <- function(battery_folder_1 = "",
               ) %>%
               dplyr::select(!dplyr::matches(remove_times)) %>%
               dplyr::select(!dplyr::matches(c("SL0[1-9]_[0-9]{2}"))) %>%
+              dplyr::select(
+                !dplyr::matches(
+                  "(jpop|kpop|vocaloid|hatsunemiku)_(liking|frequency)"
+                )
+              ) %>%
               dplyr::rename_with(
                 .fn = function(x) {
                   stim_times[x]
@@ -230,6 +270,21 @@ experiment4_monitor <- function(battery_folder_1 = "",
                   paste0(
                     c(A = "arousal", V = "valence")[stringr::str_sub(x, 1, 1)],
                     "_", stringr::str_sub(x, 2, 4)
+                  )
+                }
+              ) %>%
+              dplyr::rename_with(
+                .cols = dplyr::matches("SA05_0[1-8]"),
+                .fn = function(x) {
+                  x <- stringr::str_sub(x, 7, 7) %>% as.numeric()
+                  style <- dplyr::case_when(
+                    x < 3 ~ "kpop",
+                    x < 5 ~ "jpop",
+                    x < 7 ~ "vocaloidmusic",
+                    x > 6 ~ "hatsunemiku"
+                  )
+                  paste0(
+                    style, "_", ifelse(x %% 2, "frequency", "liking")
                   )
                 }
               ) %>%
@@ -282,16 +337,21 @@ experiment4_monitor <- function(battery_folder_1 = "",
       }
     )
 
-    data_session1 <- shiny::reactive({
+    # Merge data ------------
+    data_all_sessions <- shiny::reactive({
       req(dat_list())
       tmp <-
-        dat_list()[["psychtestr_session1"]] %>%
-        filter_date(date = input[["starting_date"]])
+        dat_list()[paste0("psychtestr_session", 1:3)] %>%
+        purrr::list_rbind() %>%
+        dplyr::rename(
+          psychtestr_complete = complete
+        )
       if (!is.null(sosci_data_url)) {
         tmp <-
           tmp %>%
           dplyr::left_join(
-            y = dat_list()[["sosci_data"]],
+            y = dat_list()[["sosci_data"]] %>%
+              dplyr::select(!c(time_started, FINISHED, Q_VIEWER, TIME_SUM)),
             by = dplyr::join_by(
               p_id == REF,
               exp_session == session,
@@ -300,18 +360,34 @@ experiment4_monitor <- function(battery_folder_1 = "",
             )
           )
       }
-      tmp %>%
-        filter_designs(designs = input[["selected_designs"]]) %>%
-        filter_sessions(sessions = input[["selected_sessions"]])
+      tmp
     })
-    output$data_session1 <- DT::renderDT({
-      data_session1()
+    output$data_all_summary <- DT::renderDT({
+      req(data_all_sessions())
+      data_all_sessions() %>% summarise_data()
     })
 
-    output$testo <- shiny::renderPrint({
-      req(dat_list())
-      str(dat_list())
+    # Filtered data ----------------
+    data_filtered <- shiny::reactive({
+      req(data_all_sessions())
+      data_all_sessions() %>%
+        filter_languages(languages = input[["selected_languages"]]) %>%
+        filter_designs(designs = input[["selected_designs"]]) %>%
+        filter_sessions(sessions = input[["selected_sessions"]]) %>%
+        filter_date(date = input[["starting_date"]])
     })
+    output$data_filtered <- DT::renderDT({
+      data_filtered()
+    })
+    output$data_filtered_summary <- DT::renderDT({
+      req(data_filtered())
+      data_filtered() %>% summarise_data()
+    })
+
+    # output$testo <- shiny::renderPrint({
+    #   req(dat_list())
+    #   str(dat_list())
+    # })
 
     output$psychtestr_session1 <- DT::renderDataTable({
       req(dat_list())
@@ -348,8 +424,24 @@ experiment4_monitor <- function(battery_folder_1 = "",
         )
       },
       content = function(file) {
-        req(dat_list())
-        write.csv(dat_list()[[1]], file = file, row.names = F)
+        req(data_all_sessions())
+        write.csv(data_all_sessions(), file = file, row.names = F)
+      }
+    )
+    output$downloadDataFiltered <- shiny::downloadHandler(
+      filename = function() {
+        paste0(
+          "vocaloid-exp4-data-",
+          stringr::str_replace_all(
+            as.character(Sys.time()),
+            c(":" = "-", " " = "_")
+          ),
+          "-FILTERED.csv"
+        )
+      },
+      content = function(file) {
+        req(data_filtered())
+        write.csv(data_filtered(), file = file, row.names = F)
       }
     )
 
@@ -568,4 +660,18 @@ filter_designs <- function(data,
                            design_column = "exp_design") {
   data %>%
     dplyr::filter(.data[[design_column]] %in% designs)
+}
+filter_languages <- function(data,
+                             languages = c("de_f", "ja"),
+                             language_column = "language") {
+  data %>%
+    dplyr::filter(.data[[language_column]] %in% languages)
+}
+summarise_data <- function(data) {
+  data %>%
+    dplyr::summarise(
+      .by = c(language, exp_design, exp_session),
+      N = dplyr::n(),
+      `probably complete and valid` = sum(completed)
+    )
 }
