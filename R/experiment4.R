@@ -310,15 +310,9 @@ experiment4_every_session <- function(dict = vocaloidproject::vocaloidproject_di
       emotional_baseline_single_pages(
         dict = dict
       ),
-      # loudness HALT, no HP/LS check
-      HALT::HALT(
-        config = HALT::make_config(
-          volume_level = "-20.0 LUFS",
-          loop_exclude = 5L,
-          channel_check = FALSE,
-          screening_parts = FALSE,
-          frequency_check = FALSE
-        ),
+      # no HALT, just ask for playback device
+      psychTestR::new_results_section("HALT"),
+      HALT::simple_device_page(
         dict = dict
       ),
       psychTestR::elt_save_results_to_disk(complete = TRUE)

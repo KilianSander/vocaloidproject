@@ -293,9 +293,29 @@ sosci_api_import <- function(sosci_data_url) {
 
 parse_HALT_selfreport_device <- function(halt_result) {
   if (!is.null(halt_result)) {
-    data.frame(
-      playback_device = halt_result[["device_selfreport"]][["answer"]][[1]]
-    )
+    if (!is.null(halt_result[["playback_device"]][[1]])) {
+      data.frame(
+        playback_device =
+          c(
+            "headphones",
+            "laptop_speakers",
+            "loudspeakers",
+            "smartphone_speakers",
+            "tablet_speakers",
+            "monitor_speakers"
+          )[as.integer(halt_result[["playback_device"]][[1]])]
+      )
+    } else {
+      if (!is.null(halt_result[["device_selfreport"]][["answer"]][[1]])) {
+        data.frame(
+          playback_device = halt_result[["device_selfreport"]][["answer"]][[1]]
+        )
+      } else {
+        data.frame(
+          playback_device = NA_character_
+        )
+      }
+    }
   } else {
     data.frame(
       playback_device = NA_character_
