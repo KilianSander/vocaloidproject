@@ -16,7 +16,7 @@ Imports:
     DT,
     GAR,
     ggplot2,
-    HALT (>= 0.12.2),
+    HALT (>= 0.12.4),
     lifecycle,
     magrittr,
     methods,
