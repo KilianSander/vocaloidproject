@@ -787,7 +787,7 @@ consent <-
       ),
       de_f = paste0(
         "<p>Vielen Dank, dass Sie sich bereit erklärt haben, an dieser Studie teilzunehmen.</p>",
-        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>drei Sitzungen</b>  absolvieren, die <b>jeweils ca. 45 min</b>  dauerns ",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>drei Sitzungen</b>  absolvieren, die <b>jeweils ca. 45 min</b>  dauern. ",
         "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 40 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
         "Es ist wichtig, dass Sie alle Musikausschnitte aufmerksam anhören. ",
         "Sollten Sie das nicht machen, wird das Experiment abgebrochen und Sie werden zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
