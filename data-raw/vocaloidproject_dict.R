@@ -771,7 +771,7 @@ consent <-
       key = "consent_text_experiment4",
       de = paste0(
         "<p>Vielen Dank, dass Du Dich bereit erklärt hast, an dieser Studie teilzunehmen.</p>",
-        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür wirst Du <b>drei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b> dauern sollten. ",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür wirst Du <b>drei Sitzungen</b>  absolvieren, die <b>jeweils ca. 45 min</b> dauern. ",
         "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 40 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
         "Es ist wichtig, dass Du alle Musikausschnitte aufmerksam anhörst. ",
         "Solltest Du das nicht machen, wird das Experiment abgebrochen und Du wirst zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
@@ -787,7 +787,7 @@ consent <-
       ),
       de_f = paste0(
         "<p>Vielen Dank, dass Sie sich bereit erklärt haben, an dieser Studie teilzunehmen.</p>",
-        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>drei Sitzungen</b>  absolvieren, die <b>jeweils nicht länger als 30&ndash;60 min</b>  dauern sollten. ",
+        "<p>Mit dieser Studie möchten wir den emotionalen Ausdruck japanischer Popmusik untersuchen. Hierfür werden Sie <b>drei Sitzungen</b>  absolvieren, die <b>jeweils ca. 45 min</b>  dauerns ",
         "Jede Sitzung beginnt mit Fragen zu Ihrer Person und Ihren musikalischen Erfahrungen. Anschließend folgt die Bewertung von 40 Musikausschnitten. Dabei gibt es keine richtigen oder falschen Antworten. ",
         "Es ist wichtig, dass Sie alle Musikausschnitte aufmerksam anhören. ",
         "Sollten Sie das nicht machen, wird das Experiment abgebrochen und Sie werden zu Prolific zurückgeleitet und von der Studie ausgeschlossen (<q>rejection</q>).</p>",
@@ -803,7 +803,7 @@ consent <-
       ),
       en = paste0(
         "<p>Thank you very much for agreeing to participate in this study.</p>",
-        "<p>The aim of this study is to examine the emotional expression of Japanese pop music. You will complete <b>three sessions</b>, each of which should take <b>no longer than 30&ndash;60 minutes<b>. ",
+        "<p>The aim of this study is to examine the emotional expression of Japanese pop music. You will complete <b>three sessions</b>, each of which should take <b>about 45 minutes<b>. ",
         "Each session will begin with questions about yourself and your musical experiences. This will be followed by the evaluation of 40 music excerpts. There are no right or wrong answers.",
         "It is important that you listen carefully to all music excerpts. ",
         "If you do not do so, the experiment will be terminated and you will be redirected back to Prolific and you will be redirected back to Prolific and excluded form the study (<q>rejection</q>).</p>",
