@@ -442,8 +442,8 @@ general_dict_raw <-
       "ENTER_ID", "IDを入力してください", # deepl & clc
       "ENTER_ID_FORMAL", "IDを入力してください", # deepl & clc
       "PROBLEMS_INFO_1", "", # clc
-      "PROBLEMS_INFO_2", "問題がある場合は、", # clc
-      "PROBLEMS_INFO_3", "に、このページへのリンクを記載したメールをお送りください。", # clc
+      "PROBLEMS_INFO_2", "このページに問題が発生した場合は、ページのリンクと問題の内容を明記の上、", # clc
+      "PROBLEMS_INFO_3", "までメールをお送りください。", # clc
     )
   )
 
