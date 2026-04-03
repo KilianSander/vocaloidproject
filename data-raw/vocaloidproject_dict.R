@@ -470,9 +470,9 @@ DEG_dict_raw <-
       "TDEG_0004_CHOICE2", "男性", # deepl & clc
       "TDEG_0004_CHOICE3", "その他", # deepl
       "TDEG_0004_CHOICE4", "回答しない", # clc
-      "TDEG_0004_PROMPT", "あなたの性別を教えてください。", # deepl & clc
-      "TDEG_0008_PROMPT", "あなたの母語を教えてください", # clc
-      "TDEG_0010_PROMPT", "ご誕生年月を教えてください（西暦）" # clc
+      "TDEG_0004_PROMPT", "性別をお教えください。", # deepl & clc
+      "TDEG_0008_PROMPT", "母語をお教えください。", # clc
+      "TDEG_0010_PROMPT", "お生まれの年月をお教えください。" # clc
     )
   )
 
