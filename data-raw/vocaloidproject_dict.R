@@ -535,14 +535,13 @@ info_redirect <-
         Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.
         </p><p>Zuerst ein Beispiel.</p>",
       ja = "<p>次は音楽の部分です。</p><p>
-        60 の抜粋された短編楽節を聴取し、評価してください。
-        特に興味があるのは、楽節で表現されている感情、例えば怒り、喜び、恋などです。
-        正解や不正解はないので、ご安心ください。
-        知りたいのは、あなたの意見です。
-        音楽によって表現されている感情と、ご自身の感情には違いがあることにご留意ください。
-        例えば、ある曲は大変悲しい曲であるにもかかわらず、それを聴いて気分が良く、満足感を感じる場合もあります。
-        評価していただきたいのは、音楽そのものであり、ご自身の感情ではありません。
-        </p><p>まず、例を挙げましょう。</p>",
+        合計40の楽曲の抜粋をお聴きいただき、それぞれ評価してください。
+        ここでお聞きしたいのは、音楽の中で表現されている感情、例えば怒り、喜び、恋愛感情などです。
+        正解や不正解はありませんので、ご意見をお聞かせください。
+        また、曲によって表現されている感情と、ご自身が感じる感情は異なる場合があることにご留意ください。
+        例えば、ある曲がとても悲しい曲であっても、それを聴いて気分が良く、満足感を覚える場合もあります。
+        評価していただきたいのは、ご自身の感情ではなく、音楽そのものです。
+        </p><p>それではまず、例を聴いてみましょう。</p>",
       en = "info example rating"
     )
   )
@@ -688,8 +687,8 @@ consent <-
     "SESSION1OF3", "Dies ist Sitzung 1 von 3.", "This is Session 1 of 3.", "今回は第１回目のセッション（全３回）です。", # clc
     "SESSION2OF3", "Dies ist Sitzung 2 von 3.", "This is Session 2 of 3.", "今回は第2回目のセッション（全３回）です。", # clc
     "SESSION3OF3", "Dies ist Sitzung 3 von 3.", "This is Session 3 of 3.", "今回は第3回目のセッション（全３回）です。", # clc
-    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "これは全2回中の第1回です。", # clc
-    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "これは全2回中の第２回です。" # clc
+    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "今回は第１回目のセッション（全2回）です。", # clc
+    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "今回は第2回目のセッション（全2回）です。" # clc
   ) |>
   dplyr::mutate(
     de_f = de
