@@ -84,8 +84,8 @@ experiment4_monitor <- function(battery_folder_1 = "",
       shiny::dateInput(
         inputId = "starting_date",
         label = "Use data starting from",
-        value = "2026-02-01",
-        min = "2026-01-01"
+        value = "2026-04-01",
+        min = "2026-04-01"
       ),
       shiny::tabsetPanel(
         id = "download_panel",
