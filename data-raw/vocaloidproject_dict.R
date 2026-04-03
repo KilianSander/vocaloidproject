@@ -2,13 +2,13 @@
 educational_degrees <-
   tibble::tribble(
     ~key, ~de_f, ~ja,
-    "EDU_CHOICE1", "Berufsausbildung/Fachhochschule/Fachoberschule", "準学士/高度専門士/専門士",
+    "EDU_CHOICE1", "Berufsausbildung/Fachhochschule/Fachoberschule", "準学士・高度専門士・専門士",
     "EDU_CHOICE2", "Abitur (HS)", "高卒",
     "EDU_CHOICE3", "Fachhochschuldiplom", "短期大学士",
     "EDU_CHOICE4", "Bachelor (Uni)", "学士",
     "EDU_CHOICE5", "Master", "修士",
     "EDU_CHOICE6", "Promotion/PhD", "博士",
-    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "これまでに取得した最高学歴は何ですか" # clc
+    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴をお教えください。" # clc
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace("Ihr", "Dein")
@@ -576,7 +576,7 @@ emotional_baseline <-
     ),
     de = de_f |> stringr::str_replace("haben Sie", "hast Du"),
     ja = c( # clc
-      "無し／まったくない", "", "", "", "非常に",
+      "無し・全くない", "", "", "", "非常に",
       "この24時間で、次のような感情をどの程度感じたり笑ったりしましたか",
       "**怒り**",
       "**心配**",
@@ -615,11 +615,19 @@ emotional_baseline <-
       " in the last 24 hours?"
     ),
     ja = paste0( # clc
-      "この24時間で、どれくらい",
+      "過去24時間に、",
       c(
-        paste0("**", c("怒りを感じ", "心配し", "悲しみを感じ", "幸福を感じ", "喜びを感じ", "笑い"), "**")
-      ),
-      "ましたか"
+        paste0(
+          "**",
+            c("怒り", # ANGER
+              "不安", # WORRY
+              "悲しみ", # SADNESS
+              "幸福感", # HAPPINESS
+              "喜び"), # JOY
+          "**をどの程度感じましたか。"
+        ),
+        "どの程度**笑いました**か。"
+      )
     )
   ) |>
   tibble::add_case(
@@ -628,7 +636,7 @@ emotional_baseline <-
       de = c("1 gar nicht", 2:4, "5 sehr"),
       de_f = de,
       en = c("1 not at all", 2:4, "5 very much"),
-      ja = c("1 無し／まったくない", 2:4, "5 非常に") # clc
+      ja = c("1 無し・全くない", 2:4, "5 非常に") # clc
     )
   ) |>
   tibble::add_case(
@@ -648,10 +656,10 @@ field <-
     "Was ist Ihr Studienfach bzw. Ihr berfuliches Fachgebiet?",
     "Was ist Dein Studienfach bzw. Dein berfuliches Fachgebiet?",
     "What is your field of study or your professional field?",
-    "専攻・専門分野は何ですか？", # clc
+    "専攻・専門分野をお教えください。", # clc
     "PROFESSIONALFIELDSTUDY_CHOICE1", "Psychologie", "Psychologie", "Psychology", "心理学",
-    "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽・音楽家",
-    "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenschaft", "Musicology", "音楽学",
+    "PROFESSIONALFIELDSTUDY_CHOICE2", "Musik / Musiker*in", "Musik / Musiker*in", "Music / Musician", "音楽演奏・創作",
+    "PROFESSIONALFIELDSTUDY_CHOICE3", "Musikwissenschaft", "Musikwissenschaft", "Musicology", "音楽学・音楽文化",
     "PROFESSIONALFIELDSTUDY_CHOICE4", "Tontechnik", "Tontechnik", "Sound engineering", "音響工学",
     "PROFESSIONALFIELDSTUDY_CHOICE5", "Andere musikbezogene Fächer", "Andere musikbezogene Fächer", "Other music-related subjects", "他の音楽関係専攻",
     "PROFESSIONALFIELDSTUDY_CHOICE6", "Anderes", "Anderes", "Other", "その他"
@@ -970,7 +978,7 @@ landscape <-
     "Wenn Sie mit einem Mobilgerät teilnehmen, benutzen Sie dieses bitte im Querformat.",
     "Wenn Du mit einem Mobilgerät teilnimmst, benutze dieses bitte im Querformat.",
     "If you are participating with a mobile device, please use it in landscape mode.",
-    "スマホやタブレットなどで参加する場合、画面を横向きに回転してください。" # clc
+    "スマホやタブレットなどで参加する場合、画面を横向きにしてからお進みください。" # clc
   )
 
 vocaloidproject_dict_raw <-
