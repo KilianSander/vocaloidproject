@@ -301,7 +301,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
     })
     output$data_all_summary <- DT::renderDT({
       req(data_all_sessions())
-      data_all_sessions() %>% summarise_data()
+      data_all_sessions() %>% summarise_data(with_external = !is.null(sosci_data_url))
     }, options = list(pageLength = 24))
 
     # Filtered data ----------------
@@ -318,7 +318,7 @@ experiment4_monitor <- function(battery_folder_1 = "",
     }, options = list(pageLength = 50))
     output$data_filtered_summary <- DT::renderDT({
       req(data_filtered())
-      data_filtered() %>% summarise_data()
+      data_filtered() %>% summarise_data(with_external = !is.null(sosci_data_url))
     }, options = list(pageLength = 24))
 
     output$psychtestr_session1 <- DT::renderDataTable({
@@ -576,11 +576,23 @@ filter_languages <- function(data,
   data %>%
     dplyr::filter(.data[[language_column]] %in% languages)
 }
-summarise_data <- function(data) {
-  data %>%
-    dplyr::summarise(
-      .by = c(language, exp_design, exp_session),
-      N = dplyr::n(),
-      `probably complete and valid` = sum(completed, na.rm = TRUE)
-    )
+summarise_data <- function(data, with_external = TRUE) {
+  if(with_external) {
+    ret <-
+      data %>%
+      dplyr::summarise(
+        .by = c(language, exp_design, exp_session),
+        N = dplyr::n(),
+        `probably complete and valid` = sum(completed, na.rm = TRUE)
+      )
+  } else {
+    ret <-
+      data %>%
+      dplyr::summarise(
+        .by = c(language, exp_design, exp_session),
+        N = dplyr::n(),
+        `completed psychTestR` = sum(psychTestR_complete, na.rm = TRUE)
+      )
+  }
+  return(ret)
 }
