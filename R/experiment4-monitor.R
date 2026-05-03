@@ -591,7 +591,7 @@ summarise_data <- function(data, with_external = TRUE) {
       dplyr::summarise(
         .by = c(language, exp_design, exp_session),
         N = dplyr::n(),
-        `completed psychTestR` = sum(psychTestR_complete, na.rm = TRUE)
+        `completed psychTestR` = sum(psychtestr_complete, na.rm = TRUE)
       )
   }
   return(ret)
