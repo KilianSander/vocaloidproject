@@ -408,6 +408,12 @@ read_experiment4_data <- function(results_dir) {
 
           session_data$exp_session <- exp_session
           session_data$exp_design <- exp_design
+          session_data$prolific_pid <-
+            ifelse(
+              purrr::pluck_exists(x, "results", "prolific_pid"),
+              purrr::pluck(x, "results", "prolific_pid"),
+              NA_character_
+            )
           session_data$consent <-
             ifelse(
               !is.null(x[["results"]][["consent"]]),

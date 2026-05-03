@@ -96,6 +96,17 @@ experiment4 <- function(title = "",
                 label = "uses",
                 value = session_number
               )
+              # get prolific p_id from url params
+              url_params <- psychTestR::get_url_params(state)
+              psychTestR::save_result(
+                place = state,
+                label = "prolific_pid",
+                value = ifelse(
+                  purrr::pluck_exists(url_params, "PROLIFIC_PID"),
+                  purrr::pluck(url_params, "PROLIFIC_PID"),
+                  NA
+                )
+              )
             },
             next_elt = TRUE
           ),
@@ -132,6 +143,17 @@ experiment4 <- function(title = "",
                 label = "uses",
                 value = session_number
               )
+              # get prolific p_id from url params
+              url_params <- psychTestR::get_url_params(state)
+              psychTestR::save_result(
+                place = state,
+                label = "prolific_pid",
+                value = ifelse(
+                  purrr::pluck_exists(url_params, "PROLIFIC_PID"),
+                  purrr::pluck(url_params, "PROLIFIC_PID"),
+                  NA
+                )
+              )
             },
             next_elt = TRUE
           ),
@@ -165,6 +187,17 @@ experiment4 <- function(title = "",
                 place = state,
                 label = "uses",
                 value = session_number
+              )
+              # get prolific p_id from url params
+              url_params <- psychTestR::get_url_params(state)
+              psychTestR::save_result(
+                place = state,
+                label = "prolific_pid",
+                value = ifelse(
+                  purrr::pluck_exists(url_params, "PROLIFIC_PID"),
+                  purrr::pluck(url_params, "PROLIFIC_PID"),
+                  NA
+                )
               )
             },
             next_elt = TRUE
