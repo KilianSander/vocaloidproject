@@ -125,8 +125,8 @@ voice_rating_monitor <- function(battery_folder_name = "voice-rating",
       shiny::downloadHandler(
         filename = paste0(
           "voice-rating-data-",
-          Sys.time() |>
-            as.character() |>
+          Sys.time() %>%
+            as.character() %>%
             stringr::str_replace_all(c(":" = "-", " " = "_")),
           ".csv"
         ),
