@@ -69,6 +69,7 @@ consent_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
                              no_consent_back_link = "%s",
                              back_link_key = "return_to_prolific",
                              back_link_with_p_id = FALSE,
+                             session_number = 1,
                              debug = FALSE) {
   stopifnot(is.scalar.character(no_consent_back_link),
             is.scalar.logical(debug))
@@ -82,16 +83,45 @@ consent_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
       # browser()
       consent <-
         as.list(results)$results$consent
+      if (consent == "no_consent") {
+      url_params <- psychTestR::get_url_params(state)
+        psychTestR::save_result(
+          place = state,
+          label = "udes",
+          value = ifelse(
+            purrr::pluck_exists(url_params, "udes"),
+            purrr::pluck(url_params, "udes"),
+            NA
+          )
+        )
+        psychTestR::save_result(
+          place = state,
+          label = "uses",
+          value = session_number
+        )
+        psychTestR::save_result(
+          place = state,
+          label = "prolific_pid",
+          value = ifelse(
+            purrr::pluck_exists(url_params, "PROLIFIC_PID"),
+            purrr::pluck(url_params, "PROLIFIC_PID"),
+            NA
+          )
+        )
+      }
       consent == "no_consent"
     },
-    logic = last_page_redirect(
-      redirect_heading = redirect_heading,
-      redirect_paragraph = redirect_paragraph,
-      dict = dict,
-      back_link = no_consent_back_link,
-      back_link_key = back_link_key,
-      back_link_with_p_id = back_link_with_p_id,
-      debug = debug
+    logic = psychTestR::join(
+      psychTestR::elt_save_results_to_disk(complete = TRUE),
+      last_page_redirect(
+        redirect_heading = redirect_heading,
+        redirect_paragraph = redirect_paragraph,
+        dict = dict,
+        back_link = no_consent_back_link,
+        back_link_key = back_link_key,
+        back_link_with_p_id = back_link_with_p_id,
+        debug = debug
+      )
     )
   )
 }
@@ -106,6 +136,7 @@ consent_redirect <- function(dict = vocaloidproject::vocaloidproject_dict,
 consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_dict,
                                         no_consent_back_link = "%s",
                                         back_link_with_p_id = FALSE,
+                                        session_number = 1,
                                         debug = FALSE) {
 
   stopifnot(is.scalar.character(no_consent_back_link),
@@ -126,6 +157,7 @@ consent_page_international1 <- function(dict = vocaloidproject::vocaloidproject_
         no_consent_back_link = no_consent_back_link,
         back_link_key = "return_to_prolific",
         back_link_with_p_id = back_link_with_p_id,
+        session_number = session_number,
         debug = debug
       )
     )
@@ -158,6 +190,7 @@ consent_module <- function(dict = vocaloidproject::vocaloidproject_dict,
                            no_consent_back_link = "%s",
                            back_link_key = "return_to_prolific",
                            back_link_with_p_id = FALSE,
+                           session_number = 1,
                            debug = FALSE) {
   elts <-
     psychTestR::join(
@@ -174,6 +207,7 @@ consent_module <- function(dict = vocaloidproject::vocaloidproject_dict,
         no_consent_back_link = no_consent_back_link,
         back_link_key = back_link_key,
         back_link_with_p_id = back_link_with_p_id,
+        session_number = session_number,
         debug = debug
       )
     )

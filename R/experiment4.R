@@ -82,6 +82,7 @@ experiment4 <- function(title = "",
             no_consent_back_link = no_consent_back_link,
             back_link_key = "return_to_prolific",
             back_link_with_p_id = FALSE,
+            session_number = session_number,
             debug = debug
           ),
           psychTestR::code_block(
