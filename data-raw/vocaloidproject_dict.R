@@ -847,14 +847,14 @@ consent <-
       en = "As you have indicated that you do not consent to participate in this study please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
       de_f = "Da Sie angegeben haben, der Teilnahme an dieser Studie nicht zuzustimmen, ziehen Sie bitte Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
       de = "Da Du angegeben hast, der Teilnahme an dieser Studie nicht zuzustimmen, ziehe bitte Deine Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
-      ja = "ja <q>stop without completing</q>"
+      ja = "本研究の参加条件にご同意いただけなかった場合は、<q>stop without completing</q>のボタンをクリックしてプロリフィック(PROLIFIC)での応募を取り消してください。"
   ) |>
   tibble::add_case(
     key = "prolific_return_submission",
     en = "Please return this submission on Prolific by selecting the <q>stop without completing</q> button.",
     de = "Bitte ziehe Deine Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
     de_f = "Bitte ziehen Sie Ihre Teilnahme auf Prolific zurück durch den Button <q>stop without completing</q>.",
-    ja = "ja PROLIFIC(プロリッフィック）<q>stop without completing</q>"
+    ja = "プロリフィック(PROLIFIC)での応募を取り消すため、<q>stop without completing</q>のボタンをクリックしてください。"
   )
 
 japanese_skills <-
