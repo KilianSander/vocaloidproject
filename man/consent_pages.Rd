@@ -24,6 +24,7 @@ consent_module(
   no_consent_back_link = "\%s",
   back_link_key = "return_to_prolific",
   back_link_with_p_id = FALSE,
+  session_number = 1,
   debug = FALSE
 )
 
@@ -31,6 +32,7 @@ consent_page_international1(
   dict = vocaloidproject::vocaloidproject_dict,
   no_consent_back_link = "\%s",
   back_link_with_p_id = FALSE,
+  session_number = 1,
   debug = FALSE
 )
 }
@@ -63,6 +65,8 @@ the text shown for \code{back_link}.}
 
 \item{back_link_with_p_id}{(logical scalar) whether or not \code{back_link}
 contains a placeholder for the participant ID.}
+
+\item{session_number}{(integer-like scalar) sets the session number.}
 
 \item{debug}{(logical scalar) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}} whether or
 not to \code{message()} the URL parameter(s).}

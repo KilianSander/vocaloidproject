@@ -25,6 +25,8 @@
 #'
 #' @param default_lang Default language for the page.
 #'
+#' @inheritParams session_design_url_welcome_page session_number
+#'
 #' @rdname consent_pages
 #'
 #' @order 1

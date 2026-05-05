@@ -9,7 +9,12 @@
 This package includes material for a research project on vocaloid music.
 }
 \author{
-\strong{Maintainer}: Kilian Sander \email{kilian.sander@hmtm-hannover.de} (\href{https://orcid.org/0000-0003-3770-7483}{ORCID})
+\strong{Maintainer}: Kilian Vogt \email{kilian.vogt@hmtm-hannover.de} (\href{https://orcid.org/0000-0003-3770-7483}{ORCID})
+
+Authors:
+\itemize{
+  \item Kilian Vogt \email{kilian.vogt@hmtm-hannover.de} (\href{https://orcid.org/0000-0003-3770-7483}{ORCID})
+}
 
 }
 \keyword{internal}
