@@ -254,13 +254,16 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
               as.numeric()
             ja_skills == 4
           },
-          logic = last_page_redirect(
-            redirect_heading = NULL,
-            redirect_paragraph = "JAPANESE_SKILLS_NOT_MATCHING",
-            back_link = unmet_requirements_back_link,
-            back_link_key = "return_to_prolific",
-            back_link_with_p_id = FALSE,
-            debug = debug
+          logic = psychTestR::join(
+            psychTestR::elt_save_results_to_disk(complete = TRUE),
+            last_page_redirect(
+              redirect_heading = NULL,
+              redirect_paragraph = "JAPANESE_SKILLS_NOT_MATCHING",
+              back_link = unmet_requirements_back_link,
+              back_link_key = "return_to_prolific",
+              back_link_with_p_id = FALSE,
+              debug = debug
+            )
           )
         )
       )
