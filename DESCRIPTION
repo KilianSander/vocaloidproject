@@ -1,6 +1,6 @@
 Package: vocaloidproject
 Title: Package for a research project on vocaloid music
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: 
     person("Kilian", "Vogt", , "kilian.vogt@hmtm-hannover.de", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3770-7483"))
@@ -42,6 +42,6 @@ Suggests:
     quarto,
     readr
 Depends: 
-    R (>= 3.5)
+    R (>= 4.1)
 LazyData: true
 Config/Needs/website: quarto
