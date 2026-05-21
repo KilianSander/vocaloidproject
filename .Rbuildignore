@@ -13,3 +13,5 @@
 ^DEG_dict_add.csv$
 ^trying-url-params.R$
 .xlsx$
+^\.positai$
+^\.claude$
