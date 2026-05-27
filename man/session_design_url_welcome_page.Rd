@@ -40,5 +40,5 @@ They check whether the URL parameter \code{udes} (for design) is present and
 in the case of \code{session_design_url_welcome_page()}, whether \code{uses}
 (for session) is also present.
 After completing the page, each URL parameter is set as a global variable
-(with \code{\link[psychTestR:global_local]{psychTestR::set_global()}} in the \code{on_complete} argument of the page).
+(with \code{\link[psychTestR:set_global]{psychTestR::set_global()}} in the \code{on_complete} argument of the page).
 }

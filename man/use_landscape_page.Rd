@@ -16,7 +16,7 @@ use_landscape_page(
 \item{img_src}{\code{NULL} for no image and a URL (character scalar) to display
 an image.}
 
-\item{img_width}{CSS unit (see \code{\link[shiny:reexports]{shiny::validateCssUnit()}}) for the width
+\item{img_width}{CSS unit (see \code{\link[shiny:validateCssUnit]{shiny::validateCssUnit()}}) for the width
 of the image.}
 
 \item{img_align}{(character scalar) sets the alignment of the image.}

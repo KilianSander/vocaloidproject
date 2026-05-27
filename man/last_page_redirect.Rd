@@ -61,7 +61,7 @@ contains a placeholder for the participant ID.}
 \item{redirect_img}{(\code{NULL} or character scalar) File path to an image to
 display it. Defaults to \code{NULL} (i.e., no image displayed).}
 
-\item{redirect_img_width}{CSS unit (see \code{\link[shiny:reexports]{shiny::validateCssUnit()}}) for
+\item{redirect_img_width}{CSS unit (see \code{\link[shiny:validateCssUnit]{shiny::validateCssUnit()}}) for
 the width of the image (if one is passed with \code{redirect_img}).}
 
 \item{redirect_img_align}{(character scalar) sets the alignment of the image

@@ -4,9 +4,6 @@
 \name{language_codes}
 \alias{language_codes}
 \title{Language codes}
-\format{
-An object of class \code{character} of length 4.
-}
 \usage{
 language_codes
 }
@@ -14,4 +11,3 @@ language_codes
 A named vector with two-letter language codes.
 Names are the corresponding dictionary keys.
 }
-\keyword{datasets}
