@@ -217,11 +217,27 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
                                      debug = FALSE,
                                      year_range = c(1925, 2007)) {
   psychTestR::join(
-    psyquest::DEG(
-      subscales = c("Age", "Gender"),
-      # show_month = FALSE,
-      year_range = year_range,
-      dict = dict
+    psychTestR::conditional(
+      test = function(state, ...) {
+        psychTestR::get_session_info(state, complete = FALSE)$language != "ja"
+      },
+      logic = psyquest::DEG(
+        subscales = c("Age", "Gender"),
+        # show_month = FALSE,
+        year_range = year_range,
+        dict = dict
+      )
+    ),
+    psychTestR::conditional(
+      test = function(state, ...) {
+        psychTestR::get_session_info(state, complete = FALSE)$language == "ja"
+      },
+      logic = psyquest::DEG(
+        subscales = c("Age", "Gender"),
+        year_range = year_range,
+        year_second = FALSE,
+        dict = dict
+      )
     ),
     psychTestR::begin_module(label = "demographics"),
     first_language_page(
