@@ -232,7 +232,7 @@ international1_session_1 <- function(dict = vocaloidproject::vocaloidproject_dic
       test = function(state, ...) {
         psychTestR::get_session_info(state, complete = FALSE)$language == "ja"
       },
-      logic = psyquest::DEG(
+      logic = psyquest::DEG(# replace with `ja_DEG()`
         subscales = c("Age", "Gender"),
         year_range = year_range,
         year_second = FALSE,
