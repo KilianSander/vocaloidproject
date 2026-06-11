@@ -92,7 +92,7 @@ design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict
           button_text = psychTestR::i18n("CONTINUE"),
           on_complete = function(state, ...) {
             psychTestR::set_global(key = "uses", value = session_number, state = state)
-            psychTestR::set_global(key = "udes", value = url_params$udes, state = state)
+            psychTestR::set_global(key = "udes", value = stringr::str_to_lower(url_params$udes), state = state)
           }
         )
       }
