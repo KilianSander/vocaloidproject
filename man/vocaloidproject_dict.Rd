@@ -14,25 +14,44 @@ vocaloidproject_dict
 This is the dictionary used for internationalization.
 It is an \code{i18n_dict} class object (see \link[psychTestR:i18n_dict]{psychTestR::i18n_dict}).
 The dictionary contains German (\code{de} and \code{de_f}) and Japanese (\code{ja})
-as well as English (\code{en}) translations.
+as well as some English (\code{en}) translations.
 }
 \details{
 The dictionary includes the Goldsmiths Musical Sophistication Index
-(Gold-MSI) as well as general questionnaire formulations.
+(Gold-MSI),
+an adapted version of the Animism Scale for Adults (ASA),
+the Basic Empathy Scale (BES),
+as well as general questionnaire formulations.
 
 Everything regarding Gold-MSI is taken from Müllensiefen et al. (2014),
 Sadakata et al. (2022), and Schaal et al. (2014).
+The adapted version of the ASA is based on 池内 (2010).
+The BES is in the variant as validated by Heynen et al. (2016).
 Some general formulations in English and German are taken from \code{psyquest}
 (Höger et al., 2024).
 }
 \references{
+Heynen, E. J. E., Van Der Helm, G. H. P., Stams, G. J. J. M., &
+Korebrits, A. M. (2016). Measuring empathy in a german youth prison:
+A validation of the German version of the Basic Empathy Scale (BES) in
+a sample of incarcerated juvenile offenders.
+\emph{Journal of Forensic Psychology Practice}, \emph{16}(5), 336--346.
+\url{https://doi.org/10.1080/15228932.2016.1219217}
+
 Höger, F., Frieler, K., Pausch, V., Sander, K., & Ruth, N. (2024).
 \emph{psyquest} (Version 1.5.9) [R package].
 \url{https://github.com/klausfrieler/psyquest}
 
+池内裕美. (2010). 成人のアニミズム的思考: 自発的喪失としてのモノ供養の心理.
+\emph{社会心理学研究}, \emph{25}(3), 167--177.
+\url{https://doi.org/10.14966/jssp.KJ00006203282}
+[Ikeuchi, H. (2010). Animistic thinking in adults:
+The memorial service for dolls as a voluntary loss.
+\emph{The Japanese Journal of Social Psychology}, \emph{25}(3), 167--177.]
+
 Müllensiefen, D., Gingras, B., Musil, J., & Stewart, L. (2014).
 The musicality of non-musicians: An index for assessing musical
-sophistication in the general population. \emph{PLoS ONE}, \emph{9}(2), Article e89642.
+sophistication in the general population. \emph{PLOS ONE}, \emph{9}(2), Article e89642.
 \url{https://doi.org/10.1371/journal.pone.0089642}
 
 Sadakata, M., Yamaguchi, Y., Ohsawa, C., Matsubara, M., Terasawa, H.,
