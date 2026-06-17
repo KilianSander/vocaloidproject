@@ -14,7 +14,7 @@ There are four presentation *designs* `a`, `b`, `c`, and `d` as well as
 three sessions `1`, `2` and `3`.
 When a participant enters the SoSci Survey part the questionnaire will look for
 URL parameters `uses` and `udes` which are placed in the variables `session`
-and `design`, respectively, in the data set.
+and `design`, respectively, in the SoSci Survey data set.
 The following `php` checks whether the php variables `$session` and `$design`
 already exist in the current SoSci Survey questionnaire session (`isset()`).
 If they do not exist, it sets them to the values found in the data set
@@ -36,6 +36,7 @@ if (!isset($design)) {
     if ($design === null || strlen($design) == 0) {
         $design = 'a';
     }
+    $design = strtolower($design);
     registerVariable($design);
 }
 ```
