@@ -39,9 +39,7 @@ corresponding to language codes.}
 or not to display debug information.}
 
 \item{technical_error_back_link}{(character scalar) link for returning to
-Prolific when URL parameter \code{uses} or \code{udes} is missing.
-It has to contain the placeholder \verb{\%s} for \code{p_id} to redirect
-participants correctly.}
+Prolific when URL parameter \code{uses} or \code{udes} is missing.}
 
 \item{no_consent_back_link}{(character scalar) link for redirecting
 participants who do not give consent.}
