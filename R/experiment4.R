@@ -7,8 +7,6 @@
 #'
 #' @param technical_error_back_link (character scalar) link for returning to
 #' Prolific when URL parameter `uses` or `udes` is missing.
-#' It has to contain the placeholder `%s` for `p_id` to redirect
-#' participants correctly.
 #'
 #' @param no_consent_back_link (character scalar) link for redirecting
 #' participants who do not give consent.
