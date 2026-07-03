@@ -73,6 +73,14 @@ design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict
     psychTestR::reactive_page(
       function(state, ...) {
         url_params <- psychTestR::get_url_params(state)
+        # hard-coded design check
+        if (!is.null(url_params$udes)) {
+          url_params$udes <- stringr::str_to_lower(url_params$udes)
+          # hard-coded permitted design letters: a, b, c, d
+          if (!(url_params$udes %in% letters[1:4])) {
+            url_params$udes <- NULL
+          }
+        }
         psychTestR::one_button_page(
           if (is.null(url_params[["udes"]])) {
             shiny::p(psychTestR::i18n("technical_error"))
@@ -92,7 +100,7 @@ design_url_welcome_page <- function(dict = vocaloidproject::vocaloidproject_dict
           button_text = psychTestR::i18n("CONTINUE"),
           on_complete = function(state, ...) {
             psychTestR::set_global(key = "uses", value = session_number, state = state)
-            psychTestR::set_global(key = "udes", value = stringr::str_to_lower(url_params$udes), state = state)
+            psychTestR::set_global(key = "udes", value = url_params$udes, state = state)
           }
         )
       }
