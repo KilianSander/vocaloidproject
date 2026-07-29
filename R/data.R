@@ -94,3 +94,12 @@
 #' @name scoring_maps
 #'
 "scoring_maps"
+
+#' Experiment 4 Stimulus Order
+#'
+#' This list contains the four stimulus presentation designs for Experiment 4.
+#'
+#' @docType data
+#' @name experiment4_designs
+#'
+"experiment4_designs"
