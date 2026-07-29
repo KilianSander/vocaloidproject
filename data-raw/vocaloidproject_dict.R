@@ -683,12 +683,12 @@ consent <-
     "Ich stimme den Teilnahmebedingungen zu und möchte an der Studie teilnehmen.",
     "I agree to the terms and conditions and would like to participate in the study.",
     "参加条件に同意し、本研究に参加を希望します。", # deepl
-    "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", "当調査へようこそ！", # clc
+    "WELCOME", "Willkommen zu unserer Studie!", "Welcome to our study!", "調査へようこそ！", # clc + hh
     "SESSION1OF3", "Dies ist Sitzung 1 von 3.", "This is Session 1 of 3.", "今回は第１回目のセッション（全３回）です。", # clc
-    "SESSION2OF3", "Dies ist Sitzung 2 von 3.", "This is Session 2 of 3.", "今回は第2回目のセッション（全３回）です。", # clc
-    "SESSION3OF3", "Dies ist Sitzung 3 von 3.", "This is Session 3 of 3.", "今回は第3回目のセッション（全３回）です。", # clc
-    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "今回は第１回目のセッション（全2回）です。", # clc
-    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "今回は第2回目のセッション（全2回）です。" # clc
+    "SESSION2OF3", "Dies ist Sitzung 2 von 3.", "This is Session 2 of 3.", "今回は第２回目のセッション（全３回）です。", # clc
+    "SESSION3OF3", "Dies ist Sitzung 3 von 3.", "This is Session 3 of 3.", "今回は第３回目のセッション（全３回）です。", # clc
+    "SESSION1OF2", "Dies ist Sitzung 1 von 2.", "This is Session 1 of 2.", "今回は第１回目のセッション（全２回）です。", # clc
+    "SESSION2OF2", "Dies ist Sitzung 2 von 2.", "This is Session 2 of 2.", "今回は第２回目のセッション（全２回）です。" # clc
   ) |>
   dplyr::mutate(
     de_f = de
