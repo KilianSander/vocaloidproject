@@ -30,6 +30,11 @@ design_b <- read_design("data-raw/designB_three_sessions.txt")
 design_c <- read_design("data-raw/designC_three_sessions.txt")
 design_d <- read_design("data-raw/designD_three_sessions.txt")
 
+design_a$exp_design <- "a"
+design_b$exp_design <- "b"
+design_c$exp_design <- "c"
+design_d$exp_design <- "d"
+
 # generate vector per design and session
 for (l in letters[1:4]) {
   for (s in 1:3) {
@@ -64,6 +69,20 @@ experiment4_designs <-
     }
   )
 rm(l, s)
+experiment4_designs$all_designs <-
+  rbind(
+    design_a, design_b, design_c, design_d
+  ) %>%
+  dplyr::rename(
+    across_sessions_block = block,
+    across_sessions_position = trial,
+    exp_session = session,
+    within_block_position = within_block_trial
+  ) %>%
+  dplyr::mutate(
+    within_session_position = across_sessions_position - (exp_session - 1) * 40,
+    within_session_block = across_sessions_block - (exp_session - 1) * 4
+  )
 
 usethis::use_data(
   experiment4_designs,
