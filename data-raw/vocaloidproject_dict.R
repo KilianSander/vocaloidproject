@@ -8,7 +8,7 @@ educational_degrees <-
     "EDU_CHOICE4", "Bachelor (Uni)", "学士",
     "EDU_CHOICE5", "Master", "修士",
     "EDU_CHOICE6", "Promotion/PhD", "博士",
-    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴をお教えください。" # clc
+    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴をお教えください。" # hh
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace("Ihr", "Dein")
@@ -470,9 +470,9 @@ DEG_dict_raw <-
       "TDEG_0004_CHOICE2", "男性", # deepl & clc
       "TDEG_0004_CHOICE3", "その他", # deepl
       "TDEG_0004_CHOICE4", "回答しない", # clc
-      "TDEG_0004_PROMPT", "性別をお教えください。", # deepl & clc
-      "TDEG_0008_PROMPT", "母語をお教えください。", # clc
-      "TDEG_0010_PROMPT", "お生まれの年月をお教えください。" # clc
+      "TDEG_0004_PROMPT", "性別を教えてください。", # hh
+      "TDEG_0008_PROMPT", "母語を教えてください。", # hh
+      "TDEG_0010_PROMPT", "お生まれの年・月を教えてください。" # clc
     )
   )
 
