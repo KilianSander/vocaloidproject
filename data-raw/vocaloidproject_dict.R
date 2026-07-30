@@ -8,7 +8,7 @@ educational_degrees <-
     "EDU_CHOICE4", "Bachelor (Uni)", "学士",
     "EDU_CHOICE5", "Master", "修士",
     "EDU_CHOICE6", "Promotion/PhD", "博士",
-    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴をお教えください。" # hh
+    "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴を教えてください。" # hh
   ) |>
   dplyr::mutate(
     de = de_f |> stringr::str_replace("Ihr", "Dein")
