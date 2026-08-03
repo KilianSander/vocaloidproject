@@ -643,7 +643,7 @@ emotional_baseline <-
       key = c("picinfo"),
       de_f = "Wir zeigen Ihnen im Folgenden sechs Fotos. Bitte beschreiben Sie anhand der Bild-Skala, wie positiv/negativ und aufgeregt/entspannt das jeweilige Foto ist.",
       de = "Wir zeigen Dir im Folgenden sechs Fotos. Bitte beschreibe  anhand der Bild-Skala, wie positiv/negativ und aufgeregt/entspannt das jeweilige Foto ist.",
-      ja = "次に、6枚の写真を順にお見せします。それぞれの写真がどの程度ポジティブ／ネガティブな表現を表するか、また興奮／リラックスした状態であるかを、画像スケールを使って評価してください。"
+      ja = "次に、6枚の写真を順にお見せします。それぞれの写真がどの程度ポジティブ／ネガティブな表現を表すか、また興奮／リラックスした状態であるかを、画像スケールを使って評価してください。"
     )
   )
 
