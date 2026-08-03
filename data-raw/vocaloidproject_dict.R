@@ -2,12 +2,12 @@
 educational_degrees <-
   tibble::tribble(
     ~key, ~de_f, ~ja,
-    "EDU_CHOICE1", "Berufsausbildung/Fachhochschule/Fachoberschule", "準学士・高度専門士・専門士",
-    "EDU_CHOICE2", "Abitur (HS)", "高卒",
-    "EDU_CHOICE3", "Fachhochschuldiplom", "短期大学士",
-    "EDU_CHOICE4", "Bachelor (Uni)", "学士",
-    "EDU_CHOICE5", "Master", "修士",
-    "EDU_CHOICE6", "Promotion/PhD", "博士",
+    "EDU_CHOICE1", "Berufsausbildung/Fachhochschule/Fachoberschule", "高専・専門学校卒", # hh
+    "EDU_CHOICE2", "Abitur (HS)", "高卒", # hh
+    "EDU_CHOICE3", "Fachhochschuldiplom", "短大卒", # hh
+    "EDU_CHOICE4", "Bachelor (Uni)", "学部卒", # hh
+    "EDU_CHOICE5", "Master", "修士卒", # hh
+    "EDU_CHOICE6", "Promotion/PhD", "博士卒", # hh
     "EDU_PROMPT", "Was ist Ihr höchster Bildungsabschluss?", "最終学歴を教えてください。" # hh
   ) |>
   dplyr::mutate(
