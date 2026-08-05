@@ -512,36 +512,42 @@ info_redirect <-
   tibble::add_row(
     data.frame(
       key = "info_example_rating",
-      de_f = "<p>Es folgt nun der musikalische Teil.</p><p>
-        Sie werden 60 kurze Ausschnitte hören und sie beurteilen.
-        Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden,
-        z.B. Wut, Freude, Verliebtsein usw.
-        Bitte beachten Sie, dass es dabei keine richtige oder falsche Antwort gibt.
-        Uns interessiert Ihre Meinung.
-        Bitte beachten Sie, dass es einen Unterschied gibt zwischen den Emotionen,
-        die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen.
-        So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen.
-        Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.
-        </p><p>Zuerst ein Beispiel.</p>",
-      de = "<p>Es folgt nun der musikalische Teil.</p><p>
-        Du wirst 60 kurze Ausschnitte hören und sie beurteilen.
-        Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden,
-        z.B. Wut, Freude, Verliebtsein usw.
-        Bitte beachte, dass es dabei keine richtige oder falsche Antwort gibt.
-        Uns interessiert Deine Meinung.
-        Bitte beachte, dass es einen Unterschied gibt zwischen den Emotionen,
-        die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen.
-        So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen.
-        Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.
-        </p><p>Zuerst ein Beispiel.</p>",
-      ja = "<p>次は音楽の部分です。</p><p>
-        合計40の楽曲の抜粋をお聴きいただき、それぞれ評価してください。
-        ここでお聞きしたいのは、音楽の中で表現されている感情、例えば怒り、喜び、恋愛感情などです。
-        正解や不正解はありませんので、ご意見をお聞かせください。
-        また、曲によって表現されている感情と、ご自身が感じる感情は異なる場合があることにご留意ください。
-        例えば、ある曲がとても悲しい曲であっても、それを聴いて気分が良く、満足感を覚える場合もあります。
-        評価していただきたいのは、ご自身の感情ではなく、音楽そのものです。
-        </p><p>それではまず、例を聴いてみましょう。</p>",
+      de_f = paste0(
+        "<p>Es folgt nun der musikalische Teil.</p><p>",
+        "Sie werden 40 kurze Ausschnitte hören und sie beurteilen. ",
+        "Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden, ",
+        "z.B. Wut, Freude, Verliebtsein usw. ",
+        "Bitte beachten Sie, dass es dabei keine richtige oder falsche Antwort gibt. ",
+        "Uns interessiert Ihre Meinung. ",
+        "Bitte beachten Sie, dass es einen Unterschied gibt zwischen den Emotionen, ",
+        "die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen. ",
+        "So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen. ",
+        "Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.",
+        "</p><p>Zuerst ein Beispiel.</p>"
+      ),
+      de = paste0(
+        "<p>Es folgt nun der musikalische Teil.</p><p>",
+        "Du wirst 40 kurze Ausschnitte hören und sie beurteilen. ",
+        "Dabei interessiert uns, welche Emotionen in der Musik zum Ausdruck gebracht werden, ",
+        "z.B. Wut, Freude, Verliebtsein usw. ",
+        "Bitte beachte, dass es dabei keine richtige oder falsche Antwort gibt. ",
+        "Uns interessiert Deine Meinung. ",
+        "Bitte beachte, dass es einen Unterschied gibt zwischen den Emotionen, ",
+        "die durch die Musik zum Ausdruck gebracht werden, und Ihren eigenen Emotionen. ",
+        "So kann z.B. ein Song sehr traurig sein, Sie sich dabei aber gut und zufrieden fühlen. ",
+        "Wir möchten, dass Sie die Musik bewerten, nicht ihre eigenen Emotionen.",
+        "</p><p>Zuerst ein Beispiel.</p>"
+      ),
+      ja = paste0(
+        "<p>次、は音楽に関する質問です。</p><p>",
+        "合計40の楽曲の一部をお聴きいただき、それぞれ評価していただきます。",
+        "ここでお聞きしたいのは、音楽の中で表現されている感情、例えば怒り、喜び、恋愛感情などです。",
+        "正解や不正解はありませんので、あなた自身のご意見をお聞かせください。",
+        "また、曲によって表現されている感情と、ご自身が感じる感情は異なる場合があることにご留意ください。",
+        "例えば、ある曲がとても悲しい曲であっても、それを聴いて気分が良く、満足感を覚える場合もあります。",
+        "評価していただきたいのは、ご自身の感情ではなく、音楽によって表現されている感情です。",
+        "</p><p>それではまず、例を聴いてみましょう。</p>"
+      ),
       en = "info example rating"
     )
   )
